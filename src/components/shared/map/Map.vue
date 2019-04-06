@@ -1,13 +1,24 @@
 <template>
-  <div class="mt-5"
-  >
-    <gmap-autocomplete
-            class="gmap-autocomplete"
-            v-model="rAddress"
-            placeholder="Address"
-            @place_changed="setPlace"
-            :select-first-on-enter="true">
-    </gmap-autocomplete>
+  <div class="mt-5">
+
+    <v-container class="gmap-autocomplete-container">
+      <v-layout class="gmap-autocomplete-wrapper" wrap>
+        <v-flex xs12 md8 class="d-flex">
+          <gmap-autocomplete
+                  class="gmap-autocomplete"
+                  v-model="rAddress"
+                  placeholder="Address"
+                  @place_changed="setPlace"
+                  :select-first-on-enter="true">
+          </gmap-autocomplete>
+          <v-icon class="location-icon">my_location</v-icon>
+        </v-flex>
+
+        <v-flex xs12 md4 class="d-flex justify-center">
+          <v-btn large color="light-green accent-4 find-btn">FIND RESTAURANTS</v-btn>
+        </v-flex>
+      </v-layout>
+    </v-container>
 
     <gmap-map
             :options="{styles: styles}"
@@ -37,170 +48,107 @@
         center: {},
         styles: [
           {
-            featureType: 'all',
-            elementType: 'labels.text.fill',
-            stylers: [
+            "featureType": "landscape",
+            "stylers": [
               {
-                saturation: 36,
+                "hue": "#FFBB00"
               },
               {
-                color: '#000000',
+                "saturation": 43.400000000000006
               },
               {
-                lightness: 40,
+                "lightness": 37.599999999999994
               },
-            ],
+              {
+                "gamma": 1
+              }
+            ]
           },
           {
-            featureType: 'all',
-            elementType: 'labels.text.stroke',
-            stylers: [
+            "featureType": "road.highway",
+            "stylers": [
               {
-                visibility: 'on',
+                "hue": "#FFC200"
               },
               {
-                color: '#000000',
+                "saturation": -61.8
               },
               {
-                lightness: 16,
+                "lightness": 45.599999999999994
               },
-            ],
+              {
+                "gamma": 1
+              }
+            ]
           },
           {
-            featureType: 'all',
-            elementType: 'labels.icon',
-            stylers: [
+            "featureType": "road.arterial",
+            "stylers": [
               {
-                visibility: 'off',
+                "hue": "#FF0300"
               },
-            ],
+              {
+                "saturation": -100
+              },
+              {
+                "lightness": 51.19999999999999
+              },
+              {
+                "gamma": 1
+              }
+            ]
           },
           {
-            featureType: 'administrative',
-            elementType: 'geometry.fill',
-            stylers: [
+            "featureType": "road.local",
+            "stylers": [
               {
-                color: '#000000',
+                "hue": "#FF0300"
               },
               {
-                lightness: 20,
+                "saturation": -100
               },
-            ],
+              {
+                "lightness": 52
+              },
+              {
+                "gamma": 1
+              }
+            ]
           },
           {
-            featureType: 'administrative',
-            elementType: 'geometry.stroke',
-            stylers: [
+            "featureType": "water",
+            "stylers": [
               {
-                color: '#000000',
+                "hue": "#0078FF"
               },
               {
-                lightness: 17,
+                "saturation": -13.200000000000003
               },
               {
-                weight: 1.2,
+                "lightness": 2.4000000000000057
               },
-            ],
+              {
+                "gamma": 1
+              }
+            ]
           },
           {
-            featureType: 'landscape',
-            elementType: 'geometry',
-            stylers: [
+            "featureType": "poi",
+            "stylers": [
               {
-                color: '#000000',
+                "hue": "#00FF6A"
               },
               {
-                lightness: 20,
-              },
-            ],
-          },
-          {
-            featureType: 'poi',
-            elementType: 'geometry',
-            stylers: [
-              {
-                color: '#000000',
+                "saturation": -1.0989010989011234
               },
               {
-                lightness: 21,
-              },
-            ],
-          },
-          {
-            featureType: 'road.highway',
-            elementType: 'geometry.fill',
-            stylers: [
-              {
-                color: '#000000',
+                "lightness": 11.200000000000017
               },
               {
-                lightness: 17,
-              },
-            ],
-          },
-          {
-            featureType: 'road.highway',
-            elementType: 'geometry.stroke',
-            stylers: [
-              {
-                color: '#000000',
-              },
-              {
-                lightness: 29,
-              },
-              {
-                weight: 0.2,
-              },
-            ],
-          },
-          {
-            featureType: 'road.arterial',
-            elementType: 'geometry',
-            stylers: [
-              {
-                color: '#000000',
-              },
-              {
-                lightness: 18,
-              },
-            ],
-          },
-          {
-            featureType: 'road.local',
-            elementType: 'geometry',
-            stylers: [
-              {
-                color: '#000000',
-              },
-              {
-                lightness: 16,
-              },
-            ],
-          },
-          {
-            featureType: 'transit',
-            elementType: 'geometry',
-            stylers: [
-              {
-                color: '#000000',
-              },
-              {
-                lightness: 19,
-              },
-            ],
-          },
-          {
-            featureType: 'water',
-            elementType: 'geometry',
-            stylers: [
-              {
-                color: '#000000',
-              },
-              {
-                lightness: 17,
-              },
-            ],
-          },
+                "gamma": 1
+              }
+            ]
+          }
         ],
         marker: null,
         apiKey: 'AIzaSyAfYAgsxbh9FIJw1lAUc3B_t3ujOTrDRT4'
@@ -219,7 +167,6 @@
     methods: {
       setPlace(place) {
         if (!place) return
-        console.error(place);
 
         this.marker = this.center = {
           lat: place.geometry.location.lat(),
@@ -307,7 +254,6 @@
           this.$store.dispatch(`${this.storeModule}/setLocation`, data.location);
       },
       getAddress(lat,lng) {
-        // TODO :: we need access to the Autocompleete api
         fetch(`https://maps.googleapis.com/maps/api/geocode/json?latlng=${lat + ',' + lng}&key=${this.apiKey}&language=en`)
          .then(res => {
            if (res.status === 200) return res.json();
@@ -322,10 +268,31 @@
 </script>
 
 <style scoped lang="stylus">
-  .gmap-autocomplete
-    border-bottom 1px solid #c3c3c3
+  .gmap-autocomplete-container
+    display: flex
+    justify-content center
+    align-items center
+    margin-bottom 3%
+    .gmap-autocomplete-wrapper
+      display flex
+      padding: 3%;
+      background: #fff;
+      -webkit-box-shadow: 6px 6px 25px 0px rgba(189,182,189,1);
+      -moz-box-shadow: 6px 6px 25px 0px rgba(189,182,189,1);
+      box-shadow: 6px 6px 25px 0px rgba(189,182,189,1);
+      .gmap-autocomplete
+        border-bottom 1px solid #c3c3c3
+        display inline-block
+        width 100%
+        &:focus
+          outline: none
+  .location-icon
+    color #019234!important
+  .find-btn
+    margin-bottom 0
+    color: white!important
     width 100%
-    margin-bottom 5%;
-    &:focus
-      outline: none
+  @media only screen and (min-width: 960px)
+    .gmap-autocomplete-container
+      width 50%
 </style>
