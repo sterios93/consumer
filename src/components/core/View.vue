@@ -72,4 +72,7 @@
     display: flex;
     justify-content: center;
     height: 100%;
+    .container
+      padding-right 0
+      padding-left 0
 </style>

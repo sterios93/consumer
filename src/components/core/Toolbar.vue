@@ -144,6 +144,8 @@ export default {
 </script>
 
 <style scoped lang="stylus">
+  #core-toolbar
+    margin-bottom 0
   #core-toolbar a
     text-decoration: none
   .responsive
