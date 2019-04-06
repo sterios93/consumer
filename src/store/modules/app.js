@@ -4,7 +4,7 @@ export default {
   namespaced: true,
   state: {
     icons: true,
-    drawer: true,
+    drawer: false,
     toolbar: true,
     color: 'second',
     image: 'https://demos.creative-tim.com/vue-material-dashboard/img/sidebar-2.32103624.jpg',
