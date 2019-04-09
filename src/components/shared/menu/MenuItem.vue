@@ -36,7 +36,7 @@
             </v-flex>
 
             <v-flex xs12 sm2>
-                <div class="headline">{{item.price}}</div>
+                <div class="headline">{{item.price | formatCurrency}}</div>
             </v-flex>
         </v-layout>
 

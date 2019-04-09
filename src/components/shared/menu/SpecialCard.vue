@@ -15,49 +15,74 @@
                 </v-layout>
             </v-flex>
         </v-layout>
-        <v-card>
+        <v-hover>
+            <v-card
+                    slot-scope="{ hover }"
+                    :class="`elevation-${hover ? 12 : 2}`"
+            >
             <div v-if="isSpecial">
-                <h4 class="ma-0 text-xs-center">{{item.name}}</h4>
+                <h4 v-if="item.name" class="ma-0 title grey--text text--darken-4 text-uppercase font-weight-medium text-xs-center">{{item.name}}</h4>
                 <v-img
                         class="white--text"
                         height="150px"
                         :src="imagePath"
                 >
                 </v-img>
-                <v-card-title>
-                    <div class="text-truncate">{{item.description}}</div>
+                <v-card-title class="px-5 justify-center">
+                    <div class="text-xs-center mb-4">{{item.description}}</div>
+                    <v-flex
+                            xs12
+                            v-if="item.price"
+                            class="old-price ma-0 pa-0 title red--text text--accent-1 text-uppercase font-weight-medium text-xs-center"
+                    >
+                        {{item.price | formatCurrency}}
+                    </v-flex>
+                    <v-flex
+                            xs12
+                            v-if="item.price"
+                            class="new-price ma-0 pa-0 headline red--text text--accent-4 text-uppercase font-weight-bold text-xs-center"
+                    >
+                        {{item.price - item.price * (item.discount / 100) | formatCurrency}}
+                    </v-flex>
                 </v-card-title>
-            </div>
-            <v-card-actions>
-                <v-btn flat color="info" @click="readMore">Explore</v-btn>
+                <v-card-actions class="px-5 justify-center">
+                    <v-btn color="success" block dark @click="readMore">Explore</v-btn>
+                </v-card-actions>
+                <v-divider></v-divider>
                 <div v-if="isSpecial" class="ribbon"><span>{{ribbonText}}</span></div>
+            </div>
+            <v-card-actions class="px-2 py-0" v-if="isEditable">
                 <v-flex xs12>
                     <v-switch
-                        :input-value="isActive"
-                        :value="isActive"
-                        :loading="activeLoading"
-                        :disabled="activeLoading"
-                        @click.prevent="toggleIsActive"
-                        hide-details
+                            color="indigo accent-4"
+                            :input-value="isActive"
+                            :value="isActive"
+                            :loading="activeLoading"
+                            :disabled="activeLoading"
+                            @click.prevent="toggleIsActive"
                     >
+                        <template v-slot:label>
+                            <span class="indigo--text text--accent-4">Toggle active</span>
+                        </template>
                     </v-switch>
                 </v-flex>
-                <v-btn icon @click="onEditClick" v-if="isEditable">
-                    <v-icon color="orange">edit</v-icon>
+                <v-btn icon @click="onEditClick">
+                    <v-icon color="indigo accent-2">edit</v-icon>
                 </v-btn>
                 <v-btn
                         icon
                         @click="onDeleteClick"
-                        v-if="isEditable"
                         :loading="deleteLoading"
                         :disabled="deleteLoading"
                 >
-                    <v-icon color="red">delete</v-icon>
+                    <v-icon color="indigo accent-2">delete</v-icon>
                 </v-btn>
             </v-card-actions>
         </v-card>
+        </v-hover>
 
     </v-flex>
+
 </template>
 
 <script>
@@ -84,13 +109,13 @@
       },
       colors: {
         type: Array,
-        default: () => ['#2980b9', '#5dbfff'],
+        default: () => ['#309250', '#2fa557e0'],
       }
     },
     data() {
       return {
         isActive: false,
-        defaultImage: 'img/default-menu-v2.jpg',
+        defaultImage: './img/default-menu-v2.jpg',
         activeLoading: false,
         deleteLoading: false,
       }
@@ -199,11 +224,13 @@
         color: red
     .ribbon {
         position: absolute;
-        left: -5px; top: -5px;
+        left: 11px;
+        top: 11px;
         z-index: 1;
         overflow: hidden;
         width: 75px; height: 75px;
         text-align: right;
+        transform: scale(1.5)
     }
     .ribbon span {
         font-size: 10px;
@@ -217,7 +244,7 @@
         width: 100px;
         display: block;
         background: #79A70A;
-        background: linear-gradient(#ce0d78 0%, #ff5deb 100%);
+        background: linear-gradient(#fe7d34 0%, #de7332 100%);
         box-shadow: 0 3px 10px -5px rgba(0, 0, 0, 1);
         position: absolute;
         top: 19px; left: -21px;
@@ -241,7 +268,14 @@
         border-top: 3px solid #2980b9;
     }
 
+    .old-price
+        text-decoration line-through
 
     >>> .v-input--selection-controls
         margin 0 !important
+
+    >>> .v-input__slot
+        margin 0 !important
+    >>> .v-messages
+        display none !important
 </style>

@@ -56,7 +56,8 @@
 
                 <v-btn
                   class="mr-2 font-weight-light"
-                  color="purple darken-2"
+                  color="orange darken-2"
+                  dark
                   @click="goToSignUp"
                 >
                   Sign up

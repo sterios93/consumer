@@ -16,6 +16,7 @@ import App from './App'
 import i18n from '@/i18n'
 import router from '@/router'
 import store from '@/store'
+import Currency from './utils/currency'
 
 import 'vuetify/dist/vuetify.min.css'
 
@@ -23,6 +24,18 @@ import 'vuetify/dist/vuetify.min.css'
 sync(store, router)
 
 Vue.config.productionTip = false
+
+Currency.setCurrency({
+  code: 'EUR',
+  locale: 'de-DE',
+  symbol: '€',
+  digits: 4
+})
+
+Vue.filter('formatCurrency', function (value) {
+  if (!value) return ''
+  return Currency.formatCurrency(value)
+})
 
 /* eslint-disable no-new */
 new Vue({

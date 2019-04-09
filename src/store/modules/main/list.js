@@ -8,7 +8,7 @@ const state = () => ({
       id: 11,
       name: 'Lorem',
       image: 'https://cdn.vuetifyjs.com/images/cards/foster.jpg',
-      price: 40,
+      price: 40.10,
       isLunchOnly: false,
       weight: 50,
       category: {
@@ -21,7 +21,7 @@ const state = () => ({
       id: 0,
       name: 'Lorem1',
       image: 'https://cdn.vuetifyjs.com/images/cards/foster.jpg',
-      price: 40,
+      price: 40.10,
       isLunchOnly: false,
       weight: 50,
       category: {
@@ -34,7 +34,7 @@ const state = () => ({
       id: 1,
       name: 'Lorem2',
       image: 'https://cdn.vuetifyjs.com/images/cards/foster.jpg',
-      price: 40,
+      price: 40.10,
       isLunchOnly: false,
       weight: 50,
       category: {
@@ -47,7 +47,7 @@ const state = () => ({
       id: 2,
       name: 'Lorem2',
       image: 'https://cdn.vuetifyjs.com/images/cards/foster.jpg',
-      price: 40,
+      price: 40.10,
       isLunchOnly: false,
       weight: 50,
       category: {
@@ -60,7 +60,7 @@ const state = () => ({
       id: 3,
       name: 'Lorem3',
       image: 'https://cdn.vuetifyjs.com/images/cards/foster.jpg',
-      price: 40,
+      price: 40.10,
       isLunchOnly: false,
       weight: 50,
       category: {
@@ -73,7 +73,7 @@ const state = () => ({
       id: 4,
       name: 'Lorem4',
       image: 'https://cdn.vuetifyjs.com/images/cards/foster.jpg',
-      price: 40,
+      price: 40.10,
       isLunchOnly: false,
       weight: 50,
       category: {
@@ -86,7 +86,7 @@ const state = () => ({
       id: 5,
       name: 'Lorem',
       image: 'https://cdn.vuetifyjs.com/images/cards/foster.jpg',
-      price: 40,
+      price: 40.10,
       isLunchOnly: false,
       weight: 50,
       category: {

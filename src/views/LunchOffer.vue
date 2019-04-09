@@ -26,7 +26,7 @@
                                             class="mx-auto d-block"
                                             size="260"
                                     >
-                                        <img src="https://api-content.prod.pizzahutaustralia.com.au//umbraco/api/Image/Get2?path=assets/products/menu/Veggie-Tandoori-LGE-Pizza-menu.jpg">
+                                        <v-img src="./img/special-offer-default.jpeg"></v-img>
                                     </v-avatar>
                                 </v-flex>
 

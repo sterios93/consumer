@@ -19,18 +19,9 @@
         column
       >
         <v-list-tile avatar>
-          <v-list-tile-avatar
-            color="white"
-          >
-            <v-img
-              :src="logo"
-              height="34"
-              contain
-            />
-          </v-list-tile-avatar>
-          <v-list-tile-title class="title">
-            LunchDeal 24
-          </v-list-tile-title>
+          <v-img
+            :src="logo"
+          />
         </v-list-tile>
         <v-divider/>
         <v-list-tile
@@ -76,7 +67,7 @@ import { mapActions,  mapState } from 'vuex'
 
 export default {
   data: () => ({
-    logo: './img/vuetifylogo.png',
+    logo: './img/logo.png',
     links: [
       {
         to: '/signup',
@@ -158,4 +149,12 @@ export default {
       padding-right: 15px;
     }
   }
+</style>
+
+<style lang="stylus">
+  .v-list-item
+    .v-list__tile.v-list__tile--avatar
+      padding: 15px 5px !important
+  .v-list__tile.v-list__tile--avatar
+     padding: 5px 15px !important
 </style>

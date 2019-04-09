@@ -146,6 +146,7 @@
                             <v-btn
                                     class="mr-2 font-weight-light"
                                     color="orange"
+                                    dark
                                     @click="setEditMode(true)"
                             >
                                 <v-icon class="mr-1">

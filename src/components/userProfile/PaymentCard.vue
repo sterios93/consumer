@@ -19,6 +19,7 @@
                     <v-btn
                             class="mr-2 font-weight-light"
                             color="orange"
+                            dark
                     >
                         <v-icon class="mr-1">
                             mdi-account-edit

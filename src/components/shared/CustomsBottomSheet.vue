@@ -10,7 +10,7 @@
                 <v-list-tile-avatar>
                     <v-avatar size="32px" tile>
                         <img
-                                :src="`https://cdn.vuetifyjs.com/images/bottom-sheets/${tile.img}`"
+                                :src="'./img/' + tile.img"
                                 :alt="tile.title"
                         >
                     </v-avatar>
@@ -37,7 +37,7 @@
       }
     },
     methods: {
-      ...mapActions('bottomSheet',['setVisibility']),
+      ...mapActions('bottomSheet', ['setVisibility']),
       handleClick(tile) {
         this.localVisibility = false
         tile.cb()

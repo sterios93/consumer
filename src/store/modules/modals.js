@@ -4,11 +4,11 @@ export default {
 	namespaced: true,
 	state: {
 		category: {
-			color: 'teal darken-1',
+			color: 'green lighten-1',
 			visibility: false,
 		},
 		confirm: {
-			color: 'teal darken-1',
+			color: 'green lighten-1',
 			action: 'delete this item',
 			callback: null,
 			fullscreen: false,
@@ -16,19 +16,19 @@ export default {
 		},
 		menu: {
 			main: {
-				color: 'blue-grey lighten-2',
+				color: 'green lighten-1',
 				action: 'add',
 				fullscreen: false,
 				visibility: false,
 			},
 			special: {
-				color: 'blue-grey lighten-1',
+				color: 'green lighten-1',
 				action: 'add',
 				fullscreen: false,
 				visibility: false,
 			},
 			lunch	: {
-				color: 'teal darken-1',
+				color: 'green lighten-1',
 				action: 'add',
 				fullscreen: false,
 				visibility: false,

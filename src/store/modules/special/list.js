@@ -13,7 +13,7 @@ const state = () => ({
           id: 11,
           name: 'Lorem',
           image: 'https://cdn.vuetifyjs.com/images/cards/foster.jpg',
-          price: 40,
+          price: 40.10,
           isLunchOnly: false,
           weight: 50,
           category: {
@@ -26,7 +26,7 @@ const state = () => ({
           id: 0,
           name: 'Lorem1',
           image: 'https://cdn.vuetifyjs.com/images/cards/foster.jpg',
-          price: 40,
+          price: 40.10,
           isLunchOnly: false,
           weight: 50,
           category: {
@@ -39,7 +39,7 @@ const state = () => ({
           id: 1,
           name: 'Lorem2',
           image: 'https://cdn.vuetifyjs.com/images/cards/foster.jpg',
-          price: 40,
+          price: 40.10,
           isLunchOnly: false,
           weight: 50,
           category: {
@@ -52,7 +52,7 @@ const state = () => ({
           id: 2,
           name: 'Lorem2',
           image: 'https://cdn.vuetifyjs.com/images/cards/foster.jpg',
-          price: 40,
+          price: 40.10,
           isLunchOnly: false,
           weight: 50,
           category: {
@@ -64,7 +64,7 @@ const state = () => ({
       ],
       name: 'Grande Pica Peperoni with Cheese',
       picture: null,
-      image: 'https://api-content.prod.pizzahutaustralia.com.au//umbraco/api/Image/Get2?path=assets/products/menu/Veggie-Tandoori-LGE-Pizza-menu.jpg',
+      image: './img/special-offer-default.jpeg',
       price: 160,
       schedule: null,
       startDate: '2019-09-10 12:00',
@@ -80,7 +80,7 @@ const state = () => ({
           id: 11,
           name: 'Lorem',
           image: 'https://cdn.vuetifyjs.com/images/cards/foster.jpg',
-          price: 40,
+          price: 40.10,
           isLunchOnly: false,
           weight: 50,
           category: {
@@ -93,7 +93,7 @@ const state = () => ({
           id: 0,
           name: 'Lorem1',
           image: 'https://cdn.vuetifyjs.com/images/cards/foster.jpg',
-          price: 40,
+          price: 40.10,
           isLunchOnly: false,
           weight: 50,
           category: {
@@ -106,7 +106,7 @@ const state = () => ({
           id: 1,
           name: 'Lorem2',
           image: 'https://cdn.vuetifyjs.com/images/cards/foster.jpg',
-          price: 40,
+          price: 40.10,
           isLunchOnly: false,
           weight: 50,
           category: {
@@ -119,7 +119,7 @@ const state = () => ({
           id: 2,
           name: 'Lorem2',
           image: 'https://cdn.vuetifyjs.com/images/cards/foster.jpg',
-          price: 40,
+          price: 40.10,
           isLunchOnly: false,
           weight: 50,
           category: {
@@ -131,7 +131,7 @@ const state = () => ({
       ],
       name: 'Grande Pica Peperoni with Cheese',
       picture: null,
-      image: 'https://api-content.prod.pizzahutaustralia.com.au//umbraco/api/Image/Get2?path=assets/products/menu/Veggie-Tandoori-LGE-Pizza-menu.jpg',
+      image: './img/special-offer-default.jpeg',
       price: 160,
       schedule: null,
       startDate: '2019-09-10 12:00',
@@ -147,7 +147,7 @@ const state = () => ({
           id: 11,
           name: 'Lorem',
           image: 'https://cdn.vuetifyjs.com/images/cards/foster.jpg',
-          price: 40,
+          price: 40.10,
           isLunchOnly: false,
           weight: 50,
           category: {
@@ -160,7 +160,7 @@ const state = () => ({
           id: 0,
           name: 'Lorem1',
           image: 'https://cdn.vuetifyjs.com/images/cards/foster.jpg',
-          price: 40,
+          price: 40.10,
           isLunchOnly: false,
           weight: 50,
           category: {
@@ -173,7 +173,7 @@ const state = () => ({
           id: 1,
           name: 'Lorem2',
           image: 'https://cdn.vuetifyjs.com/images/cards/foster.jpg',
-          price: 40,
+          price: 40.10,
           isLunchOnly: false,
           weight: 50,
           category: {
@@ -186,7 +186,7 @@ const state = () => ({
           id: 2,
           name: 'Lorem2',
           image: 'https://cdn.vuetifyjs.com/images/cards/foster.jpg',
-          price: 40,
+          price: 40.10,
           isLunchOnly: false,
           weight: 50,
           category: {
@@ -198,7 +198,7 @@ const state = () => ({
       ],
       name: 'Grande Pica Peperoni with Cheese',
       picture: null,
-      image: 'https://api-content.prod.pizzahutaustralia.com.au//umbraco/api/Image/Get2?path=assets/products/menu/Veggie-Tandoori-LGE-Pizza-menu.jpg',
+      image: './img/special-offer-default.jpeg',
       price: 160,
       schedule: null,
       startDate: '2019-09-10 12:00',
@@ -214,7 +214,7 @@ const state = () => ({
           id: 11,
           name: 'Lorem',
           image: 'https://cdn.vuetifyjs.com/images/cards/foster.jpg',
-          price: 40,
+          price: 40.10,
           isLunchOnly: false,
           weight: 50,
           category: {
@@ -227,7 +227,7 @@ const state = () => ({
           id: 0,
           name: 'Lorem1',
           image: 'https://cdn.vuetifyjs.com/images/cards/foster.jpg',
-          price: 40,
+          price: 40.10,
           isLunchOnly: false,
           weight: 50,
           category: {
@@ -240,7 +240,7 @@ const state = () => ({
           id: 1,
           name: 'Lorem2',
           image: 'https://cdn.vuetifyjs.com/images/cards/foster.jpg',
-          price: 40,
+          price: 40.10,
           isLunchOnly: false,
           weight: 50,
           category: {
@@ -253,7 +253,7 @@ const state = () => ({
           id: 2,
           name: 'Lorem2',
           image: 'https://cdn.vuetifyjs.com/images/cards/foster.jpg',
-          price: 40,
+          price: 40.10,
           isLunchOnly: false,
           weight: 50,
           category: {
@@ -265,7 +265,7 @@ const state = () => ({
       ],
       name: 'Grande Pica Peperoni with Cheese',
       picture: null,
-      image: 'https://api-content.prod.pizzahutaustralia.com.au//umbraco/api/Image/Get2?path=assets/products/menu/Veggie-Tandoori-LGE-Pizza-menu.jpg',
+      image: './img/special-offer-default.jpeg',
       price: 160,
       schedule: null,
       startDate: '2019-09-10 12:00',

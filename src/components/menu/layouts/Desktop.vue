@@ -51,7 +51,7 @@
     created() {
       this.controls = [
         {
-          img: 'keep.png',
+          img: 'main.png',
           title: 'Create main menu product',
           cb: () => this.setMenuModalVisibility({
             key: 'main',
@@ -59,7 +59,7 @@
           })
         },
         {
-          img: 'inbox.png',
+          img: 'special.png',
           title: 'Create special offer',
           cb: () => this.setMenuModalVisibility({
             key: 'special',
@@ -67,7 +67,7 @@
           })
         },
         {
-          img: 'hangouts.png',
+          img: 'lunch.png',
           title: 'Create lunch offer',
           cb: () => this.setMenuModalVisibility({
             key: 'lunch',
@@ -75,7 +75,7 @@
           })
         },
         {
-          img: 'hangouts.png',
+          img: 'category.png',
           title: 'Create category',
           cb: () => this.setModalVisibility({
             key: 'category',
@@ -84,7 +84,6 @@
         }
       ]
     },
-
 
     computed: {
       categoryProps () {

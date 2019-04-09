@@ -5,9 +5,9 @@ export default {
   accent: '#82B1FF',
   error: '#f55a4e',
   info: '#00d3ee',
-  success: '#5cb860',
+  success: '#339139',
   second: '#33a1ff',
   warning: '#ffa21a',
   base: 'teal darken-1',
-  modals: 'blue-grey darken-2'
+  modals: 'blue-grey darken-2',
 }

@@ -3,7 +3,7 @@
         <v-tabs-slider class="lime accent-2"></v-tabs-slider>
 
         <v-tab v-for="item in items" :key="item.id" @change="tabChanged(item.id)">
-            Item {{ item.name }}
+            {{ item.name }}
         </v-tab>
     </v-tabs>
 </template>

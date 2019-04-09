@@ -6,8 +6,8 @@ export default {
     icons: true,
     drawer: false,
     toolbar: true,
-    color: 'second',
-    image: 'https://demos.creative-tim.com/vue-material-dashboard/img/sidebar-2.32103624.jpg',
+    color: 'success',
+    image: './img/drawer.jpg',
     user: null,
   },
   mutations: {

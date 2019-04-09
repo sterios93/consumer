@@ -1,6 +1,6 @@
 <template>
     <div class="overflow-y-scroll overflow-x-hidden">
-        <v-slide-x-transition xs12 group mode="out-in" tag="ul" class="pa-0 layout row wrap d-flex" color="transparent">
+        <v-slide-x-transition xs12 group mode="out-in" tag="ul" class="pa-0 ma-0 layout row wrap d-flex" color="transparent">
             <v-flex v-for="item in items" xs12 lg6 :key="item.id">
                 <SpecialCard v-bind="menuItemProps" :item="item"/>
             </v-flex>

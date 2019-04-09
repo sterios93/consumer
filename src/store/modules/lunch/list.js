@@ -10,7 +10,7 @@ const state = () => ({
           id: 21,
           name: 'Lor12331em',
           image: 'https://cdn.vuetifyjs.com/images/cards/foster.jpg',
-          price: 40,
+          price: 40.10,
           isLunchOnly: true,
           category: {
             id: 0,
@@ -22,7 +22,7 @@ const state = () => ({
           id: 23,
           name: 'Lor123123123em1',
           image: 'https://cdn.vuetifyjs.com/images/cards/foster.jpg',
-          price: 40,
+          price: 40.10,
           isLunchOnly: true,
           category: {
             id: 0,
@@ -34,7 +34,7 @@ const state = () => ({
           id: 24,
           name: 'Lore13123m2',
           image: 'https://cdn.vuetifyjs.com/images/cards/foster.jpg',
-          price: 40,
+          price: 40.10,
           isLunchOnly: true,
           category: {
             id: 0,
@@ -46,7 +46,7 @@ const state = () => ({
           id: 4,
           name: 'Lorem4',
           image: 'https://cdn.vuetifyjs.com/images/cards/foster.jpg',
-          price: 40,
+          price: 40.10,
           isLunchOnly: false,
           weight: 50,
           category: {
@@ -59,7 +59,7 @@ const state = () => ({
           id: 5,
           name: 'Lorem',
           image: 'https://cdn.vuetifyjs.com/images/cards/foster.jpg',
-          price: 40,
+          price: 40.10,
           isLunchOnly: false,
           weight: 50,
           category: {
@@ -82,7 +82,7 @@ const state = () => ({
           id: 21,
           name: 'Lor12331em',
           image: 'https://cdn.vuetifyjs.com/images/cards/foster.jpg',
-          price: 40,
+          price: 40.10,
           isLunchOnly: true,
           category: {
             id: 0,
@@ -94,7 +94,7 @@ const state = () => ({
           id: 23,
           name: 'Lor123123123em1',
           image: 'https://cdn.vuetifyjs.com/images/cards/foster.jpg',
-          price: 40,
+          price: 40.10,
           isLunchOnly: true,
           category: {
             id: 0,
@@ -106,7 +106,7 @@ const state = () => ({
           id: 24,
           name: 'Lore13123m2',
           image: 'https://cdn.vuetifyjs.com/images/cards/foster.jpg',
-          price: 40,
+          price: 40.10,
           isLunchOnly: true,
           category: {
             id: 0,
@@ -118,7 +118,7 @@ const state = () => ({
           id: 4,
           name: 'Lorem4',
           image: 'https://cdn.vuetifyjs.com/images/cards/foster.jpg',
-          price: 40,
+          price: 40.10,
           isLunchOnly: false,
           weight: 50,
           category: {
@@ -131,7 +131,7 @@ const state = () => ({
           id: 5,
           name: 'Lorem',
           image: 'https://cdn.vuetifyjs.com/images/cards/foster.jpg',
-          price: 40,
+          price: 40.10,
           isLunchOnly: false,
           weight: 50,
           category: {
@@ -154,7 +154,7 @@ const state = () => ({
           id: 21,
           name: 'Lor12331em',
           image: 'https://cdn.vuetifyjs.com/images/cards/foster.jpg',
-          price: 40,
+          price: 40.10,
           isLunchOnly: true,
           category: {
             id: 0,
@@ -166,7 +166,7 @@ const state = () => ({
           id: 23,
           name: 'Lor123123123em1',
           image: 'https://cdn.vuetifyjs.com/images/cards/foster.jpg',
-          price: 40,
+          price: 40.10,
           isLunchOnly: true,
           category: {
             id: 0,
@@ -178,7 +178,7 @@ const state = () => ({
           id: 24,
           name: 'Lore13123m2',
           image: 'https://cdn.vuetifyjs.com/images/cards/foster.jpg',
-          price: 40,
+          price: 40.10,
           isLunchOnly: true,
           category: {
             id: 0,
@@ -190,7 +190,7 @@ const state = () => ({
           id: 4,
           name: 'Lorem4',
           image: 'https://cdn.vuetifyjs.com/images/cards/foster.jpg',
-          price: 40,
+          price: 40.10,
           isLunchOnly: false,
           weight: 50,
           category: {
@@ -203,7 +203,7 @@ const state = () => ({
           id: 5,
           name: 'Lorem',
           image: 'https://cdn.vuetifyjs.com/images/cards/foster.jpg',
-          price: 40,
+          price: 40.10,
           isLunchOnly: false,
           weight: 50,
           category: {
@@ -226,7 +226,7 @@ const state = () => ({
           id: 21,
           name: 'Lor12331em',
           image: 'https://cdn.vuetifyjs.com/images/cards/foster.jpg',
-          price: 40,
+          price: 40.10,
           isLunchOnly: true,
           category: {
             id: 0,
@@ -238,7 +238,7 @@ const state = () => ({
           id: 23,
           name: 'Lor123123123em1',
           image: 'https://cdn.vuetifyjs.com/images/cards/foster.jpg',
-          price: 40,
+          price: 40.10,
           isLunchOnly: true,
           category: {
             id: 0,
@@ -250,7 +250,7 @@ const state = () => ({
           id: 24,
           name: 'Lore13123m2',
           image: 'https://cdn.vuetifyjs.com/images/cards/foster.jpg',
-          price: 40,
+          price: 40.10,
           isLunchOnly: true,
           category: {
             id: 0,
@@ -262,7 +262,7 @@ const state = () => ({
           id: 4,
           name: 'Lorem4',
           image: 'https://cdn.vuetifyjs.com/images/cards/foster.jpg',
-          price: 40,
+          price: 40.10,
           isLunchOnly: false,
           weight: 50,
           category: {
@@ -275,7 +275,7 @@ const state = () => ({
           id: 5,
           name: 'Lorem',
           image: 'https://cdn.vuetifyjs.com/images/cards/foster.jpg',
-          price: 40,
+          price: 40.10,
           isLunchOnly: false,
           weight: 50,
           category: {
@@ -298,7 +298,7 @@ const state = () => ({
           id: 21,
           name: 'Lor12331em',
           image: 'https://cdn.vuetifyjs.com/images/cards/foster.jpg',
-          price: 40,
+          price: 40.10,
           isLunchOnly: true,
           category: {
             id: 0,
@@ -310,7 +310,7 @@ const state = () => ({
           id: 23,
           name: 'Lor123123123em1',
           image: 'https://cdn.vuetifyjs.com/images/cards/foster.jpg',
-          price: 40,
+          price: 40.10,
           isLunchOnly: true,
           category: {
             id: 0,
@@ -322,7 +322,7 @@ const state = () => ({
           id: 24,
           name: 'Lore13123m2',
           image: 'https://cdn.vuetifyjs.com/images/cards/foster.jpg',
-          price: 40,
+          price: 40.10,
           isLunchOnly: true,
           category: {
             id: 0,
@@ -334,7 +334,7 @@ const state = () => ({
           id: 4,
           name: 'Lorem4',
           image: 'https://cdn.vuetifyjs.com/images/cards/foster.jpg',
-          price: 40,
+          price: 40.10,
           isLunchOnly: false,
           weight: 50,
           category: {
@@ -347,7 +347,7 @@ const state = () => ({
           id: 5,
           name: 'Lorem',
           image: 'https://cdn.vuetifyjs.com/images/cards/foster.jpg',
-          price: 40,
+          price: 40.10,
           isLunchOnly: false,
           weight: 50,
           category: {
@@ -370,7 +370,7 @@ const state = () => ({
           id: 21,
           name: 'Lor12331em',
           image: 'https://cdn.vuetifyjs.com/images/cards/foster.jpg',
-          price: 40,
+          price: 40.10,
           isLunchOnly: true,
           category: {
             id: 0,
@@ -382,7 +382,7 @@ const state = () => ({
           id: 23,
           name: 'Lor123123123em1',
           image: 'https://cdn.vuetifyjs.com/images/cards/foster.jpg',
-          price: 40,
+          price: 40.10,
           isLunchOnly: true,
           category: {
             id: 0,
@@ -394,7 +394,7 @@ const state = () => ({
           id: 24,
           name: 'Lore13123m2',
           image: 'https://cdn.vuetifyjs.com/images/cards/foster.jpg',
-          price: 40,
+          price: 40.10,
           isLunchOnly: true,
           category: {
             id: 0,
@@ -406,7 +406,7 @@ const state = () => ({
           id: 4,
           name: 'Lorem4',
           image: 'https://cdn.vuetifyjs.com/images/cards/foster.jpg',
-          price: 40,
+          price: 40.10,
           isLunchOnly: false,
           weight: 50,
           category: {
@@ -419,7 +419,7 @@ const state = () => ({
           id: 5,
           name: 'Lorem',
           image: 'https://cdn.vuetifyjs.com/images/cards/foster.jpg',
-          price: 40,
+          price: 40.10,
           isLunchOnly: false,
           weight: 50,
           category: {
@@ -442,7 +442,7 @@ const state = () => ({
           id: 21,
           name: 'Lor12331em',
           image: 'https://cdn.vuetifyjs.com/images/cards/foster.jpg',
-          price: 40,
+          price: 40.10,
           isLunchOnly: true,
           category: {
             id: 0,
@@ -454,7 +454,7 @@ const state = () => ({
           id: 23,
           name: 'Lor123123123em1',
           image: 'https://cdn.vuetifyjs.com/images/cards/foster.jpg',
-          price: 40,
+          price: 40.10,
           isLunchOnly: true,
           category: {
             id: 0,
@@ -466,7 +466,7 @@ const state = () => ({
           id: 24,
           name: 'Lore13123m2',
           image: 'https://cdn.vuetifyjs.com/images/cards/foster.jpg',
-          price: 40,
+          price: 40.10,
           isLunchOnly: true,
           category: {
             id: 0,
@@ -478,7 +478,7 @@ const state = () => ({
           id: 4,
           name: 'Lorem4',
           image: 'https://cdn.vuetifyjs.com/images/cards/foster.jpg',
-          price: 40,
+          price: 40.10,
           isLunchOnly: false,
           weight: 50,
           category: {
@@ -491,7 +491,7 @@ const state = () => ({
           id: 5,
           name: 'Lorem',
           image: 'https://cdn.vuetifyjs.com/images/cards/foster.jpg',
-          price: 40,
+          price: 40.10,
           isLunchOnly: false,
           weight: 50,
           category: {
