@@ -10,6 +10,10 @@
         <v-flex xs12>
           <Map storeModule="userProfile"/>
         </v-flex>
+        <CustomBottomSheet
+                title="Some title"
+                controls="tiles"
+                />
     </v-layout>
   </v-container>
 </template>
@@ -17,15 +21,25 @@
 <script>
 import Parallax from '../../src/components/custom/Paralax'
 import Map from '../../src/components/shared/map/Map'
+import CustomBottomSheet from '../../src/components/shared/CustomsBottomSheet'
 
 export default {
   name: 'home',
   components: {
     Parallax,
     Map,
+    CustomBottomSheet
   },
   data () {
-    return {}
+    return {
+        tiles: [
+            { img: 'keep.png', title: 'Keep' },
+            { img: 'inbox.png', title: 'Inbox' },
+            { img: 'hangouts.png', title: 'Hangouts' },
+            { img: 'messenger.png', title: 'Messenger' },
+            { img: 'google.png', title: 'Google+' }
+        ]
+    }
   },
   methods: {}
 }

@@ -24,12 +24,13 @@
             :options="{styles: styles}"
             :center="center"
             :zoom="16"
-            style="width:100%;  height: 400px;"
+            style="width:100%;  height: 600px;"
             ref="map"
             @click="addCustomMarker"
     >
       <gmap-marker
               :position="marker"
+              @click="toggleBottomSheet"
       ></gmap-marker>
     </gmap-map>
   </div>
@@ -161,10 +162,17 @@
       ...mapState({
         rAddress (state) {
           return state[this.storeModule].address
-        }
+        },
+        isBottomSheetVisible: (state) => state.bottomSheet.visibility
       }),
     },
     methods: {
+      ...mapActions({
+        setBottomSheetVisible: 'bottomSheet/setVisibility',
+      }),
+      toggleBottomSheet(){
+        this.setBottomSheetVisible(!this.isBottomSheetVisible)
+      },
       setPlace(place) {
         if (!place) return
 
