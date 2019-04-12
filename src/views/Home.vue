@@ -1,14 +1,16 @@
 <template>
   <v-container fill-height fluid>
     <v-layout wrap>
-        <v-flex  class="d-flex justify-center align-center" xs12 md6>
-          <h1 class="heading text-xs-center">Find the best Lunch Deals,<br> Today !</h1>
-        </v-flex>
-        <v-flex xs12 md6 class="parallax-container">
-          <Parallax/>
+        <v-flex xs12 class="parallax-container">
+            <Parallax>
+                <v-flex  class="d-flex justify-center align-center label-container" xs12>
+                    <div class="overlay"></div>
+                    <h1 class="heading text-xs-center text-uppercase parallax-label">Find the best Lunch Deals,<br> Today !</h1>
+                </v-flex>
+            </Parallax>
         </v-flex>
         <v-flex xs12>
-          <Map storeModule="userProfile"/>
+            <Map class="map-container" storeModule="userProfile"/>
         </v-flex>
         <CustomBottomSheet
                 title="Some title"
@@ -46,12 +48,32 @@ export default {
 </script>
 
 <style scoped lang="stylus">
-  .v-toolbar
-    margin-bottom 0!important
-  .container
-    padding-top 0
-  .parallax-container
-    padding 0
-  .heading
-    font-family: 'Merriweather', serif!important;
+    .v-toolbar
+        margin-bottom 0 !important
+
+    .container
+        padding-top 0
+
+    .parallax-container
+        padding 0
+
+    .map-container
+        position relative
+        text-align: center
+        display: flex
+        justify-content: center
+    .label-container
+        position relative
+        .overlay
+            position absolute
+            z-index -1
+            filter blur(4px)
+            width 150%
+            height 50%
+            background-color #000000
+            opacity 0.5
+            .heading
+                font-family: 'Merriweather', serif !important;
+
+    /*.parallax-label*/
 </style>

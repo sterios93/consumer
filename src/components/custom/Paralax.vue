@@ -2,13 +2,14 @@
     <v-parallax
             dark
             height="350"
-            v-bind:src="require('../../../public/img/header-image.jpeg')"
+            src="https://wallpaperaccess.com/full/767033.jpg"
     >
         <v-layout
                 align-center
                 column
                 justify-center
         >
+            <slot></slot>
         </v-layout>
     </v-parallax>
 </template>

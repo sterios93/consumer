@@ -1,6 +1,5 @@
 <template>
-  <div class="mt-5">
-
+  <div>
     <v-container class="gmap-autocomplete-container">
       <v-layout class="gmap-autocomplete-wrapper" wrap>
         <v-flex xs12 md8 class="d-flex">
@@ -280,7 +279,10 @@
     display: flex
     justify-content center
     align-items center
-    margin-bottom 3%
+    position: absolute;
+    z-index: 1;
+    width: 100;
+    top: -80px;
     .gmap-autocomplete-wrapper
       display flex
       padding: 3%;
