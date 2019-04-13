@@ -17,10 +17,6 @@
         components: {
             UI
         },
-        props: {
-            title: String,
-            controls: Array
-        },
         computed: {
             ...mapState('bottomSheet', ['visibility']),
             localVisibility: {
@@ -31,7 +27,7 @@
         methods: {
             ...mapActions('bottomSheet', ['setVisibility']),
             handleClick(tile) {
-                this.localVisibility = false
+                this.localVisibility = false;
                 tile.cb()
             }
         }

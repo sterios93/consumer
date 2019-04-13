@@ -12,7 +12,7 @@
         <v-flex xs12>
             <Map class="map-container" storeModule="userProfile"/>
         </v-flex>
-        <ViewBottomSheet title="Some title" :controls="tiles" />
+        <ViewBottomSheet/>
     </v-layout>
   </v-container>
 </template>
