@@ -1,27 +1,8 @@
 <template>
     <v-layout row wrap>
-        <v-flex xs12 sm9 >
+        <v-flex xs12>
             <MenuListContainer v-bind="{...sharedProps}"/>
         </v-flex>
-        <v-flex xs12 sm3>
-            <v-layout row wrap>
-                <v-flex xs12>
-                    <CategoryList v-bind="{...categoryProps, ...sharedProps}"/>
-                </v-flex>
-                <v-flex xs12 class="controls">
-                    <v-btn
-                            @click="onControlsClicked"
-                            color="green darken-2"
-                            dark
-                            flat
-                            block
-                    >
-                        Create new product
-                    </v-btn>
-                </v-flex>
-            </v-layout>
-        </v-flex>
-        <CustomsBottomSheet :controls="controls" />
     </v-layout>
 </template>
 
