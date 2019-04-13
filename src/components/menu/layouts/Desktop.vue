@@ -8,11 +8,7 @@
 
 <script>
   import MenuListContainer from '../../shared/menu/MenuListContainer'
-  import CategoryList from '../../shared/category/CategoryList'
-  import CustomsBottomSheet from '../../shared/CustomsBottomSheet'
-
   import {mapActions} from 'vuex'
-
 
   export default {
     props: {
@@ -22,13 +18,9 @@
       categories: Array,
       selectedCategories: Array
     },
-
     components: {
-      CategoryList,
       MenuListContainer,
-      CustomsBottomSheet
     },
-
     created() {
       this.controls = [
         {
