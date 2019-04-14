@@ -1,10 +1,14 @@
 <template>
     <div class="overflow-y-scroll overflow-x-hidden">
-        <v-slide-x-transition group mode="out-in" tag="ul" class="pa-0 ma-0 flex layout row wrap" color="transparent">
-            <v-flex v-for="item in items" xs12 lg6 :key="item.id" class="pa-2 px-0">
-                <SpecialCard v-bind="menuItemProps" :item="item"/>
-            </v-flex>
-        </v-slide-x-transition>
+        <v-container grid-list-md fluid>
+            <v-layout>
+                <v-slide-x-transition group mode="out-in" tag="ul" class="pa-0 ma-0 flex layout row wrap" color="transparent">
+                    <v-flex v-for="item in items" xs12 md4 :key="item.id" class="pa-2 px-0">
+                        <SpecialCard v-bind="menuItemProps" :item="item"/>
+                    </v-flex>
+                </v-slide-x-transition>
+            </v-layout>
+        </v-container>
     </div>
 </template>
 
