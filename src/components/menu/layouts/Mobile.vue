@@ -16,17 +16,17 @@
         >
             <v-btn color="teal" flat value="main" >
                 <span>Main Menu</span>
-                <v-icon>history</v-icon>
+                <v-icon>restaurant</v-icon>
             </v-btn>
 
             <v-btn color="teal" flat value="special" >
-                <span>Special Menu</span>
-                <v-icon>favorite</v-icon>
+                <span>Special Offers</span>
+                <v-icon>fastfood</v-icon>
             </v-btn>
 
             <v-btn color="teal" flat value="lunch" >
                 <span>Lunch Menu</span>
-                <v-icon>place</v-icon>
+                <v-icon>restaurant_menu</v-icon>
             </v-btn>
         </v-bottom-nav>
     </v-layout>
