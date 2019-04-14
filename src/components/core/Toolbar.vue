@@ -8,19 +8,8 @@
     style="background: #eee;"
   >
     <div class="v-toolbar-title">
-      <v-toolbar-title
-        class="tertiary--text font-weight-light"
-      >
-        <v-btn
-          v-if="responsive"
-          class="default v-btn--simple"
-          dark
-          icon
-          @click.stop="onClickBtn"
-        >
-          <v-icon>mdi-view-list</v-icon>
-        </v-btn>
-        {{ title }}
+      <v-toolbar-title  class="tertiary--text font-weight-light">
+        <img src="../../../public/img/logo.png" alt="logo" class="logo-image">
       </v-toolbar-title>
     </div>
 
@@ -32,20 +21,6 @@
         py-2
         v-if="isUserLogged"
       >
-        <v-text-field
-          v-if="!responsive"
-          class="mr-4 mt-2 purple-input"
-          label="Search..."
-          hide-details
-          color="purple"
-        ></v-text-field>
-        <router-link
-          v-ripple
-          class="toolbar-items"
-          to="/"
-        >
-          <v-icon color="tertiary">mdi-view-dashboard</v-icon>
-        </router-link>
         <v-menu
           bottom
           left
@@ -65,7 +40,7 @@
               <template slot="badge">
                 {{ notifications.length }}
               </template>
-              <v-icon color="tertiary">mdi-bell</v-icon>
+              <v-icon color="green">mdi-bell</v-icon>
             </v-badge>
           </router-link>
           <v-card>
@@ -87,9 +62,9 @@
           class="toolbar-items"
           to="/user-profile"
         >
-          <v-icon color="tertiary">mdi-account</v-icon>
+          <v-icon color="green">mdi-account</v-icon>
         </router-link>
-        <v-icon @click="logOutAccount" v-if="isUserLogged" color="tertiary">mdi-exit-to-app</v-icon>
+        <v-icon @click="logOutAccount" v-if="isUserLogged" color="orange">mdi-exit-to-app</v-icon>
 
       </v-flex>
     </v-toolbar-items>
@@ -144,6 +119,8 @@ export default {
 </script>
 
 <style scoped lang="stylus">
+  .logo-image
+    height 64px
   #core-toolbar
     margin-bottom 0
   #core-toolbar a
