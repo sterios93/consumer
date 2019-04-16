@@ -35,7 +35,8 @@
 </script>
 
 <style scoped lang="stylus">
-    .v-dialog.v-bottom-sheet.v-dialog--active {
-        max-height: 65%!important;
+    >>> .v-dialog.v-bottom-sheet.v-dialog--active {
+        height: 75%!important;
+        max-height: unset !important;
     }
 </style>

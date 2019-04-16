@@ -5,13 +5,19 @@ export default {
   state: {
     icons: true,
     drawer: false,
+    isForced: true,
     toolbar: true,
     color: 'success',
     image: './img/drawer.jpg',
     user: null,
   },
   mutations: {
-    SET_DRAWER: set('drawer'),
+    SET_DRAWER: (state, value, isForced) => {
+      if (!state.isForced) {
+        state.drawer = value
+      }
+      state.isForced = isForced !== false
+    },
     SET_IMAGE: set('image'),
     SET_COLOR: set('color'),
     TOGGLE_DRAWER: toggle('drawer'),
@@ -19,8 +25,8 @@ export default {
   },
   getters: {},
   actions: {
-    setDrawer({commit}, drawer) {
-      commit('SET_DRAWER', drawer)
+    setDrawer({commit}, drawer, isForced) {
+      commit('SET_DRAWER', drawer, isForced)
     },
     setImage({commit}, image) {
       commit('SET_IMAGE', image)
@@ -33,6 +39,6 @@ export default {
     },
     toggleToolbar({commit}, toolbar) {
       commit('TOGGLE_TOOLBAR', toolbar)
-    }
+    },
   }
 }

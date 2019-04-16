@@ -8,8 +8,14 @@
     style="background: #eee;"
   >
     <div class="v-toolbar-title">
-      <v-toolbar-title  class="tertiary--text font-weight-light">
-        <img src="../../../public/img/logo.png" alt="logo" class="logo-image">
+      <v-toolbar-title class="tertiary--text font-weight-light">
+        <router-link
+            v-ripple
+            slot="activator"
+            class="toolbar-items"
+            to="/home">
+          <img  src="../../../public/img/logo.png" alt="logo" class="logo-image">
+        </router-link>
       </v-toolbar-title>
     </div>
 

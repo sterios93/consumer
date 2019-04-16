@@ -46,6 +46,7 @@
                     >Follow
                     </v-btn>
                     <v-btn
+                            v-if="isEditable"
                             dark
                             @click="onEditClick"
                             color="orange"
@@ -105,6 +106,7 @@ export default {
   },
   data() {
     return {
+      isEditable: false
     }
   },
   components: {

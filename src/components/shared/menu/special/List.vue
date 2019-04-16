@@ -27,7 +27,7 @@
       menuItemProps() {
         return {
           isSpecial: true,
-          isEditable: true,
+          isEditable: false,
           type: 'special'
         }
       }

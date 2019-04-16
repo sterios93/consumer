@@ -41,6 +41,7 @@
                                         >Follow
                                         </v-btn>
                                         <v-btn
+                                                v-if="isEditable"
                                                 dark
                                                 @click="onEditClick"
                                                 color="orange"
@@ -106,7 +107,9 @@
       MenuItem
     },
     data () {
-      return {}
+      return {
+        isEditable: false
+      }
     },
     computed: {
       ...mapState('lunch', {

@@ -20,7 +20,7 @@
     computed: {
       menuItemProps() {
         return {
-          isEditable: true,
+          isEditable: false,
           isSpecial: false,
           type: 'main'
         }
