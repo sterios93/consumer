@@ -58,7 +58,7 @@
         width: 100%
         flex-direction: row
         flex-wrap: wrap
-        max-height: 75vh
+        height: 500px
         overflow-y scroll
         overflow-x hidden
 </style>

@@ -26,7 +26,7 @@
                           class="mx-auto d-block"
                           size="260"
                   >
-                    <img :src="image">
+                    <v-img :src="image"></v-img>
                   </v-avatar>
                 </v-flex>
 

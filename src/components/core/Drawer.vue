@@ -2,6 +2,7 @@
   <v-navigation-drawer
     id="app-drawer"
     v-model="inputValue"
+    disable-resize-watcher
     app
     dark
     floating

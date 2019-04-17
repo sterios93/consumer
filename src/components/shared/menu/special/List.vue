@@ -45,5 +45,5 @@
 <style scoped lang="stylus">
     .overflow-y-scroll
         overflow-y scroll
-        height 75vh
+        height: 500px
 </style>

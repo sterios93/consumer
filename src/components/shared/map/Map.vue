@@ -171,10 +171,6 @@
       }),
       toggleBottomSheet(){
         this.setBottomSheetVisible(!this.isBottomSheetVisible);
-        const bottomSheet = document.querySelector('.v-bottom-sheet');
-        // TODO :: can't select it with css ..
-        bottomSheet.style.maxHeight = "65%";
-        bottomSheet.style.background = 'white';
       },
       setPlace(place) {
         if (!place) return
