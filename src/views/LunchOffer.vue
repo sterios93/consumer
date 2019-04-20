@@ -26,7 +26,7 @@
                                             class="mx-auto d-block"
                                             size="260"
                                     >
-                                        <v-img src="./img/special-offer-default.jpeg"></v-img>
+                                        <v-img :src="imagePath"></v-img>
                                     </v-avatar>
                                 </v-flex>
 
@@ -108,7 +108,9 @@
     },
     data () {
       return {
-        isEditable: false
+        isEditable: false,
+        defaultImage: './img/default-menu-v2.jpg',
+
       }
     },
     computed: {
@@ -122,6 +124,9 @@
         startDate: (state) => state.view.startDate,
         description: (state) => state.view.description,
       }),
+      imagePath() {
+        return this.image || this.defaultImage
+      },
     },
     created() {
       this.fetchItem({payload: this.id, action: 'view'})
