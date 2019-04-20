@@ -101,5 +101,8 @@ export default {
             .heading
                 font-family: 'Merriweather', serif !important;
 
+    .responsive
+        .map-container
+            flex-direction: column
     /*.parallax-label*/
 </style>

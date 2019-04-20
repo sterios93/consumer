@@ -1,5 +1,5 @@
 <template>
-  <v-app>
+  <v-app :class="{'responsive' : responsive}">
     <core-filter />
 
     <core-toolbar />
@@ -10,6 +10,14 @@
   </v-app>
 </template>
 
+<script>
+  import {mapState} from 'vuex'
+  export default {
+    computed: {
+      ...mapState('layout', ['responsive'])
+    }
+  }
+</script>
 <style lang="scss">
 @import '@/styles/index.scss';
 

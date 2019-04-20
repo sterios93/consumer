@@ -365,6 +365,11 @@
     >>> .v-expansion-panel
         box-shadow: unset !important
 
+    .responsive
+        .gmap-autocomplete-container
+            position: relative
+            top: 0
+            padding 0
     @media only screen and (min-width: 960px)
         .gmap-autocomplete-container
             width 50%
