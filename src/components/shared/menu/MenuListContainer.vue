@@ -30,7 +30,7 @@
             <v-tab-item>
                 <v-card flat>
                     <v-card-text>
-                        <SpecialList v-bind="SpecialListProps" :scrollable="true" />
+                        <SpecialList v-bind="SpecialListProps" />
                     </v-card-text>
                 </v-card>
             </v-tab-item>

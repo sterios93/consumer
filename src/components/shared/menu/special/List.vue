@@ -3,7 +3,7 @@
         <v-container grid-list-md fluid>
             <v-layout>
                 <v-slide-x-transition xs12 group mode="out-in" tag="ul" class="pa-0 ma-0 layout row wrap d-flex" color="transparent">
-                    <v-flex v-for="item in items" xs12 md4 :key="item.id">
+                    <v-flex v-for="item in items" xs12 md3 :key="item.id">
                         <SpecialCard v-bind="menuItemProps" :item="item"/>
                     </v-flex>
                 </v-slide-x-transition>
@@ -21,7 +21,10 @@
     },
     props: {
       items: Array,
-      scrollable: Boolean
+      scrollable: {
+          type: Boolean,
+          default: true
+      }
     },
     computed: {
       menuItemProps() {
@@ -46,4 +49,5 @@
     .overflow-y-scroll
         overflow-y scroll
         height: 500px
+        padding-bottom: 56px
 </style>
