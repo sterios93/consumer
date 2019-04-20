@@ -2,20 +2,54 @@
   <div>
     <v-container class="gmap-autocomplete-container">
       <v-layout class="gmap-autocomplete-wrapper" wrap>
-        <v-flex xs12 md8 class="d-flex">
-          <gmap-autocomplete
-                  class="gmap-autocomplete"
-                  v-model="rAddress"
-                  placeholder="Address"
-                  @place_changed="setPlace"
-                  :select-first-on-enter="true">
-          </gmap-autocomplete>
-          <v-icon class="location-icon">my_location</v-icon>
-        </v-flex>
+          <v-expansion-panel>
+              <v-expansion-panel-content>
+                  <template v-slot:header>
+                      <v-flex xs12 md8 class="d-flex">
+                          <gmap-autocomplete
+                                  class="gmap-autocomplete"
+                                  v-model="rAddress"
+                                  placeholder="Address"
+                                  @place_changed="setPlace"
+                                  :select-first-on-enter="true">
+                          </gmap-autocomplete>
+                          <v-icon class="location-icon">my_location</v-icon>
+                      </v-flex>
 
-        <v-flex xs12 md4 class="d-flex justify-center">
-          <v-btn large color="light-green accent-4 find-btn">FIND RESTAURANTS</v-btn>
-        </v-flex>
+                      <v-flex xs12 md4 class="d-flex justify-center">
+                          <v-btn large color="light-green accent-4 find-btn">FIND RESTAURANTS</v-btn>
+                      </v-flex>
+                  </template>
+                  <v-card>
+                      <v-layout row wrap justify-center>
+                          <v-flex xs12 sm6 class="pa-2">
+                              <v-text-field
+                                      label="Choose type restaurant"
+                                      hint="For example, italian or mexican"
+                                      box
+                              ></v-text-field>
+                          </v-flex>
+                          <v-flex xs12 sm6 class="pa-2">
+                              <v-text-field
+                                      label="Choose category"
+                                      hint="For example, pizza or burger"
+                                      box
+                              ></v-text-field>
+                          </v-flex>
+                          <v-flex xs12 class="pa-2">
+                              <v-text-field
+                                      hide-details
+                                      label="Search for name"
+                                      box
+                              ></v-text-field>
+                          </v-flex>
+                          <v-flex xs12 class="pa-2">
+                              <v-btn block color="white--text search-btn">Apply</v-btn>
+                          </v-flex>
+                      </v-layout>
+                  </v-card>
+              </v-expansion-panel-content>
+          </v-expansion-panel>
       </v-layout>
     </v-container>
 
@@ -298,10 +332,17 @@
           outline: none
   .location-icon
     color #019234!important
+    margin 0 10px 0 20px
   .find-btn
-    margin-bottom 0
     color: white!important
     width 100%
+    margin 0 20px 0 10px
+  .search-btn
+    background-color: #D70F64 !important
+    margin: 0 auto;
+    width 75%
+  >>> .v-expansion-panel
+    box-shadow: unset !important
   @media only screen and (min-width: 960px)
     .gmap-autocomplete-container
       width 50%
