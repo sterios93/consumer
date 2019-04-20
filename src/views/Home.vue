@@ -17,7 +17,15 @@
             <v-layout justify-center>
                 <v-flex xs10>
                     <h3 class="merriFont">Special offers</h3>
-                    <SpecialList :items="specialItems" scrollable="false"/>
+                    <SpecialList :items="specialItems" :scrollable="false"/>
+                </v-flex>
+            </v-layout>
+        </v-flex>
+        <v-flex xs12 class="mt-5">
+            <v-layout justify-center>
+                <v-flex xs10>
+                    <h3 class="merriFont">Lunch offers</h3>
+                    <LunchList :items="lunchItems" :scrollable="false"/>
                 </v-flex>
             </v-layout>
         </v-flex>
@@ -30,6 +38,7 @@ import Parallax from '../../src/components/custom/Paralax'
 import Map from '../../src/components/shared/map/Map'
 import ViewBottomSheet from '../../src/components/shared/ViewBottomSheet'
 import SpecialList from '../../src/components/shared/menu/special/List'
+import LunchList from '../../src/components/shared/menu/lunch/List'
 import {mapState} from 'vuex'
 
 export default {
@@ -39,6 +48,7 @@ export default {
     Map,
     ViewBottomSheet,
     SpecialList,
+    LunchList
   },
   data () {
     return {
@@ -53,7 +63,8 @@ export default {
   },
   computed: {
       ...mapState({
-          specialItems: (state) => state.special.list.items
+          specialItems: (state) => state.special.list.items,
+          lunchItems: (state) => state.lunch.list.items
       })
   },
   methods: {}
