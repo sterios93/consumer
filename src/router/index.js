@@ -26,10 +26,11 @@ function route (path, view, name, props) {
 }
 
 Vue.use(Router)
-
+console.error(com.preconfig.consumer.basePath)
 // Create a new router
 const router = new Router({
   mode: 'history',
+  base: com.preconfig.consumer.basePath,
   routes: paths.map(path => route(path.path, path.view, path.name, path.props)).concat([
     { path: '*', redirect: '/home' }
   ]),
