@@ -2,7 +2,7 @@
   <div>
     <v-container class="gmap-autocomplete-container">
       <v-layout class="gmap-autocomplete-wrapper" wrap>
-          <v-expansion-panel>
+          <v-expansion-panel v-model="isActive">
               <v-expansion-panel-content>
                   <template v-slot:header>
                       <v-flex xs12 md8 class="d-flex">
@@ -70,14 +70,15 @@
 </template>
 
 <script>
-  import { mapActions, mapState } from 'vuex'
+  import {mapActions, mapState} from 'vuex'
 
   export default {
-    props:{
+    props: {
       storeModule: String
     },
     data() {
       return {
+        isActive: null,
         latLng: {},
         center: {},
         styles: [
@@ -189,11 +190,21 @@
       };
     },
     mounted() {
+      this.$refs.map.$mapPromise.then((map) => {
+        setTimeout(() => {
+          this.clickableMap = this.$refs.map.$el.querySelector('.gm-style-pbc').nextElementSibling
+          this.clickableMap && this.clickableMap.addEventListener('click', this.shrinkPanel)
+        }, 500)
+      })
+
       this.geolocate();
+    },
+    beforeDestroy() {
+      this.clickableMap && this.clickableMap.removeEventListener('click', this.shrinkPanel)
     },
     computed: {
       ...mapState({
-        rAddress (state) {
+        rAddress(state) {
           return state[this.storeModule].address
         },
         isBottomSheetVisible: (state) => state.bottomSheet.visibility
@@ -203,7 +214,7 @@
       ...mapActions({
         setBottomSheetVisible: 'bottomSheet/setVisibility',
       }),
-      toggleBottomSheet(){
+      toggleBottomSheet() {
         this.setBottomSheetVisible(!this.isBottomSheetVisible);
       },
       setPlace(place) {
@@ -231,19 +242,19 @@
 
         this.populateData(data);
       },
-      geolocate: function() {
-          navigator.geolocation.getCurrentPosition(position => {
-            this.center = {
-              lat: position.coords.latitude,
-              lng: position.coords.longitude
-            };
+      geolocate: function () {
+        navigator.geolocation.getCurrentPosition(position => {
+          this.center = {
+            lat: position.coords.latitude,
+            lng: position.coords.longitude
+          };
 
-            this.marker = {
-              lat: this.center.lat,
-              lng: this.center.lng,
-            };
+          this.marker = {
+            lat: this.center.lat,
+            lng: this.center.lng,
+          };
 
-          });
+        });
       },
       addCustomMarker(e) {
         const lat = e.latLng.lat()
@@ -255,7 +266,7 @@
         }
         this.getAddress(lat, lng);
       },
-      addressParser(data){
+      addressParser(data) {
         const address = (data.results && data.results[0]) ? data.results[0] : null;
 
         if (address) {
@@ -276,7 +287,10 @@
           return false
         }
       },
-      keyParser(data, searchedKey){
+      shrinkPanel() {
+        this.isActive = null
+      },
+      keyParser(data, searchedKey) {
         for (let key in data) {
           if (data[key].types.includes(searchedKey)) {
             return data[key].long_name;
@@ -288,62 +302,70 @@
        * @param {object} data
        */
       populateData(data) {
-          this.$store.dispatch(`${this.storeModule}/setAddress`, data.formatted_address);
-          this.$store.dispatch(`${this.storeModule}/setCity`, data.city);
-          this.$store.dispatch(`${this.storeModule}/setCountry`, data.country);
-          this.$store.dispatch(`${this.storeModule}/setPostalCode`, data.postalCode);
-          this.$store.dispatch(`${this.storeModule}/setLocation`, data.location);
+        this.$store.dispatch(`${this.storeModule}/setAddress`, data.formatted_address);
+        this.$store.dispatch(`${this.storeModule}/setCity`, data.city);
+        this.$store.dispatch(`${this.storeModule}/setCountry`, data.country);
+        this.$store.dispatch(`${this.storeModule}/setPostalCode`, data.postalCode);
+        this.$store.dispatch(`${this.storeModule}/setLocation`, data.location);
       },
-      getAddress(lat,lng) {
+      getAddress(lat, lng) {
         fetch(`https://maps.googleapis.com/maps/api/geocode/json?latlng=${lat + ',' + lng}&key=${this.apiKey}&language=en`)
-         .then(res => {
-           if (res.status === 200) return res.json();
-         })
-         .then(res => {
-           const address = this.addressParser(res);
-           if (address) this.populateData(address);
-         })
+          .then(res => {
+            if (res.status === 200) return res.json();
+          })
+          .then(res => {
+            const address = this.addressParser(res);
+            if (address) this.populateData(address);
+          })
       }
     }
   };
 </script>
 
 <style scoped lang="stylus">
-  .gmap-autocomplete-container
-    display: flex
-    justify-content center
-    align-items center
-    position: absolute;
-    z-index: 1;
-    width: 100;
-    top: -80px;
-    .gmap-autocomplete-wrapper
-      display flex
-      padding: 3%;
-      background: #fff;
-      -webkit-box-shadow: 6px 6px 25px 0px rgba(189,182,189,1);
-      -moz-box-shadow: 6px 6px 25px 0px rgba(189,182,189,1);
-      box-shadow: 6px 6px 25px 0px rgba(189,182,189,1);
-      .gmap-autocomplete
-        border-bottom 1px solid #c3c3c3
-        display inline-block
-        width 100%
-        &:focus
-          outline: none
-  .location-icon
-    color #019234!important
-    margin 0 10px 0 20px
-  .find-btn
-    color: white!important
-    width 100%
-    margin 0 20px 0 10px
-  .search-btn
-    background-color: #D70F64 !important
-    margin: 0 auto;
-    width 75%
-  >>> .v-expansion-panel
-    box-shadow: unset !important
-  @media only screen and (min-width: 960px)
     .gmap-autocomplete-container
-      width 50%
+        display: flex
+        justify-content center
+        align-items center
+        position: absolute;
+        z-index: 1;
+        width: 100;
+        top: -80px;
+
+        .gmap-autocomplete-wrapper
+            display flex
+            padding: 3%;
+            background: #fff;
+            -webkit-box-shadow: 6px 6px 25px 0px rgba(189, 182, 189, 1);
+            -moz-box-shadow: 6px 6px 25px 0px rgba(189, 182, 189, 1);
+            box-shadow: 6px 6px 25px 0px rgba(189, 182, 189, 1);
+
+            .gmap-autocomplete
+                border-bottom 1px solid #c3c3c3
+                display inline-block
+                width 100%
+
+                &:focus
+                    outline: none
+
+    .location-icon
+        color #019234 !important
+        margin 0 10px 0 20px
+
+    .find-btn
+        color: white !important
+        width 100%
+        margin 0 20px 0 10px
+
+    .search-btn
+        background-color: #D70F64 !important
+        margin: 0 auto;
+        width 60%
+
+    >>> .v-expansion-panel
+        box-shadow: unset !important
+
+    @media only screen and (min-width: 960px)
+        .gmap-autocomplete-container
+            width 50%
 </style>
