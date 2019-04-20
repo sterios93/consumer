@@ -130,7 +130,7 @@ export default {
         ],
         name: 'Grande Pica Peperoni with Cheese',
         picture: null,
-        image: './img/special-offer-default.jpeg',
+        image: '/img/special-offer-default.jpeg',
         price: 160,
         schedule: null,
         startDate: '2019-09-10 12:00',

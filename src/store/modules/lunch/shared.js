@@ -164,7 +164,7 @@ export default {
             description: 'Roast chicken, baby carrots, spring peas topped with grandma’s flakey pie crust.',
           },
         ],
-        image: './img/special-offer-default.jpeg',
+        image: '/img/special-offer-default.jpeg',
         schedule: null,
         startDate: '2019-09-10 12:00',
         endDate: '2019-10-10 12:00',

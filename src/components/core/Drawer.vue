@@ -68,7 +68,7 @@ import { mapActions,  mapState } from 'vuex'
 
 export default {
   data: () => ({
-    logo: './img/logo.png',
+    logo: '/img/logo.png',
     links: [
       {
         to: '/signup',

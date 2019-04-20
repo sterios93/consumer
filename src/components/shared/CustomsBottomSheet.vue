@@ -10,7 +10,7 @@
                 <v-list-tile-avatar>
                     <v-avatar size="32px" tile>
                         <img
-                                :src="'./img/' + tile.img"
+                                :src="'/img/' + tile.img"
                                 :alt="tile.title"
                         >
                     </v-avatar>
