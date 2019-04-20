@@ -13,6 +13,7 @@ import Vuex from 'vuex'
 import lunch from './modules/lunch/index'
 import main from './modules/main/index'
 import special from './modules/special/index'
+import info from './modules/info/index'
 
 import modules from './modules'
 Vue.use(Vuex)
@@ -23,7 +24,8 @@ const store = new Vuex.Store({
     ...modules,
     lunch,
     special,
-    main
+    main,
+    info,
   },
 })
 

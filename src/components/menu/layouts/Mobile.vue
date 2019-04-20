@@ -14,6 +14,11 @@
                 fixed
                 color="white"
         >
+            <v-btn color="teal" flat value="info" >
+                <span>Info</span>
+                <v-icon>info</v-icon>
+            </v-btn>
+
             <v-btn color="teal" flat value="main" >
                 <span>Main Menu</span>
                 <v-icon>restaurant</v-icon>
@@ -36,6 +41,7 @@
   import LunchList from '../../shared/menu/lunch/List'
   import MenuList from "../../shared/menu/MenuList";
   import SpecialList from '../../shared/menu/special/List'
+  import InfoPage from '../../shared/menu/info/View'
   import {mapState, mapGetters, mapActions} from 'vuex'
 
   export default {
@@ -46,7 +52,8 @@
     components: {
         'main-menu': MenuList,
         'lunch-menu': LunchList,
-        'special-menu': SpecialList
+        'special-menu': SpecialList,
+        'info-menu': InfoPage,
     },
     data() {
       return {
@@ -63,6 +70,7 @@
       isMainMenu() { return this.selectedMenu === 'main' },
       menuComponent() { return `${this.selectedMenu}-menu` },
       menuListProps() {
+        if(this.selectedMenu === 'info') return this.$store.state.info.list.information;
         return {
           color: this.color,
           items: this.isMainMenu ? this.getMenuByCategory()(this.category) : this.$store.state[this.selectedMenu].list.items
