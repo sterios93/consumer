@@ -22,6 +22,14 @@
             <v-tab-item>
                 <v-card flat>
                     <v-card-text>
+                        <InfoList v-bind="InfoListProps" />
+                    </v-card-text>
+                </v-card>
+            </v-tab-item>
+
+            <v-tab-item>
+                <v-card flat>
+                    <v-card-text>
                         <MainList v-bind="MainMListProps" />
                     </v-card-text>
                 </v-card>
@@ -51,6 +59,7 @@
   import LunchList from '../../shared/menu/lunch/List'
   import MainList from '../../shared/menu/main/List'
   import SpecialList from '../../shared/menu/special/List'
+  import InfoList from '../../shared/menu/info/View'
 
   import {mapState} from 'vuex'
 
@@ -62,14 +71,15 @@
     data () {
       return {
         activeTab: null,
-        tabs: ['Main Menu', 'Special Offers', 'Lunch Menu']
+        tabs: ['Info Menu', 'Main Menu', 'Special Offers', 'Lunch Menu',]
       }
     },
 
     components: {
       LunchList,
       MainList,
-      SpecialList
+      SpecialList,
+      InfoList,
     },
 
     computed: {
@@ -89,6 +99,12 @@
         return {
           color: this.color,
           items: this.$store.state.special.list.items
+        }
+      },
+      InfoListProps () {
+        return {
+          color: this.color,
+          information: this.$store.state.info.list.information
         }
       }
     },

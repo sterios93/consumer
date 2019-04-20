@@ -3,7 +3,7 @@
         <v-container grid-list-md fluid>
             <v-layout>
                 <v-flex>
-                    <h1>Restaurant info</h1>
+                    <h1>{{information.restaurantName}}</h1>
                 </v-flex>
             </v-layout>
         </v-container>
@@ -13,6 +13,9 @@
 <script>
     export default {
         name: 'restaurant-info',
+        props: {
+            information: Object
+        },
         data() {
             return {}
         }
