@@ -15,6 +15,11 @@ export default [
     view: 'UserProfile'
   },
   {
+    path: '/subscriptions',
+    name: 'Subscriptions',
+    view: 'Subscriptions'
+  },
+  {
     path: '/menu',
     name: 'Menu',
     view: 'Menu'

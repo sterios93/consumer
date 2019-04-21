@@ -38,7 +38,6 @@
                           </v-flex>
                           <v-flex xs12 class="pa-2">
                               <v-text-field
-                                      hide-details
                                       label="Search for name"
                                       box
                               ></v-text-field>

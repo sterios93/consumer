@@ -63,13 +63,35 @@
             </v-list>
           </v-card>
         </v-menu>
-        <router-link
-          v-ripple
-          class="toolbar-items"
-          to="/user-profile"
-        >
-          <v-icon color="green">mdi-account</v-icon>
-        </router-link>
+
+        <v-menu
+                bottom
+                left
+                full-width
+                min-width="200px"
+                class="toolbar-items"
+                content-class="dropdown-menu"
+                offset-y
+                transition="slide-y-transition">
+          <template v-slot:activator="{ on }">
+            <v-icon v-on="on" color="green">mdi-account</v-icon>
+          </template>
+          <v-card>
+            <v-list dense>
+              <router-link
+                      :to="item.to"
+                      v-for="(item, index) in links" :key="index">
+                <v-list-tile
+                        v-ripple
+                        class="toolbar-items"
+                >
+                  <v-list-tile-title v-text="item.text"/>
+                </v-list-tile>
+              </router-link>
+            </v-list>
+          </v-card>
+        </v-menu>
+
         <v-icon @click="logOutAccount" v-if="isUserLogged" color="orange">mdi-exit-to-app</v-icon>
 
       </v-flex>
@@ -94,6 +116,20 @@ export default {
       'Another One'
     ],
     title: null,
+    links: [
+      {
+        to: '/user-profile',
+        icon: 'mdi-account',
+        text: 'User Profile',
+        userAccess: true
+      },
+      {
+        to: '/subscriptions',
+        icon: 'mdi-account',
+        text: 'Subscriptions',
+        userAccess: true
+      },
+    ],
   }),
 
   watch: {
