@@ -21,7 +21,7 @@
                 <v-icon color="green">mdi-bell</v-icon>
             </v-badge>
         </router-link>
-        <v-card>
+        <v-card max-width="500px" class="overflow-hidden">
             <div class="toolbar">
                 <span class="toolbar-left">
                     <span class="font-weight-bold">Notifications</span>
@@ -31,13 +31,10 @@
                     <a class="body-1" href="#">Settings</a>
                 </span>
             </div>
-            <v-card
-                    max-width="500px"
-                    max-height="800px">
+            <v-card>
                 <v-list three-line subheader>
                     <v-subheader inset>Not seen yet</v-subheader>
 
-                    <v-divider></v-divider>
                     <div
                             v-for="notification in items"
                             :key="notification.id"
@@ -53,10 +50,10 @@
                             <v-list-tile-content>
                                 <v-list-tile-title class="subheading text-truncate">{{ notification.title }}
                                 </v-list-tile-title>
-                                <v-list-tile-sub-title class="body-2 text-truncate">{{ notification.message }}
-                                </v-list-tile-sub-title>
-                                <v-list-tile-sub-title class="caption mt-2 text-truncate">{{ notification.createdAt }}
-                                </v-list-tile-sub-title>
+                                <v-list-tile-title class="body-2 text-truncate">{{ notification.message }}
+                                </v-list-tile-title>
+                                <v-list-tile-title class="caption mt-2 text-truncate">{{ notification.createdAt }}
+                                </v-list-tile-title>
                             </v-list-tile-content>
 
                             <v-list-tile-action>
@@ -103,4 +100,7 @@
 
         .toolbar-right
             float: right
+    >>> .v-list
+        max-height 800px !important
+        overflow-y: scroll !important
 </style>
