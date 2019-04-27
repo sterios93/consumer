@@ -27,43 +27,7 @@
         py-2
         v-if="isUserLogged"
       >
-        <v-menu
-          bottom
-          left
-          content-class="dropdown-menu"
-          offset-y
-          transition="slide-y-transition">
-          <router-link
-            v-ripple
-            slot="activator"
-            class="toolbar-items"
-            to="/notifications"
-          >
-            <v-badge
-              color="error"
-              overlap
-            >
-              <template slot="badge">
-                {{ notifications.length }}
-              </template>
-              <v-icon color="green">mdi-bell</v-icon>
-            </v-badge>
-          </router-link>
-          <v-card>
-            <v-list dense>
-              <v-list-tile
-                v-for="notification in notifications"
-                :key="notification"
-                @click="onClick"
-              >
-                <v-list-tile-title
-                  v-text="notification"
-                />
-              </v-list-tile>
-            </v-list>
-          </v-card>
-        </v-menu>
-
+        <NotificationsDropDown />
         <v-menu
                 bottom
                 left
@@ -101,12 +65,14 @@
 
 <script>
 
-import {
-  mapActions,
-  mapState
-} from 'vuex'
+import {mapActions, mapState} from 'vuex'
+import NotificationsDropDown from '../shared/notifications/NotificationsDropDown'
 
 export default {
+  components: {
+    NotificationsDropDown,
+  },
+
   data: () => ({
     notifications: [
       'Mike, John responded to your email',
