@@ -1,13 +1,17 @@
 <template>
     <v-layout row wrap>
-        <v-flex xs12>
-            <MenuListContainer v-bind="{...sharedProps}"/>
+        <v-flex xs4>
+            <InfoList v-bind="InfoListProps" />
+        </v-flex>
+        <v-flex xs8>
+            <MenuListContainer v-bind="sharedProps"/>
         </v-flex>
     </v-layout>
 </template>
 
 <script>
   import MenuListContainer from '../../shared/menu/MenuListContainer'
+  import InfoList from '../../shared/menu/info/View'
   import {mapActions} from 'vuex'
 
   export default {
@@ -20,6 +24,7 @@
     },
     components: {
       MenuListContainer,
+      InfoList,
     },
     created() {
       this.controls = [
@@ -59,6 +64,12 @@
     },
 
     computed: {
+      InfoListProps () {
+          return {
+              isDesktop: true,
+              information: this.$store.state.info.list.information,
+          }
+      },
       categoryProps () {
         return {
           items: this.categories,

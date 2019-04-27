@@ -70,10 +70,16 @@
       isMainMenu() { return this.selectedMenu === 'main' },
       menuComponent() { return `${this.selectedMenu}-menu` },
       menuListProps() {
-        if (this.selectedMenu === 'info') return {information: this.$store.state.info.list.information}
-        return {
-          color: this.color,
-          items: this.isMainMenu ? this.getMenuByCategory()(this.category) : this.$store.state[this.selectedMenu].list.items
+        if (this.selectedMenu === 'info') {
+            return {
+                isDesktop: false,
+                information: this.$store.state.info.list.information,
+            };
+        } else  {
+            return {
+              color: this.color,
+              items: this.isMainMenu ? this.getMenuByCategory()(this.category) : this.$store.state[this.selectedMenu].list.items
+            }
         }
       },
       categoryProps() {

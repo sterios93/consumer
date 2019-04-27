@@ -22,14 +22,6 @@
             <v-tab-item>
                 <v-card flat>
                     <v-card-text>
-                        <InfoList v-bind="InfoListProps" />
-                    </v-card-text>
-                </v-card>
-            </v-tab-item>
-
-            <v-tab-item>
-                <v-card flat>
-                    <v-card-text>
                         <MainList v-bind="MainMListProps" />
                     </v-card-text>
                 </v-card>
@@ -71,7 +63,7 @@
     data () {
       return {
         activeTab: null,
-        tabs: ['Info Menu', 'Main Menu', 'Special Offers', 'Lunch Menu',]
+        tabs: ['Main Menu', 'Special Offers', 'Lunch Menu',]
       }
     },
 
