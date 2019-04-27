@@ -1,6 +1,7 @@
 <template>
-    <div    class="view-card-container"
-            :class="{'overflow-y-scroll overflow-x-hidden' : !isDesktop}">
+    <div
+            :class="{'overflow-y-scroll overflow-x-hidden' : !isDesktop,
+            'view-card-container': isDesktop}">
                     <v-card class="view-card">
                         <v-img
                                 src="https://cdn.vuetifyjs.com/images/lists/ali.png"
