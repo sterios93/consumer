@@ -31,41 +31,15 @@
                                     @blur="validate('phoneNumber')"/>
                         </v-flex>
 
-
-                        <v-flex xs12  md6 >
+                        <v-flex xs12 md4>
                             <v-text-field
-                                    label="Restaurant name"
+                                    label="City"
                                     class="purple-input"
-                                    v-model="restaurantName"
-                                    :error-messages="restaurantNameErrors"
                                     :disabled="!inEditMode"
-                                    @blur="validate('restaurantName')"/>
-                        </v-flex>
-                        <v-flex xs12 md6 >
-                            <v-text-field
-                                    label="Restaurant type"
-                                    class="purple-input"
-                                    v-model="restaurantType"
-                                    :error-messages="restaurantTypeErrors"
-                                    :disabled="!inEditMode"
-                                    @blur="validate('restaurantType')"/>
-                        </v-flex>
-
-                        <v-flex xs12  md6 >
-                            <v-text-field
-                                    label="Restaurant website"
-                                    class="purple-input"
-                                    v-model="restaurantWebsite"
-                                    :disabled="!inEditMode"/>
-                        </v-flex>
-                        <v-flex xs12 md6 >
-                            <v-text-field
-                                    label="Restaurant number"
-                                    class="purple-input"
-                                    v-model="restaurantNumber"
-                                    :error-messages="restaurantNumberErrors"
-                                    :disabled="!inEditMode"
-                                    @blur="validate('restaurantNumber')"/>
+                                    v-model="restaurantCity"
+                                    :error-messages="restaurantCityErrors"
+                                    @blur="validate('restaurantCity')"
+                            />
                         </v-flex>
 
                         <v-flex xs12 md6>
@@ -100,48 +74,8 @@
                             </v-text-field>
                         </v-flex>
 
-                        <v-flex xs12 md12
-                                :class="[{disabled: !inEditMode}]">
-                            <Map storeModule="userProfile"></Map>
 
-                        </v-flex>
-                        <v-flex
-                                xs12
-                                md4>
-                            <v-text-field
-                                    label="City"
-                                    class="purple-input"
-                                    :disabled="!inEditMode"
-                                    v-model="restaurantCity"
-                                    :error-messages="restaurantCityErrors"
-                                    @blur="validate('restaurantCity')"
-                            />
-                        </v-flex>
-                        <v-flex
-                                xs12
-                                md4>
-                            <v-text-field
-                                    label="Country"
-                                    class="purple-input"
-                                    :disabled="!inEditMode"
-                                    v-model="restaurantCountry"
-                                    :error-messages="restaurantCountryErrors"
-                                    @blur="validate('restaurantCountry')"
-                            />
-                        </v-flex>
-                        <v-flex
-                                xs12
-                                md4>
-                            <v-text-field
-                                    class="purple-input"
-                                    label="Postal Code"
-                                    type="number"
-                                    :disabled="!inEditMode"
-                                    v-model="restaurantPostalCode"
-                                    :error-messages="restaurantPostalCodeErrors"
-                                    @blur="validate('restaurantPostalCode')"
-                            />
-                        </v-flex>
+
                         <v-flex xs12 text-xs-right >
                             <v-btn
                                     class="mr-2 font-weight-light"
@@ -191,26 +125,12 @@
           passwordRepeatErrors: [],
           showPassword: false,
           showRepeatPassword: false,
-          restaurantNameErrors: [],
-          restaurantTypeErrors: [],
-          restaurantNumberErrors: [],
-          restaurantAddressErrors: [],
-          restaurantCityErrors: [],
-          restaurantCountryErrors: [],
-          restaurantPostalCodeErrors: [],
           allFields: [
             'firstName',
             'lastName',
             'phoneNumber',
             'password',
             'passwordRepeat',
-            'restaurantName',
-            'restaurantType',
-            'restaurantNumber',
-            'restaurantAddress',
-            'restaurantCity',
-            'restaurantCountry',
-            'restaurantPostalCode'
           ],
         }
       },
@@ -247,60 +167,6 @@
             this.validate('password');
           }
         },
-        restaurantName: {
-          get() {return this.userInfo.restaurantName},
-          set(value) {
-            this.setRestaurantName(value);
-            this.validate('restaurantName');
-          }
-        },
-        restaurantType: {
-          get() {return this.userInfo.restaurantType},
-          set(value) {
-            this.setRestaurantType(value);
-            this.validate('restaurantType');
-          }
-        },
-        restaurantWebsite: {
-          get() {return this.userInfo.restaurantWebsite},
-          set(value) {
-            this.setRestaurantWebsite(value)}
-        },
-        restaurantNumber: {
-          get() {return this.userInfo.restaurantNumber},
-          set(value) {
-            this.setRestaurantNumber(value);
-            this.validate('restaurantNumber');
-          }
-        },
-        restaurantAddress: {
-          get() {return this.userInfo.address},
-          set(value) {
-            this.setAddress(value);
-            this.validate('restaurantAddress');
-          }
-        },
-        restaurantCity: {
-          get() {return this.userInfo.city},
-          set(value) {
-            this.setCity(value);
-            this.validate('restaurantCity');
-          }
-        },
-        restaurantCountry: {
-          get() {return this.userInfo.country},
-          set(value) {
-            this.setCountry(value);
-            this.validate('restaurantCountry');
-          }
-        },
-        restaurantPostalCode: {
-          get() {return this.userInfo.postalCode},
-          set(value) {
-            this.setPostalCode(value);
-            this.validate('restaurantPostalCode');
-          }
-        },
       },
       watch: {
         passwordRepeat: 'passRepeatHandler'
@@ -313,15 +179,8 @@
           'setEmail',
           'setPhoneNumber',
           'setPassword',
-          'setRestaurantName',
-          'setRestaurantType',
-          'setRestaurantWebsite',
-          'setRestaurantNumber',
           'setProfileValid',
-          'setAddress',
           'setCity',
-          'setCountry',
-          'setPostalCode',
         ]),
         ...mapActions('snackbar', ['setState']),
         saveProfile() {
@@ -353,7 +212,7 @@
         },
         hasError() {
           return this.allFields.reduce((result, item) => {
-            if (this.$v[item].$error) result.push(false)
+            if (this.$v[item].$error) result.push(false);
             else result.push(true)
             return result
           },[])
@@ -395,28 +254,10 @@
           minLength: minLength(5),
           sameAsPassword: sameAs('password')
         },
-        restaurantName: {
-          required,
-        },
-        restaurantType: {
-          required
-        },
-        restaurantNumber: {
-          required,
-          numeric,
-        },
-        restaurantAddress: {
-          required,
-        },
+
         restaurantCity: {
           required
         },
-        restaurantCountry: {
-          required
-        },
-        restaurantPostalCode: {
-          required
-        }
       }
     }
 </script>

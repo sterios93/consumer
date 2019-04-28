@@ -1,20 +1,12 @@
 <template>
   <v-container fill-height  fluid grid-list-xl>
     <v-layout justify-center wrap >
-      <v-flex  xs12 md8 >
+      <v-flex  xs10>
         <material-card
                 :color="isProfileCardValid ? 'green' : 'red'"
                 title="Edit Profile"
                 text="Complete your profile">
             <profile-card></profile-card>
-        </material-card>
-      </v-flex>
-      <v-flex  xs12 md4 >
-        <material-card
-                color="green"
-                title="Payment information"
-                text="Active" >
-            <payment-card></payment-card>
         </material-card>
       </v-flex>
     </v-layout>
