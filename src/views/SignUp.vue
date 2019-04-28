@@ -18,22 +18,6 @@
                     Personal Information
                      <small v-if="!this.isPersonalInfoValid">Please fill all fields correct.</small>
                     </v-stepper-step>
-
-                  <v-divider></v-divider>
-
-                  <v-stepper-step 
-                    :complete="2 <= activeStep"
-                    step="2"
-                    :rules="[() => this.isRestaurantInfoValid]"
-                    >Restaurant Information
-                    <small v-if="!this.isRestaurantInfoValid">Please fill all fields correct.</small>
-                    </v-stepper-step>
-
-                  <v-divider></v-divider>
-
-                  <v-stepper-step
-                    step="3" 
-                    >Adress Information</v-stepper-step>
                 </v-stepper-header>
 
                 <v-stepper-items>
@@ -42,15 +26,6 @@
                     <personal-info-card/>
                   </v-stepper-content>
 
-                  <!-- Restaurant information -->
-                  <v-stepper-content step="2">
-                    <restaurant-info-card/>
-                  </v-stepper-content>
-
-                  <!-- Adress Information -->
-                  <v-stepper-content step="3">
-                    <adress-info-card/>
-                  </v-stepper-content>
                 </v-stepper-items>
 
             </v-stepper>
