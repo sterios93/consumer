@@ -18,14 +18,20 @@
                 <v-flex xs10>
                     <h3 class="merriFont">Special offers</h3>
                     <SpecialList :items="specialItems" :scrollable="false"/>
+                    <v-layout align-center justify-center>
+                        <v-btn flat small color="orange" class="more-btn">More</v-btn>
+                    </v-layout>
                 </v-flex>
             </v-layout>
         </v-flex>
         <v-flex xs12 class="mt-5">
-            <v-layout justify-center>
+            <v-layout justify-center align-center>
                 <v-flex xs10>
                     <h3 class="merriFont">Lunch offers</h3>
                     <LunchList :items="lunchItems" :scrollable="false"/>
+                    <v-layout align-center justify-center>
+                        <v-btn flat small color="orange" class="more-btn">More</v-btn>
+                    </v-layout>
                 </v-flex>
             </v-layout>
         </v-flex>
@@ -105,4 +111,6 @@ export default {
         .map-container
             flex-direction: column
     /*.parallax-label*/
+    .more-btn
+        cursor pointer
 </style>
