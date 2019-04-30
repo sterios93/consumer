@@ -1,5 +1,5 @@
 <template>
-    <v-card max-width="500px" class="overflow-hidden">
+    <v-card :max-width="width" class="overflow-hidden">
         <div class="toolbar">
                     <span class="toolbar-left">
                         <span class="font-weight-bold">Notifications</span>
@@ -49,13 +49,20 @@
 <script>
 	export default {
 		props: {
-			items: Array
+			items: {type: Array, default: () => []},
+			maxWidth: {type: Number, default: 500},
+			fullWidth: {type: Boolean, default: false},
+		},
+		computed: {
+			width() {
+				return this.fullWidth ? '100%' : this.maxWidth
+			}
 		},
 		methods: {
 			onClick() {
 				//
-            }
-        }
+			}
+		}
 	}
 </script>
 

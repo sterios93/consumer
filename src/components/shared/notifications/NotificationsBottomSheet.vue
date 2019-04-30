@@ -20,7 +20,7 @@
         </template>
 
         <v-list>
-           <NotificationsCard :items="items"/>
+           <NotificationsCard  :full-width="true" :items="items"/>
         </v-list>
     </v-bottom-sheet>
 </template>
