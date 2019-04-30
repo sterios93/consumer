@@ -123,7 +123,7 @@ import { required, email } from 'vuelidate/lib/validators';
           this.postData({action: 'login', payload})
             .then(data => {
               if (data.success !== false) {
-                this.$router.push({ path: 'menu' })
+                this.$router.push({ path: 'home' })
               } else {
                 this.setState({snackbar: true, message: data.msg, color: 'red'})
                 this.clear();
