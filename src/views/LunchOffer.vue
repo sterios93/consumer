@@ -1,11 +1,23 @@
 <template>
     <v-container
             fill-height
-            fluid
-            -list-xl>
+            grid-list-xl>
         <v-layout
                 justify-center
                 wrap>
+
+            <v-flex
+                    xs12
+                    md4>
+                <material-card
+                        color="purple"
+                        title="Restaurant Info"
+                >
+
+                    <InfoList v-bind="InfoListProps"/>
+                </material-card>
+            </v-flex>
+
             <v-flex
                     xs12
                     md8>
@@ -96,7 +108,9 @@
 
 <script>
   import MenuItem from '../components/shared/menu/MenuItem'
-  import {mapActions, mapState} from 'vuex'
+  import InfoList from '../components/shared/menu/info/View'
+
+  import { mapActions, mapState } from 'vuex'
 
   export default {
     name: 'SpecialOffer',
@@ -104,13 +118,13 @@
       id: String || Number
     },
     components: {
-      MenuItem
+      MenuItem,
+      InfoList
     },
     data () {
       return {
         isEditable: false,
         defaultImage: './img/default-menu-v2.jpg',
-
       }
     },
     computed: {
@@ -124,13 +138,18 @@
         startDate: (state) => state.view.startDate,
         description: (state) => state.view.description,
       }),
-      imagePath() {
+      imagePath () {
         return this.image || this.defaultImage
       },
+      InfoListProps () {
+        return {
+          isDesktop: true,
+          information: this.$store.state.info.list.information, //TODO get from fetch item request
+        }
+      },
     },
-    created() {
-      this.fetchItem({payload: this.id, action: 'view'})
-        .then(item => this.item = item)
+    created () {
+      this.fetchItem({ payload: this.id, action: 'view' })
         .then(item => this.item = item)
     },
     methods: {
@@ -138,7 +157,7 @@
         'fetchItem': 'lunch/fetchItem',
         'setMenuModalVisibility': 'modals/setMenuModalVisibility',
       }),
-      onEditClick() {
+      onEditClick () {
         this.setMenuModalVisibility({
           key: 'lunch',
           value: true,

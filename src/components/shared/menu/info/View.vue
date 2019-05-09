@@ -2,7 +2,7 @@
     <div
             :class="{'overflow-y-scroll overflow-x-hidden' : !isDesktop,
             'view-card-container': isDesktop}">
-                    <v-card class="view-card">
+                    <v-card class="view-card" flat>
                         <v-img
                                 src="https://cdn.vuetifyjs.com/images/lists/ali.png"
                                 height="250px">

@@ -1,6 +1,6 @@
 <template>
     <div>
-        <v-toolbar class="toolbar" dark>
+        <v-toolbar flat class="toolbar" dark>
             <v-tabs
                     v-model="activeTab"
                     color="transparent"

@@ -1,23 +1,35 @@
 <template>
   <v-container
     fill-height
-    fluid
-    -list-xl>
+    grid-list-xl>
     <v-layout
       justify-center
       wrap>
+
       <v-flex
         xs12
-        md8>
+        md4>
         <material-card
           color="green"
-          title="Special offer"
+          title="Restaurant Info"
+        >
+
+          <InfoList v-bind="InfoListProps" />
+        </material-card>
+      </v-flex>
+
+      <v-flex
+              xs12
+              md8>
+        <material-card
+                color="green"
+                title="Special offer"
         >
           <v-layout wrap>
 
             <v-flex
-              class="v-card-profile"
-              d-flex>
+                    class="v-card-profile"
+                    d-flex>
               <v-layout wrap>
 
                 <v-flex xs12 lg6>
@@ -77,13 +89,13 @@
 
           </v-layout>
           <v-flex
-            xs12
-            mt-5>
+                  xs12
+                  mt-5>
             <v-flex
-              v-for="item in items"
-              :key="item.id"
-              xs12
-              class="py-2 px-0">
+                    v-for="item in items"
+                    :key="item.id"
+                    xs12
+                    class="py-2 px-0">
               <v-divider/>
               <MenuItem :item="item"/>
             </v-flex>
@@ -98,6 +110,8 @@
 
 <script>
 import MenuItem from '../components/shared/menu/MenuItem'
+import InfoList from '../components/shared/menu/info/View'
+
 import {mapActions, mapState} from 'vuex'
 export default {
   name: 'SpecialOffer',
@@ -111,7 +125,8 @@ export default {
     }
   },
   components: {
-    MenuItem
+    MenuItem,
+    InfoList
   },
   computed: {
     ...mapState('special', {
@@ -127,10 +142,15 @@ export default {
     imagePath() {
       return this.image || this.defaultImage
     },
+    InfoListProps () {
+      return {
+        isDesktop: true,
+        information: this.$store.state.info.list.information, //TODO get from fetch item request
+      }
+    },
   },
   created() {
     this.fetchItem({payload: this.id, action: 'view'})
-            .then(item => this.item = item)
             .then(item => this.item = item)
   },
   methods: {

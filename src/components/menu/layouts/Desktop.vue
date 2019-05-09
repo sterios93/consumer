@@ -96,5 +96,6 @@
 </script>
 
 <style scoped lang="stylus">
-
+    .restaurant-info-toolbar
+        background-image: linear-gradient(#4caf50, rgba(76, 175, 80, 0.82))
 </style>
