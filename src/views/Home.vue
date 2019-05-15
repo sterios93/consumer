@@ -11,8 +11,8 @@
             class="d-flex justify-center align-center label-container"
             xs12>
             <div class="overlay"/>
-            <h1 class="heading text-xs-center text-uppercase parallax-label merriFont">Find the best Lunch
-            Deals,<br> Today !</h1>
+            <h1 class="heading text-xs-center text-uppercase parallax-label main-headline">Find the best Lunch
+            Deals,<br> <h1 class="heading text-xs-center text-uppercase parallax-label subheadline"> Today !</h1></h1>
           </v-flex>
         </Parallax>
       </v-flex>
@@ -109,9 +109,18 @@ export default {
 </script>
 
 <style scoped lang="stylus">
-    .merriFont
-        font-family 'Merriweather', serif !important
-
+    .main-headline
+        font-weight: bold !important;
+        font-size: 4.7em !important;
+        background-image: linear-gradient(#ececec, #fdfdfd) !important;
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent
+        .subheadline
+          font-weight: bold !important;
+          font-size: 1em !important;
+          background-image: linear-gradient(#f3fdff, #bfbfbf) !important;
+          -webkit-background-clip: text;
+          -webkit-text-fill-color: transparent
     .v-toolbar
         margin-bottom 0 !important
 
@@ -129,6 +138,8 @@ export default {
 
     .label-container
         position relative
+        top -20px
+        font-family: 'Ubuntu', sans-serif !important;
 
         .overlay
             position absolute
@@ -138,9 +149,6 @@ export default {
             height 50%
             background-color #000000
             opacity 0.5
-
-            .heading
-                font-family: 'Merriweather', serif !important;
 
     .responsive
         .map-container

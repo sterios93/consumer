@@ -20,6 +20,7 @@
       color: String,
       activeTab: String,
       categories: Array,
+      compact: Boolean,
       selectedCategories: Array
     },
     components: {
@@ -78,7 +79,8 @@
       sharedProps () {
         return {
           color: this.color,
-          activeTab: this.activeTab
+          activeTab: this.activeTab,
+          compact: this.compact
         }
       }
     },

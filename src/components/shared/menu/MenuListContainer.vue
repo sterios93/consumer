@@ -58,6 +58,7 @@
   export default {
     props: {
       color: String,
+      compact: Boolean
     },
 
     data () {
@@ -78,23 +79,27 @@
       MainMListProps () {
         return {
           color: this.color,
+          compact: this.compact,
           items: this.$store.state.main.list.items
         }
       },
       LunchListProps () {
         return {
           color: this.color,
+          compact: this.compact,
           items: this.$store.state.lunch.list.items
         }
       },
       SpecialListProps () {
         return {
           color: this.color,
+          compact: this.compact,
           items: this.$store.state.special.list.items
         }
       },
       InfoListProps () {
         return {
+          compact: this.compact,
           color: this.color,
           information: this.$store.state.info.list.information
         }

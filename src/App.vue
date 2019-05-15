@@ -31,4 +31,6 @@
   @import '~vuetify/src/stylus/main';
   @import '~flatpickr/dist/flatpickr.css';
 
+  @import url('https://fonts.googleapis.com/css?family=Oswald|Ubuntu|Inconsolata|Playfair+Display|Roboto');
+
 </style>

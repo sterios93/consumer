@@ -6,7 +6,7 @@
     full-width
   >
     <v-list class="pa-0">
-      <UI/>
+      <UI :compact="compact"/>
     </v-list>
   </v-bottom-sheet>
 </template>
@@ -19,6 +19,11 @@ export default {
   name: 'ViewBottomSheet',
   components: {
     UI
+  },
+  data() {
+    return {
+      compact: true
+    }
   },
   computed: {
     ...mapState('bottomSheet', ['visibility']),

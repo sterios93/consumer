@@ -14,6 +14,13 @@
       Mobile
     },
 
+    props: {
+      compact: {
+        type: Boolean,
+        default: false
+      }
+    },
+
     computed: {
       ...mapState('app', ['color']),
       ...mapState('layout', ['responsive']),
@@ -25,6 +32,7 @@
         return {
           tabs: this.tabs,
           color: this.color,
+          compact: this.compact,
           activeTab: this.activeTab,
           categories: this.items,
         }
