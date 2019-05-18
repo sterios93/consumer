@@ -50,7 +50,7 @@ export default {
       return new Promise(resolve => {
         let data = state[action]
         // TODO :: fake request
-      
+
         setTimeout(() => {
           if (action === 'add') {
             dispatch('addItem', {
@@ -130,17 +130,17 @@ export default {
         ],
         name: 'Grande Pica Peperoni with Cheese',
         picture: null,
-        image: '/img/special-offer-default.jpeg',
+        image: './img/special-offer-default.jpeg',
         price: 160,
         schedule: null,
         startDate: '2019-09-10 12:00',
         endDate: '2019-10-10 12:00',
       }
-      
+
       dispatch('setItem', {payload: mockData, action})
-  
+
       return Promise.resolve(mockData)
-  
+
       // TODO :: remove upper code and use this when backend is ready
       // let url = ''
       // let query = payload
@@ -152,12 +152,12 @@ export default {
     },
     deleteItem: ({commit}, {payload}) => {
       return new Promise(resolve => {
-      
+
         let data = {
           success: true,
           message: 'Internal Error'
         }
-      
+
         // postData().then((data) => {
         setTimeout(() => {
           if (data.success) {
@@ -169,7 +169,7 @@ export default {
     },
     async toggleActive({commit}, {payload, action}) {
       let isAsync = (action === 'edit') || (action === 'list')
-    
+
       if (isAsync) {
         await new Promise((resolve) => {
           setTimeout(() => {
@@ -177,7 +177,7 @@ export default {
           }, 2000)
         })
       }
-    
+
       switch (action) {
         case 'add':
         case 'edit':
@@ -187,7 +187,7 @@ export default {
           commit('TOGGLE_ACTIVE_LIST_ITEM', payload)
           break
       }
-    
+
       return {
         success: true,
         message: 'Toggled successfully',

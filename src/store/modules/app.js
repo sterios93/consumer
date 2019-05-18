@@ -8,7 +8,7 @@ export default {
     isForced: true,
     toolbar: true,
     color: 'success',
-    image: '/img/drawer.jpg',
+    image: './img/drawer.jpg',
     user: null,
   },
   mutations: {

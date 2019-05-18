@@ -115,7 +115,7 @@
     data() {
       return {
         isActive: false,
-        defaultImage: '/img/default-menu-v2.jpg',
+        defaultImage: './img/default-menu-v2.jpg',
         activeLoading: false,
         deleteLoading: false,
       }
