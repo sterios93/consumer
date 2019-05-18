@@ -111,7 +111,7 @@ export default {
 <style scoped lang="stylus">
     .main-headline
         font-weight: bold !important;
-        font-size: 4.7em !important;
+        font-size: 3em !important;
         background-image: linear-gradient(#ececec, #fdfdfd) !important;
         -webkit-background-clip: text;
         -webkit-text-fill-color: transparent
@@ -148,7 +148,7 @@ export default {
             width 150%
             height 50%
             background-color #000000
-            opacity 0.5
+            opacity 0.4
 
     .responsive
         .map-container

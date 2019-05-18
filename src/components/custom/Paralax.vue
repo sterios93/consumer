@@ -2,7 +2,7 @@
     <v-parallax
             dark
             height="350"
-            src="https://wallpaperaccess.com/full/767033.jpg"
+            src="./img/vegs.jpg"
     >
         <v-layout
                 align-center
