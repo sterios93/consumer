@@ -2,6 +2,9 @@
     <v-layout row wrap>
         <v-flex>
             <v-layout wrap justify-center>
+                <v-flex xs12 v-if="isMainMenu">
+                    <CategoryTabs v-bind="categoryProps" @on-tab-change="onTabChange"/>
+                </v-flex>
                 <v-flex xs12 class="menu-list-mobile">
                     <component :is="menuComponent" v-bind="menuListProps"/>
                 </v-flex>
@@ -38,6 +41,7 @@
 </template>
 
 <script>
+  import CategoryTabs from "../../shared/category/CategoryTabs";
   import LunchList from '../../shared/menu/lunch/List'
   import MenuList from "../../shared/menu/MenuList";
   import SpecialList from '../../shared/menu/special/List'
@@ -50,6 +54,7 @@
       categories: Array
     },
     components: {
+        CategoryTabs,
         'main-menu': MenuList,
         'lunch-menu': LunchList,
         'special-menu': SpecialList,
@@ -96,6 +101,9 @@
         'setMenuModalVisibility': 'modals/setMenuModalVisibility',
         'setBottomSheetVisibility': 'bottomSheet/setVisibility',
       }),
+      onTabChange(id) {
+        this.category = id
+      },
     }
   }
 </script>

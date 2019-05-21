@@ -53,5 +53,4 @@
     .overflow-y-scroll
         overflow-y scroll
         height: 700px
-        padding-bottom: 56px
 </style>

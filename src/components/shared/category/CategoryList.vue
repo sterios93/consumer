@@ -1,19 +1,19 @@
 <template>
     <v-card>
-        <v-toolbar class="toolbar" dark>
-            <v-toolbar-title class="title font-weight-light mb-2 white--text">Categories</v-toolbar-title>
+<!--        <v-toolbar class="toolbar" dark>-->
+<!--            <v-toolbar-title class="title font-weight-light mb-2 white&#45;&#45;text">Categories</v-toolbar-title>-->
 
-            <v-spacer></v-spacer>
+<!--            <v-spacer></v-spacer>-->
 
-            <v-btn icon>
-                <v-icon>search</v-icon>
-            </v-btn>
-        </v-toolbar>
+<!--            <v-btn icon>-->
+<!--                <v-icon>search</v-icon>-->
+<!--            </v-btn>-->
+<!--        </v-toolbar>-->
 
         <v-list two-line class="px-3">
             <template v-for="item in items">
-                <v-divider></v-divider>
                 <CategoryItem :item="item" :key=item.id @item-selected="onItemSelected"/>
+                <v-divider></v-divider>
             </template>
         </v-list>
     </v-card>

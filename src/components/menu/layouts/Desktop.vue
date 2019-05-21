@@ -1,9 +1,9 @@
 <template>
     <v-layout row wrap>
-        <v-flex xs4>
+        <v-flex xs3>
             <InfoList v-bind="InfoListProps" />
         </v-flex>
-        <v-flex xs8>
+        <v-flex xs9>
             <MenuListContainer v-bind="sharedProps"/>
         </v-flex>
     </v-layout>
@@ -80,7 +80,8 @@
         return {
           color: this.color,
           activeTab: this.activeTab,
-          compact: this.compact
+          compact: this.compact,
+          categories: this.categories
         }
       }
     },

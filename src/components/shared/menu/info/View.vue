@@ -87,7 +87,6 @@
     .overflow-y-scroll
         overflow-y scroll
         height 700px
-        padding-bottom: 56px
     .view-card,.view-card-container
         height: 100%
 </style>

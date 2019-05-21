@@ -1,5 +1,5 @@
 <template>
-    <div>
+    <div class="menu-wrapper">
         <v-toolbar flat class="toolbar" dark>
             <v-tabs
                     v-model="activeTab"
@@ -17,12 +17,20 @@
             </v-tabs>
         </v-toolbar>
 
+
         <v-tabs-items v-model="activeTab">
 
             <v-tab-item>
                 <v-card flat>
                     <v-card-text>
-                        <MainList v-bind="MainMListProps" />
+                        <v-layout row wrap>
+                            <v-flex xs9>
+                                <MainList v-bind="MainMListProps" />
+                            </v-flex>
+                            <v-flex xs3 class="pa-4 mt-5">
+                                <CategoryList v-bind="{...categoryProps}"/>
+                            </v-flex>
+                        </v-layout>
                     </v-card-text>
                 </v-card>
             </v-tab-item>
@@ -44,6 +52,7 @@
             </v-tab-item>
 
         </v-tabs-items>
+
     </div>
 </template>
 
@@ -52,13 +61,16 @@
   import MainList from '../../shared/menu/main/List'
   import SpecialList from '../../shared/menu/special/List'
   import InfoList from '../../shared/menu/info/View'
+  import CategoryList from '../../shared/category/CategoryList'
+
 
   import {mapState} from 'vuex'
 
   export default {
     props: {
       color: String,
-      compact: Boolean
+      compact: Boolean,
+      categories: Array,
     },
 
     data () {
@@ -69,6 +81,7 @@
     },
 
     components: {
+      CategoryList,
       LunchList,
       MainList,
       SpecialList,
@@ -76,6 +89,12 @@
     },
 
     computed: {
+      categoryProps () {
+        return {
+          items: this.categories,
+          disabled: this.activeTab !== 0 // TODO :: consider placing calendar for filtering on special and lunch tabs
+        }
+      },
       MainMListProps () {
         return {
           color: this.color,
@@ -109,6 +128,8 @@
 </script>
 
 <style scoped lang="stylus">
-    .toolbar
-        background-image: linear-gradient(#4caf50, rgba(76, 175, 80, 0.82))
+    .menu-wrapper
+        padding-bottom: 56px
+        .toolbar
+            background-image: linear-gradient(#4caf50, rgba(76, 175, 80, 0.82))
 </style>
