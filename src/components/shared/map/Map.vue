@@ -4,22 +4,31 @@
       <v-layout class="gmap-autocomplete-wrapper" wrap>
           <v-expansion-panel v-model="isActive">
               <v-expansion-panel-content>
-                  <template v-slot:header>
-                      <v-flex xs12 md8 class="d-flex">
-                          <gmap-autocomplete
-                                  class="gmap-autocomplete"
-                                  v-model="rAddress"
-                                  placeholder="Address"
-                                  @place_changed="setPlace"
-                                  :select-first-on-enter="true">
-                          </gmap-autocomplete>
-                          <v-icon class="location-icon">my_location</v-icon>
-                      </v-flex>
-
-                      <v-flex xs12 md4 class="d-flex justify-center">
-                          <v-btn large color="light-green accent-4 find-btn">FIND RESTAURANTS</v-btn>
-                      </v-flex>
+                  <template v-slot:actions>
+                      <v-icon color="primary" class="ml-2">$vuetify.icons.expand</v-icon>
+                      <v-icon class="location-icon ml-2">my_location</v-icon>
                   </template>
+                  <template v-slot:header class="pa-0 ma-0">
+                      <v-layout row wrap align-center justify-center class="pa-0 ma-0">
+                          <v-flex xs12 md8 class="d-flex pa-1">
+                              <gmap-autocomplete
+                                      class="gmap-autocomplete"
+                                      v-model="rAddress"
+                                      placeholder="Address"
+                                      @place_changed="setPlace"
+                                      :select-first-on-enter="true">
+                              </gmap-autocomplete>
+                          </v-flex>
+
+                          <v-flex xs12 md4 class="d-flex justify-center pa-1">
+                              <v-btn @click.native="onFindClick" large color="light-green accent-4 find-btn mx-0">
+                                  FIND RESTAURANTS
+                              </v-btn>
+<!--                              <v-icon color="grey">$vuetify.icons.expand</v-icon>-->
+                          </v-flex>
+                      </v-layout>
+                  </template>
+
                   <v-card>
                       <v-layout row wrap justify-center>
                           <v-flex xs12 sm6 class="pa-2">
@@ -213,6 +222,9 @@
       ...mapActions({
         setBottomSheetVisible: 'bottomSheet/setVisibility',
       }),
+      onFindClick(e) {
+        e.preventDefault()
+      },
       toggleBottomSheet() {
         this.setBottomSheetVisible(!this.isBottomSheetVisible);
       },
@@ -322,6 +334,9 @@
 </script>
 
 <style scoped lang="stylus">
+    >>> .v-expansion-panel__header
+        padding-right 0 !important
+
     .gmap-autocomplete-container
         display: flex
         justify-content center
@@ -349,7 +364,6 @@
 
     .location-icon
         color #019234 !important
-        margin 0 10px 0 20px
 
     .find-btn
         color: white !important
