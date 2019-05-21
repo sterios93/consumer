@@ -6,7 +6,7 @@
               <v-expansion-panel-content>
                   <template v-slot:actions>
                       <v-icon color="primary" class="ml-2">$vuetify.icons.expand</v-icon>
-                      <v-icon class="location-icon ml-2">my_location</v-icon>
+                      <v-icon @click.prevent="geolocate" class="location-icon ml-2">my_location</v-icon>
                   </template>
                   <template v-slot:header class="pa-0 ma-0">
                       <v-layout row wrap align-center justify-center class="pa-0 ma-0">
@@ -255,10 +255,14 @@
       },
       geolocate: function () {
         navigator.geolocation.getCurrentPosition(position => {
-          this.center = {
-            lat: position.coords.latitude,
-            lng: position.coords.longitude
-          };
+          this.shrinkPanel()
+
+          this.$set(this.center, 'lat', position.coords.latitude)
+          this.$set(this.center, 'lng', position.coords.longitude)
+
+          this.$refs.map.$mapPromise.then((map) => {
+            map.panTo(this.center)
+          })
 
           this.marker = {
             lat: this.center.lat,
