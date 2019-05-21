@@ -88,7 +88,10 @@
       return {
         isActive: null,
         latLng: {},
-        center: {},
+        center: {
+          lat: 51.1657,
+          lng: 10.4515
+        },
         styles: [
           {
             "featureType": "landscape",
@@ -254,22 +257,35 @@
         this.populateData(data);
       },
       geolocate: function () {
-        navigator.geolocation.getCurrentPosition(position => {
+        const onSuccess = (position) => {
           this.shrinkPanel()
+          this.setCoordinates(position.coords)
+        }
 
-          this.$set(this.center, 'lat', position.coords.latitude)
-          this.$set(this.center, 'lng', position.coords.longitude)
+        const onError = (error) => {
+          if (error.code === 1) {
+            //user blocked location set default coordinates
+            this.setCoordinates({
+              latitude: 51.1657,
+              longitude: 10.4515
+            })
+          }
+        }
 
-          this.$refs.map.$mapPromise.then((map) => {
-            map.panTo(this.center)
-          })
+        navigator.geolocation.getCurrentPosition(onSuccess, onError);
+      },
+      setCoordinates(coordinates) {
+        this.$set(this.center, 'lat', coordinates.latitude)
+        this.$set(this.center, 'lng', coordinates.longitude)
 
-          this.marker = {
-            lat: this.center.lat,
-            lng: this.center.lng,
-          };
+        this.$refs.map.$mapPromise.then((map) => {
+          map.panTo(this.center)
+        })
 
-        });
+        this.marker = {
+          lat: this.center.lat,
+          lng: this.center.lng,
+        };
       },
       addCustomMarker(e) {
         const lat = e.latLng.lat()
