@@ -2,11 +2,11 @@ import { set, toggle } from '@/utils/vuex'
 
 const state = () => ({
   namespaced: true,
-  firstName: "Dobrin",
-  lastName: "Dimchev",
-  email: "dobkata.boost@abv.bg",
-  phoneNumber: "091239129030",
-  password: "guru",
+  firstName: "",
+  lastName: "",
+  email: "",
+  phoneNumber: "",
+  password: "",
   inEditMode: false,
   isProfileValid: true,
   address: '',

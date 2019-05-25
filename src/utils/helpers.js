@@ -13,7 +13,7 @@ export const postData = ({payload, url, token = '', id = ''}) => {
   })
 }
 
-export const getData = (url, query, token) => {
+export const getData = (url, query = '', token = '') => {
   return fetch(url + query, {
     method: "GET",
     mode: "cors",
