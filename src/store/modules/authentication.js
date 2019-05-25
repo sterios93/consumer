@@ -10,7 +10,7 @@ export default {
   mutations: {
     SET_IS_USER_LOGGED: (state, value) => {
       state.isUserLogged = value
-      localStorage.setItem('token', value)
+      localStorage.setItem('isUserLogged', value)
     },
   },
   getters: {},

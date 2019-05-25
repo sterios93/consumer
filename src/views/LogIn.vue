@@ -126,7 +126,7 @@ import { required, email } from 'vuelidate/lib/validators';
               if (data.success !== false) {
                 this.$router.push({ path: 'home' })
               } else {
-                this.setState({snackbar: true, message: data.message, color: 'red'})
+                this.setState({snackbar: true, message: data.error && data.error.message, color: 'red'})
                 this.clear();
               }
             })

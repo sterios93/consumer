@@ -83,7 +83,7 @@ export default {
 
             this.setState({snackbar: true, message: 'Loggin Succescfull.', color: 'green'});
           } else {
-            this.setState({snackbar: true, message: data.message, color: 'red'});
+            this.setState({snackbar: true, message: data.error && data.error.message, color: 'red'});
           }
         })
     }
