@@ -70,7 +70,7 @@
                   color="success"
                   @click="submit"
                 >
-                  Sign in
+                  Log In
                 </v-btn>
               </v-flex>
               <v-flex

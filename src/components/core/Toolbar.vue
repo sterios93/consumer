@@ -20,6 +20,8 @@
     </div>
 
     <v-spacer />
+
+
     <v-toolbar-items>
       <v-flex
         align-center
@@ -56,8 +58,20 @@
           </v-card>
         </v-menu>
 
-        <v-icon @click="logOutAccount" v-if="isUserLogged" color="orange">mdi-exit-to-app</v-icon>
+        <v-icon @click="logOutAccount" color="orange">mdi-exit-to-app</v-icon>
 
+      </v-flex>
+      <v-flex
+              v-else
+              align-center
+              layout
+              >
+        <router-link to="/signup">
+          <v-btn flat color="amber darken-1">Sign up</v-btn>
+        </router-link>
+        <router-link to="/login">
+          <v-btn flat color="green lighten-1">Log in</v-btn>
+        </router-link>
       </v-flex>
     </v-toolbar-items>
   </v-toolbar>
@@ -138,8 +152,9 @@ export default {
     margin-bottom 0
   #core-toolbar a
     text-decoration: none
+  >>> .v-btn
+        height 36px !important
   .responsive
     >>> .v-toolbar__content
       margin-left 260px !important
-
 </style>

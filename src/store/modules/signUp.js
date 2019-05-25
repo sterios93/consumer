@@ -39,27 +39,16 @@ export default {
     setPersonalInfoValid({commit}) { commit('SET_PERSONAL_INFO_VALID')},
     setCity: ({commit}, value) => {commit('SET_CITY', value)},
     doSignUpRequest: ({dispatch, rootState, state, commit}) => {
-      let data = {
-        payload: {
-          email: state.email,
-          password: state.password,
-          firstName: state.firstName,
-          lastName: state.lastName,
-          phone: state.phoneNumber,
-          userType: 'consumer'
-        },
-        url: rootState.settings.apiUrl + 'user/create',
+      let payload = {
+        email: state.email,
+        password: state.password,
+        firstName: state.firstName,
+        lastName: state.lastName,
+        phone: state.phoneNumber,
+        userType: 'consumer'
       }
 
-      return postData(data)
-        .then(response => response.json())
-        .catch(error => {
-          dispatch('snackbar/setState', {
-            snackbar: true,
-            message: error && error.message,
-            color: 'red'
-          }, { root: true })
-        })
+      return dispatch('authentication/signUp', payload, { root: true })
     }
   }
 }
