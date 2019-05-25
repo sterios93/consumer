@@ -26,6 +26,7 @@
                   v-model="email"
                   :error-messages="emailErrors"
                   required
+                  @keypress.enter="submit"
                   @input="validate('email')"
                   @blur="validate('email')"
                   >
@@ -43,6 +44,7 @@
                   :error-messages="passwordErrors"
                   :type="showPassword ? 'text' : 'password'"
                   required
+                  @keypress.enter="submit"
                   @click:append="showPassword = !showPassword"
                   @input="validate('password')"
                   @blur="validate('password')"
@@ -107,7 +109,7 @@ import { required, email } from 'vuelidate/lib/validators';
       }
     },
     methods: {
-      ...mapActions('authentication', ['postData']),
+      ...mapActions('authentication', ['login']),
       ...mapActions('snackbar', ['setState']),
       submit () {
         this.$v.$touch();
@@ -116,16 +118,15 @@ import { required, email } from 'vuelidate/lib/validators';
         } else {
           let payload = {
             email: this.email,
-            password: this.password
+            password: this.password.trim()
           }
 
-          // TODO fix the post request when the backend is ready.
-          this.postData({action: 'login', payload})
+          this.login(payload)
             .then(data => {
               if (data.success !== false) {
                 this.$router.push({ path: 'home' })
               } else {
-                this.setState({snackbar: true, message: data.msg, color: 'red'})
+                this.setState({snackbar: true, message: data.message, color: 'red'})
                 this.clear();
               }
             })

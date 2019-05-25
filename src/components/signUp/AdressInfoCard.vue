@@ -41,7 +41,7 @@
             </v-flex>
 
             <v-flex>
-                <v-btn color="primary" @click="stepClick(2)">Back</v-btn>
+<!--                <v-btn color="primary" @click="stepClick(2)">Back</v-btn>-->
                 <v-btn color="primary" @click="e1 = 1" >Continue</v-btn>
                 <v-btn flat>Cancel</v-btn>
 
@@ -104,15 +104,11 @@ import { required } from 'vuelidate/lib/validators';
       },
          methods: {
              ...mapActions('signUp', [
-                'setActiveStepNumber',
                 'setAddress',
                 'setCity',
                 'setCountry',
                 'setPostalCode',
             ]),
-            stepClick(stepNumber) {
-                this.setActiveStepNumber(stepNumber);
-            },
            validate(target) {
              // Reset the errors everytime, so you can have dynamic fresh array on every keystroke
              this[target + 'Errors'] = [];

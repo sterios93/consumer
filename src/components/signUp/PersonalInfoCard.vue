@@ -89,12 +89,12 @@
             <v-flex>
                 <v-btn
                 color="primary"
-                @click="nextScreen"
+                @click="onSignUpClick"
                 >
-                Continue
+                Sign Up
                 </v-btn>
 
-                <v-btn flat>Cancel</v-btn>
+                <v-btn flat @click="onCancelClick">Cancel</v-btn>
             </v-flex>
 
             <v-flex>
@@ -146,8 +146,11 @@ import VueRecaptcha from 'vue-recaptcha';
                 'setPersonalInfo',
                 'setPersonalInfoInvalid',
                 'setPersonalInfoValid',
-                'setActiveStepNumber',
+                // 'setActiveStepNumber',
             ]),
+          onCancelClick() {
+            this.$router.push('/home')
+          },
           onVerify: function (response) {
             this.recaptchaVerified = response;
           },
@@ -158,21 +161,22 @@ import VueRecaptcha from 'vue-recaptcha';
             this.$refs.recaptcha.reset();
             this.recaptchaVerified = false;
           },
-            nextScreen() {
+            onSignUpClick() {
                 this.$v.$touch();
                 if (this.$v.$invalid || !this.recaptchaVerified) {
                     this.setPersonalInfoInvalid();
                 } else {
-                    // Todo, check in the database if the email is not in use already
                     this.setPersonalInfo({
                         firstName: this.firstName,
                         lastName: this.lastName,
                         email: this.email,
                         phoneNumber: this.phoneNumber,
                         password: this.password,
+                    }).then(() => {
+                      this.resetRecaptcha();
+                      this.$emit('sign-up-clicked')
                     });
-                  this.resetRecaptcha();
-                  this.setActiveStepNumber(2);
+                  // this.setActiveStepNumber(2);
                 }
             },
             validate(target) {
@@ -205,7 +209,7 @@ import VueRecaptcha from 'vue-recaptcha';
                 (this.$v[target].numeric !== undefined) && !this.$v[target].numeric && !this[target + 'Errors'].includes('Must be numeric') && this[target + 'Errors'].push('Must be numeric');
             },
             checkLength(target) {
-                (this.$v[target].minLength !== undefined) && !this.$v[target].minLength && !this[target + 'Errors'].includes('Must be minimum 5 characters long') && this[target + 'Errors'].push('Must be minimum 5 characters long');
+                (this.$v[target].minLength !== undefined) && !this.$v[target].minLength && !this[target + 'Errors'].includes('Must be minimum 6 characters long') && this[target + 'Errors'].push('Must be minimum 6 characters long');
             },
             checkSameAs(target) {
                 (this.$v[target].sameAsPassword !== undefined) && !this.$v[target].sameAsPassword && !this[target + 'Errors'].includes('Passwords must be the same') && this[target + 'Errors'].push('Passwords must be the same');
@@ -234,11 +238,11 @@ import VueRecaptcha from 'vue-recaptcha';
             },
             password: {
                 required,
-                minLength: minLength(5)
+                minLength: minLength(6)
             },
             passwordRepeat: {
                 required,
-                minLength: minLength(5),
+                minLength: minLength(6),
                 sameAsPassword: sameAs('password')
             },
         }

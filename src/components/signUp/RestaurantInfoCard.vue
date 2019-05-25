@@ -50,7 +50,7 @@
         </v-flex>
 
         <v-flex>
-             <v-btn color="primary" @click="setActiveStepNumber(1);">Back</v-btn>
+<!--             <v-btn color="primary" @click="setActiveStepNumber(1);">Back</v-btn>-->
             <v-btn
                 color="primary"
                 @click="nextScreen(3)"
@@ -86,7 +86,7 @@ import { required, minLength, sameAs, email, numeric } from 'vuelidate/lib/valid
         },
         methods: {
              ...mapActions('signUp', [
-                'setActiveStepNumber',
+                // 'setActiveStepNumber',
                 'setRestaurantInfoValid',
                 'setRestaurantInfoInvalid',
                 'setRestaurantInfo',
@@ -102,7 +102,7 @@ import { required, minLength, sameAs, email, numeric } from 'vuelidate/lib/valid
                         restaurantWebsite: this.restaurantWebsite,
                         restaurantNumber: this.restaurantNumber,
                     });
-                    this.setActiveStepNumber(stepNumber);
+                    // this.setActiveStepNumber(stepNumber);
                 }
             },
             validate(target) {

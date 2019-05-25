@@ -46,7 +46,7 @@ export default {
     setMessage({commit}, payload) {
       commit('SET_MESSAGE', payload)
     },
-    setState({commit}, {snackbar = true, message = '', color = 'info'}) {
+    setState({commit}, {snackbar = true, message = 'Server Error', color = 'red'}) {
       commit('SET_SNACKBAR', snackbar)
       commit('SET_MESSAGE', message)
       commit('SET_COLOR', color)

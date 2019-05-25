@@ -23,7 +23,7 @@
                 <v-stepper-items>
                   <!-- Personal information -->
                   <v-stepper-content step="1">
-                    <personal-info-card/>
+                    <personal-info-card @sign-up-clicked="onSignUpClicked"/>
                   </v-stepper-content>
 
                 </v-stepper-items>
@@ -67,14 +67,26 @@ export default {
         return this.activeStepNumber
       },
       set: function (stepNumber) {
-        this.setActiveStepNumber(stepNumber);
+        // this.setActiveStepNumber(stepNumber);
       }
     }
   },
   methods: {
     ...mapActions('authentication', ['postData']),
     ...mapActions('snackbar', ['setState']),
-    ...mapActions('signUp', ['setActiveStepNumber']),
+    ...mapActions('signUp', ['doSignUpRequest']),
+    onSignUpClicked() {
+      this.doSignUpRequest()
+        .then(data => {
+          if (data && data.success) {
+            this.$router.push({ path: 'home' })
+
+            this.setState({snackbar: true, message: 'Loggin Succescfull.', color: 'green'});
+          } else {
+            this.setState({snackbar: true, message: data.message, color: 'red'});
+          }
+        })
+    }
   },
 }
 </script>
