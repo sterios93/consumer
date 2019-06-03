@@ -38,8 +38,6 @@
 
 <script>
 import PersonalInfoCard from '../components/signUp/PersonalInfoCard';
-import RestaurantInfoCard from '../components/signUp/RestaurantInfoCard';
-import AdressInfoCard from '../components/signUp/AdressInfoCard';
 import Map from '../components/shared/map/Map';
 
 import { mapActions, mapState } from 'vuex';
@@ -49,8 +47,6 @@ export default {
   components: {
     Map,
     PersonalInfoCard,
-    RestaurantInfoCard,
-    AdressInfoCard
   },
   data() {
     return {
