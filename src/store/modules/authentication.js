@@ -61,7 +61,7 @@ export default {
 		signUp({dispatch, rootState, state, commit}, payload) {
 			let data = {
 				payload,
-				url: rootState.settings.apiUrl + 'user/create',
+				url: rootState.settings.apiUrl + rootState.settings.signUpPath,
 			}
 
 			return postData(data)
