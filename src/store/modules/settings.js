@@ -4,6 +4,7 @@ let config = {
   devUrl: 'http://212.227.193.201/api/v1/',
   basePath: './',
   signUpPath: 'user/consumer/create',
+  loginPath: 'user/consumer/login',
 }
 
 export default {
@@ -13,6 +14,7 @@ export default {
     url: config.devUrl,
     basePath: config.basePath,
     signUpPath: config.signUpPath,
+    loginPath: config.loginPath,
   },
   mutations: {},
   getters: {},

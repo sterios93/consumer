@@ -39,7 +39,7 @@ export default {
 		login({dispatch, rootState, state, commit}, payload) {
 			let data = {
 				payload,
-				url: rootState.settings.apiUrl + 'user/consumer/login',
+				url: rootState.settings.apiUrl + rootState.settings.loginPath,
 			}
 
 			return postData(data)
