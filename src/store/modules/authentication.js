@@ -32,9 +32,16 @@ export default {
 		setIsUserLogged({commit}, value) {
 			commit('SET_IS_USER_LOGGED', value)
 		},
-		logout({commit}) {
-			commit('SET_IS_USER_LOGGED', false)
-			localStorage.removeItem('isUserLogged')
+		logout({ rootState, commit }) {
+			return getData(rootState.settings.apiUrl + rootState.settings.logoutPath)
+					.then(data => data.json())
+					.then(data => {
+						if (data.success) {
+							commit('SET_IS_USER_LOGGED', false)
+							localStorage.removeItem('isUserLogged')
+						}
+						return data
+					})
 		},
 		login({dispatch, rootState, state, commit}, payload) {
 			let data = {

@@ -131,6 +131,7 @@ export default {
 
   methods: {
     ...mapActions('authentication', ['logout']),
+    ...mapActions('snackbar', {setSnackbar: 'setState'}),
     ...mapActions('app', ['setDrawer', 'toggleDrawer']),
     onClickBtn () {
       this.setDrawer(!this.$store.state.app.drawer)
@@ -139,7 +140,16 @@ export default {
       //
     },
     logOutAccount() {
-      this.logout().then(() => this.$router.push('login'))
+      this.logout()
+      .then((data) => {
+        if (data.success) {
+          this.$router.push('login');
+          this.setSnackbar({snackbar: true, message: 'Logout successfully', color: 'success'})
+        } else {
+          this.setSnackbar({snackbar: true, message: data.message, color: 'red'})
+        }
+      
+      })
     }
   }
 }
