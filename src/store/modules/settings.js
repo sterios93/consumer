@@ -5,6 +5,7 @@ let config = {
   basePath: './',
   signUpPath: 'user/consumer/create',
   loginPath: 'user/consumer/login',
+  fetchProfilePath: 'user/consumer/fetch',
 }
 
 export default {
@@ -15,6 +16,7 @@ export default {
     basePath: config.basePath,
     signUpPath: config.signUpPath,
     loginPath: config.loginPath,
+    fetchProfilePath: config.fetchProfilePath,
   },
   mutations: {},
   getters: {},

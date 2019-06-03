@@ -16,7 +16,7 @@ export default {
 	getters: {},
 	actions: {
 		fetchUserData({dispatch, rootState, state, commit}) {
-			return getData(rootState.settings.apiUrl + 'user/consumer/fetch')
+			return getData(rootState.settings.apiUrl + rootState.settings.fetchProfilePath)
 				.then(response => response.json())
 				.then(data => {
 
