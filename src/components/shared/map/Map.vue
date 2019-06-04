@@ -35,6 +35,7 @@
                               <v-text-field
                                       label="Choose type restaurant"
                                       hint="For example, italian or mexican"
+                                      v-model="restaurantType"
                                       box
                               ></v-text-field>
                           </v-flex>
@@ -42,6 +43,7 @@
                               <v-text-field
                                       label="Choose category"
                                       hint="For example, pizza or burger"
+                                      v-model="restaurantCategory"
                                       box
                               ></v-text-field>
                           </v-flex>
@@ -49,10 +51,11 @@
                               <v-text-field
                                       label="Search for name"
                                       box
+                                      v-model="restaurantName"
                               ></v-text-field>
                           </v-flex>
                           <v-flex xs12 class="pa-2">
-                              <v-btn block color="white--text search-btn">Apply</v-btn>
+                              <v-btn block color="white--text search-btn" @click.native="onFindClick">Apply</v-btn>
                           </v-flex>
                       </v-layout>
                   </v-card>
@@ -73,6 +76,15 @@
               :position="marker"
               @click="toggleBottomSheet"
       ></gmap-marker>
+
+<!-- TODO: those are the restaurant markers, we should make them look different -->
+	  <GmapMarker
+			:key="index"
+			v-for="(m, index) in markers"
+			:position="{lat: Number(m.lat), lng: Number(m.lng)}"
+			:clickable="true"
+			@click="setBottomSheetVisible"
+		/>
     </gmap-map>
   </div>
 </template>
@@ -197,7 +209,10 @@
           }
         ],
         marker: null,
-        apiKey: 'AIzaSyAfYAgsxbh9FIJw1lAUc3B_t3ujOTrDRT4'
+        apiKey: 'AIzaSyAfYAgsxbh9FIJw1lAUc3B_t3ujOTrDRT4',
+        restaurantType: '',
+        restaurantCategory: '',
+        restaurantName: '',
       };
     },
     mounted() {
@@ -218,15 +233,29 @@
         rAddress(state) {
           return state[this.storeModule].address
         },
-        isBottomSheetVisible: (state) => state.bottomSheet.visibility
-      }),
+		isBottomSheetVisible: (state) => state.bottomSheet.visibility,
+		markers: (state) => state.map.markers,
+	  }),
     },
     methods: {
       ...mapActions({
         setBottomSheetVisible: 'bottomSheet/setVisibility',
       }),
+      ...mapActions('map', ['fetchMarkers', 'setGeolocation']),
       onFindClick(e) {
-        e.preventDefault()
+        e.preventDefault();
+        // TODO: is there a need to save those criterias into the store ?
+        const payload = {
+          type: this.restaurantType,
+          category: this.restaurantCategory,
+          name: this.restaurantName,
+          minDistance: 1000,  // TODO: Add logic for inserting those values dynamically
+          maxDistance: 10000, // TODO: Add logic for inserting those values dynamically
+          location: this.marker,
+        };
+        //TODO: should we use snackbar here ?
+		this.fetchMarkers(payload);
+		this.setGeolocation(this.marker);
       },
       toggleBottomSheet() {
         this.setBottomSheetVisible(!this.isBottomSheetVisible);

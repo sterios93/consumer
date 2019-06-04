@@ -17,9 +17,10 @@
         </Parallax>
       </v-flex>
       <v-flex xs12>
+        <!-- // TODO: check if we still need to pass dynamic store module. -->
         <Map
           class="map-container"
-          storeModule="userProfile"/>
+          storeModule="userProfile"/> 
       </v-flex>
       <ViewBottomSheet/>
       <v-flex
