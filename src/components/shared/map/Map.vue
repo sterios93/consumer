@@ -83,7 +83,7 @@
 			v-for="(m, index) in markers"
 			:position="{lat: Number(m.lat), lng: Number(m.lng)}"
 			:clickable="true"
-			@click="setBottomSheetVisible"
+			@click="toggleBottomSheet"
 		/>
     </gmap-map>
   </div>
