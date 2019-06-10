@@ -29,7 +29,7 @@ export default {
     setMarkers({commit}, payload) {
       commit('SET_MARKERS', payload)
     },
-    fetchMarkers({rootState, commit}, data) {
+    fetchMarkers({rootState, commit, dispatch}, data) {
       const { apiUrl, findRestaurantsPath } = rootState.settings;
       const url = apiUrl + findRestaurantsPath;
       const payload = {
@@ -46,11 +46,13 @@ export default {
       return postData({ payload, url})
 				.then(data => data.json())
 				.then(data => {
-          if (data.success) {
-            commit('SET_MARKERS', data.result)
-          }
-          return data
-				})
+					if (data.success) {
+						const {restaurants} = data.result;
+						commit('SET_MARKERS', restaurants);
+						dispatch('restaurants/setRestaurants', restaurants, { root: true });
+					}
+					return data
+				});
     },
   }
 }
