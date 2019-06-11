@@ -42,8 +42,6 @@
 import Parallax from '../../src/components/custom/Paralax'
 import Map from '../../src/components/shared/map/Map'
 import ViewBottomSheet from '../../src/components/shared/ViewBottomSheet'
-import SpecialList from '../../src/components/shared/menu/special/List'
-import LunchList from '../../src/components/shared/menu/lunch/List'
 import RestaurantsList from '../components/shared/restaurant/List'
 import { mapState } from 'vuex'
 
@@ -53,29 +51,16 @@ export default {
     Parallax,
     Map,
     ViewBottomSheet,
-    SpecialList,
-	LunchList,
 	RestaurantsList,
   },
   data () {
-    return {
-      tiles: [
-        { img: 'keep.png', title: 'Keep' },
-        { img: 'inbox.png', title: 'Inbox' },
-        { img: 'hangouts.png', title: 'Hangouts' },
-        { img: 'messenger.png', title: 'Messenger' },
-        { img: 'google.png', title: 'Google+' }
-      ]
-    }
+    return {}
   },
   computed: {
     ...mapState({
-      specialItems: (state) => state.special.list.items,
-	  lunchItems: (state) => state.lunch.list.items,
-	  restaurants: (state) => state.restaurants.allRestaurants,
+	    restaurants: (state) => state.restaurants.allRestaurants,
     })
   },
-  methods: {}
 }
 </script>
 
