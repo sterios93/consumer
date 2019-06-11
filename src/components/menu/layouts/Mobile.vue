@@ -78,7 +78,7 @@
         if (this.selectedMenu === 'info') {
             return {
                 isDesktop: false,
-                information: this.$store.state.info.list.information,
+                information: this.$store.state.restaurants.currentRestaurant.info,
             };
         } else  {
             return {

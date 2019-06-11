@@ -16,12 +16,10 @@
 
   export default {
     props: {
-      tabs: Object,
       color: String,
       activeTab: String,
       categories: Array,
       compact: Boolean,
-      selectedCategories: Array
     },
     components: {
       MenuListContainer,
