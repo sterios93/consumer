@@ -38,10 +38,6 @@ export default {
   },
   methods: {
     ...mapActions('bottomSheet', ['setVisibility']),
-    handleClick (tile) {
-      this.localVisibility = false
-      tile.cb()
-    }
   }
 }
 </script>
