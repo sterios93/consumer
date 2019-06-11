@@ -27,61 +27,24 @@
       MenuListContainer,
       InfoList,
     },
-    created() {
-      this.controls = [
-        {
-          img: 'main.png',
-          title: 'Create main menu product',
-          cb: () => this.setMenuModalVisibility({
-            key: 'main',
-            value: true
-          })
-        },
-        {
-          img: 'special.png',
-          title: 'Create special offer',
-          cb: () => this.setMenuModalVisibility({
-            key: 'special',
-            value: true
-          })
-        },
-        {
-          img: 'lunch.png',
-          title: 'Create lunch offer',
-          cb: () => this.setMenuModalVisibility({
-            key: 'lunch',
-            value: true
-          })
-        },
-        {
-          img: 'category.png',
-          title: 'Create category',
-          cb: () => this.setModalVisibility({
-            key: 'category',
-            value: true
-          })
-        }
-      ]
-    },
-
     computed: {
       InfoListProps () {
           return {
-              isDesktop: true,
-              information: this.$store.state.info.list.information,
+				isDesktop: true,
+				information: this.$store.state.restaurants.currentRestaurant.info,
           }
       },
       categoryProps () {
         return {
-          items: this.categories,
+          	items: this.categories,
         }
       },
       sharedProps () {
         return {
-          color: this.color,
-          activeTab: this.activeTab,
-          compact: this.compact,
-          categories: this.categories
+			color: this.color,
+			activeTab: this.activeTab,
+			compact: this.compact,
+			categories: this.categories
         }
       }
     },
@@ -92,7 +55,7 @@
         'setBottomSheetVisibility': 'bottomSheet/setVisibility'
       }),
       onControlsClicked() {
-        this.setBottomSheetVisibility(true)
+        	this.setBottomSheetVisibility(true)
       }
     }
   }
