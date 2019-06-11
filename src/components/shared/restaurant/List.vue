@@ -24,9 +24,6 @@
     data() {
       return {}
     },
-    methods: {
-      onItemClick() { }
-    }
   }
 </script>
 
