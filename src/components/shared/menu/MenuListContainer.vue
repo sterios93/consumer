@@ -80,6 +80,7 @@
         activeTab: null,
 		tabs: ['Main Menu', 'Special Offers', 'Lunch Menu',],
 		localMenuItems: [],
+		localCategories: [],
       }
     },
 
@@ -93,7 +94,11 @@
 	watch: {
 		currentRestId: {
 			handler: function(id) {
-				if (this.activeTab === 0) this.fetchMenuHandler(); // tabs[0] Main Menu
+				 // tabs[0] Main Menu
+				if (this.activeTab === 0) {
+					this.fetchMenuHandler();
+					this.fetchCategoriesHandler();
+				}
 			},
 		},
 		menuItems: {
@@ -106,6 +111,7 @@
       	...mapActions('snackbar', ['setState']),
 		...mapActions({
 			'fetchMenu' : 'restaurants/fetchCurrRestMenu',
+			'fetchCategories': 'restaurants/fetchCurrRestCategories',
 			}),
 			fetchMenuHandler() {
 				this.fetchMenu()
@@ -115,6 +121,16 @@
 							this.localMenuItems = data.result
 						}
 					})
+			},
+			fetchCategoriesHandler() {
+				this.fetchCategories()
+					.then(data => {
+						if (!data.success) return this.errorHandler(data) 
+						else {
+							this.localCategories = data.result
+						}
+					})
+
 			},
 			errorHandler(data) {
 	             this.setState({snackbar: true, message: data.error.message, color: 'red'})
@@ -126,7 +142,7 @@
 		}),
       categoryProps () {
         return {
-          items: this.categories,
+          items: this.localCategories,
           disabled: this.activeTab !== 0 // TODO :: consider placing calendar for filtering on special and lunch tabs
         }
       },

@@ -1,20 +1,20 @@
 <template>
-    <v-checkbox v-model="selected" :label="item.name" :value="item.selected"></v-checkbox>
+    <v-checkbox v-model="selected" :label="item" :value="item"></v-checkbox>
 </template>
 
 <script>
   export default {
     props: {
-      item: Object
+      item: String
     },
 
     computed: {
       selected: {
         get () {
-          return this.item.selected
+          return this.item
         },
         set () {
-          this.$emit('item-selected', this.item.id)
+          this.$emit('item-selected', this.item)
         }
       }
     }
