@@ -2,18 +2,18 @@
     <div class="menu-wrapper">
         <v-toolbar flat class="toolbar" dark>
             <v-tabs
-                    v-model="activeTab"
-                    color="transparent"
-                    grow
+				v-model="activeTab"
+				color="transparent"
+				grow
             >
                 <v-tabs-slider color="yellow"></v-tabs-slider>
 
-                <v-tab
-                        v-for="(tab, key, index) in tabs"
-                        :key="key"
-                >
-                    {{ tab }}
-                </v-tab>
+				<v-tab
+					v-for="(tab, key) in tabs"
+					:key="key"
+				>
+					{{ tab }}
+				</v-tab>
             </v-tabs>
         </v-toolbar>
 
@@ -25,7 +25,9 @@
                     <v-card-text>
                         <v-layout row wrap>
                             <v-flex xs9>
-                                <MainList v-bind="MainMListProps" />
+                                <MenuList 
+									v-bind:items="localMenuItems"
+								/>
                             </v-flex>
                             <v-flex xs3 class="pa-4 mt-5">
                                 <CategoryList v-bind="{...categoryProps}"/>
@@ -58,13 +60,13 @@
 
 <script>
   import LunchList from '../../shared/menu/lunch/List'
-  import MainList from '../../shared/menu/main/List'
+  import MenuList from '../../shared/menu/main/List'
   import SpecialList from '../../shared/menu/special/List'
   import InfoList from '../../shared/menu/info/View'
   import CategoryList from '../../shared/category/CategoryList'
 
 
-  import {mapState} from 'vuex'
+  import {mapState, mapActions} from 'vuex'
 
   export default {
     props: {
@@ -76,30 +78,56 @@
     data () {
       return {
         activeTab: null,
-        tabs: ['Main Menu', 'Special Offers', 'Lunch Menu',]
+		tabs: ['Main Menu', 'Special Offers', 'Lunch Menu',],
+		localMenuItems: [],
       }
     },
 
     components: {
       CategoryList,
       LunchList,
-      MainList,
+      MenuList,
       SpecialList,
       InfoList,
-    },
-
+	},
+	watch: {
+		currentRestId: {
+			handler: function(id) {
+				if (this.activeTab === 0) this.fetchMenuHandler(); // tabs[0] Main Menu
+			},
+		},
+		menuItems: {
+			handler: function(items) {
+				// console.error(items);
+			}
+		}
+	},
+	methods: {
+      	...mapActions('snackbar', ['setState']),
+		...mapActions({
+			'fetchMenu' : 'restaurants/fetchCurrRestMenu',
+			}),
+			fetchMenuHandler() {
+				this.fetchMenu()
+					.then(data => { 
+						if (!data.success) return this.errorHandler(data) 
+						else {
+							this.localMenuItems = data.result
+						}
+					})
+			},
+			errorHandler(data) {
+	             this.setState({snackbar: true, message: data.error.message, color: 'red'})
+			}
+	},
     computed: {
+		...mapState({
+			currentRestId: (state) => state.restaurants.currentRestaurant.id,
+		}),
       categoryProps () {
         return {
           items: this.categories,
           disabled: this.activeTab !== 0 // TODO :: consider placing calendar for filtering on special and lunch tabs
-        }
-      },
-      MainMListProps () {
-        return {
-          color: this.color,
-          compact: this.compact,
-          items: this.$store.state.main.list.items
         }
       },
       LunchListProps () {

@@ -1,7 +1,7 @@
 <template>
     <v-layout row wrap>
         <v-flex xs3>
-            <InfoList v-bind="InfoListProps" />
+            <InfoList v-bind="infoListProps" />
         </v-flex>
         <v-flex xs9>
             <MenuListContainer v-bind="sharedProps"/>
@@ -26,16 +26,11 @@
       InfoList,
     },
     computed: {
-      InfoListProps () {
+      infoListProps () {
           return {
 				isDesktop: true,
 				information: this.$store.state.restaurants.currentRestaurant.info,
           }
-      },
-      categoryProps () {
-        return {
-          	items: this.categories,
-        }
       },
       sharedProps () {
         return {

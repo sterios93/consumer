@@ -8,6 +8,7 @@ let config = {
   logoutPath: 'consumer/logout',
   fetchProfilePath: 'consumer/profile/fetch',
   findRestaurantsPath: 'restaurants/find',
+  fetchRestaurantMenuPath: 'menu/items/list?restaurantId='
 }
 
 export default {
@@ -21,6 +22,7 @@ export default {
     fetchProfilePath: config.fetchProfilePath,
     logoutPath: config.logoutPath,
     findRestaurantsPath: config.findRestaurantsPath,
+    fetchRestaurantMenuPath: config.fetchRestaurantMenuPath,
   },
   mutations: {},
   getters: {},

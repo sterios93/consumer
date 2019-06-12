@@ -19,8 +19,9 @@
         <v-layout py-1 align-center justify-space-between row wrap fill-height>
 
             <v-flex xs12 sm3>
+				<!-- TODO: remove the hardcoded string when the BE is configured properly -->
                 <v-img
-                    :src="item.image"
+                    v-bind:src=" 'https://cdn.vuetifyjs.com/images/lists/ali.png' || item.img" 
                     height="125px"
                     contain
                 ></v-img>
@@ -42,15 +43,8 @@
 
         <v-divider light></v-divider>
 
-        <v-card-actions
-                v-if="isSpecial"
-                class="pa-3">
-            <v-btn
-                    color="green"
-                    @click="readMore"
-            >
-                Read more
-            </v-btn>
+        <v-card-actions v-if="isSpecial" class="pa-3">
+            <v-btn color="green" @click="readMore" > Read more </v-btn>
             <v-spacer></v-spacer>
             <div class="body-2 red--text">EXPIRES AT: {{item.endDate}}</div>
         </v-card-actions>
