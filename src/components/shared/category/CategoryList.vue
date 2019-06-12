@@ -1,19 +1,13 @@
 <template>
     <v-card>
-<!--        <v-toolbar class="toolbar" dark>-->
-<!--            <v-toolbar-title class="title font-weight-light mb-2 white&#45;&#45;text">Categories</v-toolbar-title>-->
-
-<!--            <v-spacer></v-spacer>-->
-
-<!--            <v-btn icon>-->
-<!--                <v-icon>search</v-icon>-->
-<!--            </v-btn>-->
-<!--        </v-toolbar>-->
-
         <v-list two-line class="px-3">
-            <template v-for="item in items">
-                <CategoryItem :item="item" :key=item.id @item-selected="onItemSelected"/>
-                <v-divider></v-divider>
+            <template v-for="(item, index) in items">
+                <CategoryItem 
+					:item="item" 
+					:key=index 
+					@item-selected="onItemSelected"
+				/>
+                <v-divider :key="(index + 1 )* 2"></v-divider>
             </template>
         </v-list>
     </v-card>
@@ -35,9 +29,9 @@
     },
 
     methods: {
-      ...mapActions('categories', ['toggleCategory']),
+      ...mapActions('restaurants', ['toggleCategory']),
       onItemSelected(id) {
-        this.toggleCategory({id})
+        this.toggleCategory(id)
       }
     }
   }

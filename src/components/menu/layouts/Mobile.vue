@@ -85,7 +85,7 @@
 
     computed: {
       ...mapState({
-		  currentRestId: (state) => state.restaurants.currentRestaurant.id,
+		  currentRestId: (state) => state.restaurants.currentRestaurant.info.id,
 	  }),
       isMainMenu() { return this.selectedMenu === 'main' },
       menuComponent() { return `${this.selectedMenu}-menu` },
