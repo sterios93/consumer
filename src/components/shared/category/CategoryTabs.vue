@@ -2,8 +2,8 @@
     <v-tabs dark :color="color" show-arrows>
         <v-tabs-slider class="lime accent-2"></v-tabs-slider>
 
-        <v-tab v-for="item in items" :key="item.id" @change="tabChanged(item.id)">
-            {{ item.name }}
+        <v-tab v-for="(item, index) in items" :key="index" @change="tabChanged(item)">
+            {{ item }}
         </v-tab>
     </v-tabs>
 </template>

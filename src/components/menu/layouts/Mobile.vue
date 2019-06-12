@@ -63,7 +63,11 @@
 	watch: {
 		currentRestId: {
 			handler: function(id) {
-				if (this.selectedMenu === 'main') this.fetchMenuHandler(); // tabs[0] Main Menu
+				// tabs[0] Main Menu
+				if (this.selectedMenu === 'main') {
+					this.fetchMenuHandler(); 
+					this.fetchCategoriesHandler();
+				}
 			},
 		},
 	},
@@ -72,6 +76,7 @@
         selectedMenu: 'main',
 		category: this.categories[0],
 		localMenuItems: [],
+		localCategories: [],
       }
     },
     created() {
@@ -85,7 +90,6 @@
       isMainMenu() { return this.selectedMenu === 'main' },
       menuComponent() { return `${this.selectedMenu}-menu` },
       menuListProps() {
-		  console.error(this.selectedMenu);
         if (this.selectedMenu === 'info') {
             return {
                 isDesktop: false,
@@ -94,8 +98,10 @@
         }
 
         if (this.selectedMenu === 'main') {
-			console.error('return main menu items {}')
-		  	return { items: this.localMenuItems, scrollable: true}			  
+		  	return { 
+				items: this.localMenuItems,
+				scrollable: true
+				}	  
 		}
 		
 		if (this.selectedMenu === 'special') {
@@ -119,7 +125,7 @@
       },
       categoryProps() {
         return {
-          items: this.categories,
+          items: this.localCategories,
           color: this.color
         }
       }
@@ -128,6 +134,7 @@
 		...mapActions('snackbar', ['setState']),
 		...mapActions({
 			'fetchMenu' : 'restaurants/fetchCurrRestMenu',
+			'fetchCategories': 'restaurants/fetchCurrRestCategories',
 		}),
       ...mapGetters('main', ['getMenuByCategory']),
       ...mapActions({
@@ -143,6 +150,16 @@
 						this.localMenuItems = data.result
 					}
 				})
+		},
+		fetchCategoriesHandler() {
+			this.fetchCategories()
+				.then(data => {
+					if (!data.success) return this.errorHandler(data) 
+					else {
+						this.localCategories = data.result
+					}
+				})
+
 		},
 		errorHandler(data) {
 				this.setState({snackbar: true, message: data.error.message, color: 'red'})
