@@ -127,7 +127,7 @@ export default {
       'indigo',
       'danger',
       'success',
-      'teal darken-1',
+      '#00897B',
       'indigo lighten-1',
       'second',
     ],

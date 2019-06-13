@@ -10,7 +10,6 @@
     <div class="v-toolbar-title">
       <v-toolbar-title class="tertiary--text font-weight-light">
         <router-link
-            v-ripple
             slot="activator"
             class="toolbar-items"
             to="/home">

@@ -8,6 +8,6 @@ export default {
   success: '#339139',
   second: '#33a1ff',
   warning: '#ffa21a',
-  base: 'teal darken-1',
-  modals: 'blue-grey darken-2',
+  base: '#00897B',
+  modals: '#455A64',
 }

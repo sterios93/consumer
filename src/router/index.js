@@ -26,7 +26,6 @@ function route (path, view, name, props) {
 }
 
 Vue.use(Router)
-console.error(com.preconfig.consumer.basePath)
 // Create a new router
 const router = new Router({
   mode: 'history',

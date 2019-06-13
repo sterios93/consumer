@@ -51,7 +51,7 @@ export default {
                 })
         },
         toggleCategory({ commit, state }, payload) {
-            let categories = state.currentRestaurant.selectedCategories;
+            const categories = state.currentRestaurant.selectedCategories;
             if (categories.includes(payload)) return commit('DESELECT_CATEGORY', payload);
             if (!categories.includes(payload)) return commit('SELECT_CATEGORY', payload);
         },
