@@ -9,6 +9,7 @@ export default {
             categories: [],
             selectedCategories: [],
             specialOffers: [],
+            currentSpecialOffer: [],
         },
         allRestaurants: [],
     },
@@ -18,6 +19,7 @@ export default {
         SET_CURRENT_RESTAURANT_MENU_ITEMS: (state, payload) => state.currentRestaurant.menuItems = payload,
         SET_CURRENT_RESTAURANT_MENU_CATEGORIES: (state, payload) => state.currentRestaurant.categories = payload,
         SET_CURRENT_RESTAURANT_SPECIAL_OFFERS: (state, payload) => state.currentRestaurant.specialOffers = payload,
+        SET_CURRENT_RESTAURANT_SPECIAL_OFFER: (state, payload) => state.currentRestaurant.currentSpecialOffer = payload,
         SELECT_CATEGORY: (state, payload) => state.currentRestaurant.selectedCategories.push(payload),
         DESELECT_CATEGORY: (state, payload) => state.currentRestaurant.selectedCategories.splice(state.currentRestaurant.selectedCategories.indexOf(payload),1),
     },
@@ -35,6 +37,17 @@ export default {
     actions: {
         setRestaurants({commit}, restaurants) { commit('SET_RESTAURANTS', restaurants)},
         setCurrentRestaurantInfo({commit}, payload) {  commit('SET_CURRENT_RESTAURANT_INFO',payload) },
+        fetchRestaurantInfo({commit, rootState}, id) {
+            const url = rootState.settings.apiUrl + rootState.settings.fetchRestaurantInfoPath + id;
+            return getData(url)
+                .then(data => data.json())
+                .then(data => {
+                    if (data.success) {
+                        commit('SET_CURRENT_RESTAURANT_INFO', data.result)
+                    }
+                    return data
+                })
+        },
         fetchCurrRestMenu({ commit, rootState , state}) {
             const url = rootState.settings.apiUrl + rootState.settings.fetchRestaurantMenuPath + state.currentRestaurant.info.id;
             return getData(url)
@@ -73,6 +86,17 @@ export default {
                     return data
                 })
 
+        },
+        fetchSpecialOffer({commit, rootState}, offerId) {
+            const url = rootState.settings.apiUrl + rootState.settings.fetchSpecialOfferPath + offerId;
+            return getData(url)
+                .then(data => data.json())
+                .then(data => {
+                    if (data.success) {
+                        commit('SET_CURRENT_RESTAURANT_SPECIAL_OFFER', data.result);
+                    }
+                    return data
+                })
         },
     }
 }

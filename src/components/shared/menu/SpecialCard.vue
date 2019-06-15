@@ -99,9 +99,9 @@
       }
     },
     methods: {
-      readMore() {
-        this.$router.push({ path: `/${this.type}-offer/${this.item.id}`})
-      },
+		readMore() {
+			this.$router.push({ path: `/${this.type}-offer/${this.item._id}`})
+		},
     }
   }
 </script>
