@@ -24,6 +24,11 @@ export default {
             if (state.currentRestaurant.selectedCategories) return state.currentRestaurant.selectedCategories.includes(category)
             else return []
         },
+        getMenuByCategory: (state) => (searchedCategory) => {
+            const items = state.currentRestaurant.menuItems;
+            if (items) return items.filter(item => item.category === searchedCategory);
+        },
+        getSelectedCategories: (state) => state.currentRestaurant.selectedCategories,
     },
     actions: {
         setRestaurants({commit}, restaurants) { commit('SET_RESTAURANTS', restaurants)},

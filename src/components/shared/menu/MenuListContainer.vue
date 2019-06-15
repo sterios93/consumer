@@ -101,11 +101,6 @@
 				}
 			},
 		},
-		menuItems: {
-			handler: function(items) {
-				// console.error(items);
-			}
-		}
 	},
 	methods: {
       	...mapActions('snackbar', ['setState']),

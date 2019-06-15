@@ -1,18 +1,25 @@
 <template>
-    <v-slide-x-transition  
-      v-if="!isCategoriesEmpty" group mode="out-in" tag="div" class="pa-0 d-flex transition-custom">
-        <v-flex class="py-0" xs12 v-for="category in getSelectedCategories" :key="category.id">
-            <v-subheader>{{ category.name }}</v-subheader>
-            <v-flex class="pa-0">
-                <v-divider></v-divider>
-                <MenuList v-bind="menuListProps(category)"/>
-            </v-flex>
+    <v-flex 
+      v-if="selectedCategories[0]"
+	  class="pa-0 d-flex transition-custom">
+	  
+        <v-flex class="py-0" xs12 
+			v-for="(category, index) in selectedCategories"
+			 :key="index">
+            	<v-subheader>{{ category }}</v-subheader>
+				<v-flex class="pa-0">
+					<v-divider></v-divider>
+					<MenuList v-bind="menuListProps(category)"/>
+				</v-flex>
         </v-flex>
-    </v-slide-x-transition>
+    </v-flex>
 
     <v-flex v-else  class="pa-1">
         <v-subheader>All products</v-subheader>
-        <MenuList class="pa-1 transition-custom" :items="items"/>
+        <MenuList 
+			class="pa-1 transition-custom"
+			:items="items"
+		/>
     </v-flex>
 
 </template>
@@ -28,17 +35,16 @@
     },
     props: ['items'],
     computed: {
-      ...mapGetters('main', ['getMenuByCategory']),
-      ...mapGetters('categories', ['getSelectedCategories']),
-      isCategoriesEmpty() {
-        return this.getSelectedCategories.length === 0
-      }
+		...mapState({
+			selectedCategories: (state) => state.restaurants.currentRestaurant.selectedCategories,		
+		}),
+      ...mapGetters('restaurants', ['getMenuByCategory']),
     },
 
     methods: {
       menuListProps(category) {
         return {
-          items: this.getMenuByCategory(category.id),
+          items: this.getMenuByCategory(category),
           color: this.color
         }
       },
