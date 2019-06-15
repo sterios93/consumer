@@ -123,6 +123,8 @@ export default {
 											phone:data.result.number,
 											type: data.result.type,
 											website: data.result.website,
+											lat: data.result.lat || '',
+											lng: data.result.lng || '',
 										}
 									}
 								}

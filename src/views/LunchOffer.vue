@@ -1,97 +1,39 @@
 <template>
-    <v-container
-            fill-height
-            grid-list-xl>
-        <v-layout
-                justify-center
-                wrap>
-
-            <v-flex
-                    xs12
-                    md4>
-                <material-card
-                        color="purple"
-                        title="Restaurant Info"
-                >
-
+    <v-container fill-height grid-list-xl>
+        <v-layout justify-center wrap>
+            <v-flex xs12 md4>
+                <material-card color="purple" title="Restaurant Info" >
                     <InfoList v-bind="InfoListProps"/>
                 </material-card>
             </v-flex>
 
-            <v-flex
-                    xs12
-                    md8>
-                <material-card
-                        color="purple"
-                        title="Lunch offer"
-                >
+            <v-flex xs12 md8>
+                <material-card color="purple" title="Lunch offer" >
                     <v-layout wrap>
-
-                        <v-flex
-                                class="v-card-profile"
-                                d-flex>
+                        <v-flex class="v-card-profile" d-flex>
                             <v-layout wrap>
-
                                 <v-flex xs12 lg6>
-                                    <v-avatar
-                                            slot="offset"
-                                            class="mx-auto d-block"
-                                            size="260"
-                                    >
+                                    <v-avatar slot="offset" class="mx-auto d-block" size="260" >
                                         <v-img :src="imagePath"></v-img>
                                     </v-avatar>
                                 </v-flex>
 
-
                                 <v-flex xs12 lg6>
                                     <v-card-text class="text-xs-center">
-                                        <h3 class="category font-weight-bold mb-3">{{startDate}}</h3>
-                                        <v-btn
-                                                color="success"
-                                                round
-                                                class="font-weight-light"
-                                        >Follow
-                                        </v-btn>
-                                        <v-btn
-                                                v-if="isEditable"
-                                                dark
-                                                @click="onEditClick"
-                                                color="orange"
-                                                round
-                                                class="font-weight-light"
-                                        >EDIT
-                                        </v-btn>
-
-                                        <v-btn
-                                                dark
-                                                color="red"
-                                                round
-                                                class="font-weight-light"
-                                        >MENU
-                                        </v-btn>
-                                        <v-btn
-                                                dark
-                                                color="blue"
-                                                round
-                                                class="font-weight-light"
-                                        >LUNCH OFFERS
-                                        </v-btn>
-
+                                        <h3 class="category font-weight-bold mb-3">From{{localLunchOffer.timeStart}}</h3>
+                    					<h3 class="category font-weight-bold mb-3">To {{localLunchOffer.timeEnd}}</h3>
+                                        <v-btn color="success" round class="font-weight-light" >Follow </v-btn>
+                                        <v-btn dark color="red" round class="font-weight-light">MENU </v-btn>
+                                        <v-btn dark color="blue" round class="font-weight-light">LUNCH OFFERS </v-btn>
                                     </v-card-text>
                                 </v-flex>
-
                             </v-layout>
-
-
                         </v-flex>
-
                     </v-layout>
-                    <v-flex
-                            xs12
-                            mt-5>
+                    <v-flex xs12 mt-5>
                         <v-flex
-                                v-for="item in items"
-                                :key="item.id"
+                                v-for="(item, key) in localLunchOffer.menuItems"
+                                :key="key"
                                 xs12
                                 class="py-2 px-0">
                             <v-divider/>
@@ -123,55 +65,69 @@
     },
     data () {
       return {
-        isEditable: false,
-        defaultImage: './img/default-menu-v2.jpg',
+		defaultImage: 'https://cdn.vuetifyjs.com/images/lists/ali.png',
+		localLunchOffer: {},
+		localRestInfo: {
+		  info: {
+				name: '',
+				phone: '',
+				type: '',
+				website: '',
+				}
+	  	},
       }
     },
     computed: {
-      ...mapState('lunch', {
-        name: (state) => state.view.name,
-        image: (state) => state.view.image,
-        price: (state) => state.view.price, // TODO
-        items: (state) => state.view.items,
-        endDate: (state) => state.view.endDate,
-        discount: (state) => state.view.discount, // TODO
-        startDate: (state) => state.view.startDate,
-        description: (state) => state.view.description,
-      }),
       imagePath () {
         return this.image || this.defaultImage
       },
       InfoListProps () {
         return {
           isDesktop: true,
-          information: this.$store.state.info.list.information, //TODO get from fetch item request
+          information: this.localRestInfo,
         }
       },
     },
     created () {
-      this.fetchItem({ payload: this.id, action: 'view' })
-        .then(item => this.item = item)
+      this.fetchLunchOfferHandler(this.id);
     },
     methods: {
-      ...mapActions({
-        'fetchItem': 'lunch/fetchItem',
-        'setMenuModalVisibility': 'modals/setMenuModalVisibility',
-      }),
-      onEditClick () {
-        this.setMenuModalVisibility({
-          key: 'lunch',
-          value: true,
-          action: 'edit'
-        })
-
-        // TODO :: consider making new request for edit
-        this.$store.dispatch(`lunch/setItem`, {
-          payload: JSON.parse(JSON.stringify(this.item)),
-          action: 'edit'
-        })
-      },
-    }
+     ...mapActions('snackbar', ['setState']),
+	...mapActions({
+		'fetchLunchOffer': 'restaurants/fetchLunchOffer',
+		'fetchRestInfo': 'restaurants/fetchRestaurantInfo'
+		}),
+	fetchLunchOfferHandler(offerId) {
+		this.fetchLunchOffer(offerId)
+			.then(data => {
+					if (!data.success) return this.errorHandler(data) 
+					else {
+						this.localLunchOffer = data.result;
+						this.fetchRestInfo(this.localLunchOffer.restaurantId)
+							.then(data => {
+								if (!data.success) return this.errorHandler(data);
+								else {
+									//TODO: pass the lat and lng, in order to display the adress
+									this.localRestInfo = {
+										info: {
+											name: data.result.restaurantName,
+											phone:data.result.number,
+											type: data.result.type,
+											website: data.result.website,
+											lat: data.result.lat || '',
+											lng: data.result.lng || '',
+										}
+									}
+								}
+							})
+					}
+			})
+	},
+	errorHandler(data) {
+		this.setState({snackbar: true, message: data.error.message, color: 'red'})
+	},
   }
+    }
 </script>
 
 <style scoped lang="stylus"></style>

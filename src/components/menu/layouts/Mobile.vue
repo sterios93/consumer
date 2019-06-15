@@ -73,6 +73,9 @@
 			handler: function(menu) {
 				if (menu === 'special') {
 					this.fetchSpecialOffersHandler();
+        		}
+        		if (menu === 'lunch') {
+					this.fetchLunchOffersHandler();
 				}
 			}
 		}
@@ -83,6 +86,7 @@
 		localMenuItems: [],
 		localCategories: [],
 		localSpecialOffers: [],
+		localLunchOffers: [],
 		category: null,
       }
     },
@@ -116,8 +120,10 @@
 		}
 		
 		if (this.selectedMenu === 'lunch') {
-		  console.error('return lunch items {}')
-		  return {}
+		  return {
+				items: this.localLunchOffers,
+				scrollable: true
+            }
         }
       },
       categoryProps() {
@@ -133,6 +139,7 @@
 			'fetchMenu' : 'restaurants/fetchCurrRestMenu',
 			'fetchCategories': 'restaurants/fetchCurrRestCategories',
 			'fetchSpecialOffers': 'restaurants/fetchRestSpecialOffers',
+			'fetchLunchffers': 'restaurants/fetchRestLunchOffers',
 		}),
       ...mapGetters('restaurants', ['getMenuByCategory']),
       ...mapActions({
@@ -166,6 +173,15 @@
 					if (!data.success) return this.errorHandler(data) 
 					else {
 						this.localSpecialOffers = data.result
+					}
+				})
+		},
+		fetchLunchOffersHandler() {
+			this.fetchLunchffers()
+			.then(data => {
+					if (!data.success) return this.errorHandler(data) 
+					else {
+						this.localLunchOffers = data.result
 					}
 				})
 		},

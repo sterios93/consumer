@@ -83,6 +83,7 @@
 		localMenuItems: [],
 		localCategories: [],
 		localSpecialOffers: [],
+		localLunchOffers: [],
       }
     },
 
@@ -105,6 +106,10 @@
 				if (this.activeTab === 1) {
 					this.fetchSpecialOffersHandler();
 				}
+				// Lunch offers
+				if (this.activeTab === 2) {
+					this.fetchLunchOffersHandler();
+				}
 			},
 		},
 	},
@@ -114,6 +119,7 @@
 			'fetchMenu' : 'restaurants/fetchCurrRestMenu',
 			'fetchCategories': 'restaurants/fetchCurrRestCategories',
 			'fetchSpecialOffers': 'restaurants/fetchRestSpecialOffers',
+			'fetchLunchOffers': 'restaurants/fetchRestLunchOffers',
 			}),
 			fetchMenuHandler() {
 				this.fetchMenu()
@@ -143,6 +149,15 @@
 						}
 					})
 			},
+			fetchLunchOffersHandler() {
+				this.fetchLunchOffers()
+					.then(data => { 
+						if (!data.success) return this.errorHandler(data) 
+						else {
+							this.localLunchOffers = data.result
+						}
+					})
+			},
 			errorHandler(data) {
 	             this.setState({snackbar: true, message: data.error.message, color: 'red'})
 			},
@@ -151,6 +166,9 @@
 				// The default tab is 0, so it should be fetched already. 
 				if (tab === 1) {
 					this.fetchSpecialOffersHandler();
+				}
+				if (tab === 2) {
+					this.fetchLunchOffersHandler();
 				}
 			}
 	},
@@ -168,7 +186,7 @@
         return {
           color: this.color,
           compact: this.compact,
-          items: this.$store.state.lunch.list.items
+          items: this.localLunchOffers,
         }
       },
       SpecialListProps () {

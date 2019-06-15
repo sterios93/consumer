@@ -12,7 +12,9 @@ let config = {
   fetchRestaurantCategoriesPath: 'restaurant/categories/list?restaurantId=',
   fetchRestaurantSpecialOffersPath: 'offers/special/list?restaurantId=',
   fetchSpecialOfferPath: 'offer/special/fetch/',
-  fetchRestaurantInfoPath: 'restaurant/fetch?restaurantId='
+  fetchRestaurantInfoPath: 'restaurant/fetch?restaurantId=',
+  fetchRestaurantLunchOffersPath: 'offers/lunch/list?restaurantId=',
+  fetchRestaurantLunchOfferPath: 'offers/lunch/fetch/',
 }
 
 export default {
@@ -31,6 +33,8 @@ export default {
     fetchRestaurantSpecialOffersPath: config.fetchRestaurantSpecialOffersPath,
     fetchSpecialOfferPath: config.fetchSpecialOfferPath,
     fetchRestaurantInfoPath: config.fetchRestaurantInfoPath,
+    fetchRestaurantLunchOffersPath: config.fetchRestaurantLunchOffersPath,
+    fetchRestaurantLunchOfferPath: config.fetchRestaurantLunchOfferPath,
   },
   mutations: {},
   getters: {},
