@@ -7,7 +7,7 @@
 					<v-layout column fill-height >
 						<v-spacer></v-spacer>
 						<v-card-title class="white--text pl-5 pt-5">
-							<div class="display-1 pl-5 pt-5">{{information.info && information.info.name}}</div>
+							<div class="display-1 pl-5 pt-5">{{information.name}}</div>
 						</v-card-title>
 					</v-layout>
 				</v-img>
@@ -19,7 +19,7 @@
 						</v-list-tile-action>
 
 						<v-list-tile-content>
-							<v-list-tile-title>{{information.info && information.info.phone}}</v-list-tile-title>
+							<v-list-tile-title>{{information.phone}}</v-list-tile-title>
 							<v-list-tile-sub-title>Mobile</v-list-tile-sub-title>
 						</v-list-tile-content>
 					</v-list-tile>
@@ -32,7 +32,7 @@
 						</v-list-tile-action>
 
 						<v-list-tile-content>
-							<v-list-tile-title>{{information.info && information.info.type}}</v-list-tile-title>
+							<v-list-tile-title>{{information.type}}</v-list-tile-title>
 							<v-list-tile-sub-title>kitchen</v-list-tile-sub-title>
 						</v-list-tile-content>
 					</v-list-tile>
@@ -45,7 +45,7 @@
 						</v-list-tile-action>
 
 						<v-list-tile-content>
-							<v-list-tile-title>{{information.info && information.info.website}}</v-list-tile-title>
+							<v-list-tile-title>{{information.website}}</v-list-tile-title>
 							<v-list-tile-sub-title>Work</v-list-tile-sub-title>
 						</v-list-tile-content>
 					</v-list-tile>

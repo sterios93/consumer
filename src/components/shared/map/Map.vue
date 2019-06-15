@@ -24,7 +24,6 @@
                               <v-btn @click.native="onFindClick" large color="light-green accent-4 find-btn mx-0">
                                   FIND RESTAURANTS
                               </v-btn>
-<!--                              <v-icon color="grey">$vuetify.icons.expand</v-icon>-->
                           </v-flex>
                       </v-layout>
                   </template>
@@ -83,7 +82,7 @@
 			v-for="(m, index) in markers"
 			:position="{lat: Number(m.lat), lng: Number(m.lng)}"
 			:clickable="true"
-			@click="toggleBottomSheet"
+			@click="pinClickHandler(m._id)"
 		/>
     </gmap-map>
   </div>
@@ -240,8 +239,10 @@
     methods: {
       ...mapActions({
         setBottomSheetVisible: 'bottomSheet/setVisibility',
-      }),
-      ...mapActions('map', ['fetchMarkers', 'setGeolocation']),
+	  }),
+      	...mapActions('snackbar', ['setState']),	  
+      	...mapActions('map', ['fetchMarkers', 'setGeolocation']),
+      	...mapActions('restaurants', ['fetchRestaurantInfo']),
       onFindClick(e) {
         e.preventDefault();
         // TODO: is there a need to save those criterias into the store ?
@@ -257,9 +258,21 @@
 		this.fetchMarkers(payload);
 		this.setGeolocation(this.marker);
       },
+      pinClickHandler(id){
+		this.fetchRestaurantInfo(id)
+		  		.then(data => {
+					  if (!data.success) return this.errorHandler(data) 
+						else {
+        					this.toggleBottomSheet();
+						}
+				  })
+	  },
       toggleBottomSheet() {
         this.setBottomSheetVisible(!this.isBottomSheetVisible);
-      },
+	  },
+		errorHandler(data) {
+			this.setState({snackbar: true, message: data.error.message, color: 'red'})
+		},
       setPlace(place) {
         if (!place) return
 

@@ -53,7 +53,7 @@ export default {
                 })
         },
         fetchCurrRestMenu({ commit, rootState , state}) {
-            const url = rootState.settings.apiUrl + rootState.settings.fetchRestaurantMenuPath + state.currentRestaurant.info.id;
+            const url = rootState.settings.apiUrl + rootState.settings.fetchRestaurantMenuPath + state.currentRestaurant.info._id;
             return getData(url)
             .then(data => data.json())
             .then(data => {
@@ -64,7 +64,7 @@ export default {
             })
         },
         fetchCurrRestCategories({commit, rootState, state}) {
-            const url = rootState.settings.apiUrl + rootState.settings.fetchRestaurantCategoriesPath + state.currentRestaurant.info.id;
+            const url = rootState.settings.apiUrl + rootState.settings.fetchRestaurantCategoriesPath + state.currentRestaurant.info._id;
             return getData(url)
                 .then(data => data.json())
                 .then(data => {
@@ -80,7 +80,7 @@ export default {
             if (!categories.includes(payload)) return commit('SELECT_CATEGORY', payload);
         },
         fetchRestSpecialOffers({commit, rootState, state}) {
-            const url = rootState.settings.apiUrl + rootState.settings.fetchRestaurantSpecialOffersPath + state.currentRestaurant.info.id;
+            const url = rootState.settings.apiUrl + rootState.settings.fetchRestaurantSpecialOffersPath + state.currentRestaurant.info._id;
             return getData(url)
                 .then(data => data.json())
                 .then(data => {
@@ -103,7 +103,7 @@ export default {
                 })
         },
         fetchRestLunchOffers({ commit, rootState, state }) {
-            const url = rootState.settings.apiUrl + rootState.settings.fetchRestaurantLunchOffersPath + state.currentRestaurant.info.id;
+            const url = rootState.settings.apiUrl + rootState.settings.fetchRestaurantLunchOffersPath + state.currentRestaurant.info._id;
             return getData(url)
                 .then(data => data.json())
                 .then(data => {

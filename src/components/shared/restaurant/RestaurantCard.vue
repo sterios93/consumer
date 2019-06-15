@@ -6,16 +6,16 @@
           <v-container fill-height fluid>
             <v-layout fill-height>
               <v-flex xs12 align-end flexbox>
-                <span class="headline">{{restaurantInfo.info.name}}</span>
+                <span class="headline">{{restaurantInfo.name}}</span>
               </v-flex>
             </v-layout>
           </v-container>
         </v-img>
         <v-card-title>
           <div>
-            <span class="grey--text">{{restaurantInfo.info.phone}}</span><br>
-            <span>{{restaurantInfo.info.website}}</span><br>
-            <span>{{restaurantInfo.info.type}}</span>
+            <span class="grey--text">{{restaurantInfo.phone}}</span><br>
+            <span>{{restaurantInfo.website}}</span><br>
+            <span>{{restaurantInfo.type}}</span>
           </div>
         </v-card-title>
         <v-card-actions>

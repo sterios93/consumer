@@ -174,7 +174,7 @@
 	},
     computed: {
 		...mapState({
-			currentRestId: (state) => state.restaurants.currentRestaurant.info.id,
+			currentRestId: (state) => state.restaurants.currentRestaurant.info._id,
 		}),
       categoryProps () {
         return {
