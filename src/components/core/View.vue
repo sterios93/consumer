@@ -7,7 +7,6 @@
     </div>
     <CustomSnackBar/>
 
-    <AddCategory />
     <ConfirmModal />
     <AddMainMenuItem v-if="mainVisibility" />
     <AddLunchMenuItem v-if="lunchVisibility" />
@@ -16,7 +15,6 @@
 </template>
 
 <script>
-  import AddCategory from "../shared/category/AddCategory"
   import ConfirmModal from "../custom/dialogs/ConfirmModal";
   import CustomSnackBar from '../material/CustomSnackBar'
   import AddMainMenuItem from '../shared/menu/main/Add'
@@ -27,7 +25,6 @@
   export default {
     components: {
       ConfirmModal,
-      AddCategory,
       CustomSnackBar,
       AddMainMenuItem,
       AddLunchMenuItem,
