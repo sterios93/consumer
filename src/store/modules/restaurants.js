@@ -8,6 +8,7 @@ export default {
             menuItems: [],
             categories: [],
             selectedCategories: [],
+            specialOffers: [],
         },
         allRestaurants: [],
     },
@@ -16,6 +17,7 @@ export default {
         SET_CURRENT_RESTAURANT_INFO: (state,payload) => state.currentRestaurant.info = payload,
         SET_CURRENT_RESTAURANT_MENU_ITEMS: (state, payload) => state.currentRestaurant.menuItems = payload,
         SET_CURRENT_RESTAURANT_MENU_CATEGORIES: (state, payload) => state.currentRestaurant.categories = payload,
+        SET_CURRENT_RESTAURANT_SPECIAL_OFFERS: (state, payload) => state.currentRestaurant.specialOffers = payload,
         SELECT_CATEGORY: (state, payload) => state.currentRestaurant.selectedCategories.push(payload),
         DESELECT_CATEGORY: (state, payload) => state.currentRestaurant.selectedCategories.splice(state.currentRestaurant.selectedCategories.indexOf(payload),1),
     },
@@ -59,6 +61,18 @@ export default {
             const categories = state.currentRestaurant.selectedCategories;
             if (categories.includes(payload)) return commit('DESELECT_CATEGORY', payload);
             if (!categories.includes(payload)) return commit('SELECT_CATEGORY', payload);
+        },
+        fetchRestSpecialOffers({commit, rootState, state}) {
+            const url = rootState.settings.apiUrl + rootState.settings.fetchRestaurantSpecialOffersPath + state.currentRestaurant.info.id;
+            return getData(url)
+                .then(data => data.json())
+                .then(data => {
+                    if (data.success) {
+                        commit('SET_CURRENT_RESTAURANT_SPECIAL_OFFERS', data.result);
+                    }
+                    return data
+                })
+
         },
     }
 }

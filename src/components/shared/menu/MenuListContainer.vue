@@ -11,6 +11,7 @@
 				<v-tab
 					v-for="(tab, key) in tabs"
 					:key="key"
+					@change="changeTapHandler(key)"
 				>
 					{{ tab }}
 				</v-tab>
@@ -81,6 +82,7 @@
 		tabs: ['Main Menu', 'Special Offers', 'Lunch Menu',],
 		localMenuItems: [],
 		localCategories: [],
+		localSpecialOffers: [],
       }
     },
 
@@ -99,6 +101,10 @@
 					this.fetchMenuHandler();
 					this.fetchCategoriesHandler();
 				}
+				// Special offers
+				if (this.activeTab === 1) {
+					this.fetchSpecialOffersHandler();
+				}
 			},
 		},
 	},
@@ -107,6 +113,7 @@
 		...mapActions({
 			'fetchMenu' : 'restaurants/fetchCurrRestMenu',
 			'fetchCategories': 'restaurants/fetchCurrRestCategories',
+			'fetchSpecialOffers': 'restaurants/fetchRestSpecialOffers',
 			}),
 			fetchMenuHandler() {
 				this.fetchMenu()
@@ -127,8 +134,24 @@
 					})
 
 			},
+			fetchSpecialOffersHandler() {
+				this.fetchSpecialOffers()
+					.then(data => {
+						if (!data.success) return this.errorHandler(data) 
+						else {
+							this.localSpecialOffers = data.result
+						}
+					})
+			},
 			errorHandler(data) {
 	             this.setState({snackbar: true, message: data.error.message, color: 'red'})
+			},
+			changeTapHandler(tab) {
+				this.activeTab = tab;
+				// The default tab is 0, so it should be fetched already. 
+				if (tab === 1) {
+					this.fetchSpecialOffersHandler();
+				}
 			}
 	},
     computed: {
@@ -152,7 +175,7 @@
         return {
           color: this.color,
           compact: this.compact,
-          items: this.$store.state.special.list.items
+          items: this.localSpecialOffers
         }
       },
       InfoListProps () {

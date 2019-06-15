@@ -4,13 +4,13 @@
             <v-flex xs10 class="special-date-container" :style="containerStyle">
                 <v-layout row>
                     <v-flex class="text-xs-center white--text date-font">
-                        <span>{{item.startDate}}</span>
+                        <span>{{item.timeStart}}</span>
                     </v-flex>
                     <v-flex text-xs-center white--text date-font>
                         <v-icon>calendar_today</v-icon>
                     </v-flex>
                     <v-flex class="text-xs-center white--text date-font">
-                        <span>{{item.endDate}}</span>
+                        <span>{{item.timeEnd}}</span>
                     </v-flex>
                 </v-layout>
             </v-flex>
@@ -51,33 +51,6 @@
                 <v-divider></v-divider>
                 <div v-if="isSpecial" class="ribbon"><span>{{ribbonText}}</span></div>
             </div>
-            <v-card-actions class="px-2 py-0" v-if="isEditable">
-                <v-flex xs12>
-                    <v-switch
-                            color="indigo accent-4"
-                            :input-value="isActive"
-                            :value="isActive"
-                            :loading="activeLoading"
-                            :disabled="activeLoading"
-                            @click.prevent="toggleIsActive"
-                    >
-                        <template v-slot:label>
-                            <span class="indigo--text text--accent-4">Toggle active</span>
-                        </template>
-                    </v-switch>
-                </v-flex>
-                <v-btn icon @click="onEditClick">
-                    <v-icon color="indigo accent-2">edit</v-icon>
-                </v-btn>
-                <v-btn
-                        icon
-                        @click="onDeleteClick"
-                        :loading="deleteLoading"
-                        :disabled="deleteLoading"
-                >
-                    <v-icon color="indigo accent-2">delete</v-icon>
-                </v-btn>
-            </v-card-actions>
         </v-card>
         </v-hover>
 
@@ -86,7 +59,6 @@
 </template>
 
 <script>
-  // TODO :: Show the read more button only for special offers and lunch offers. Dont show them when viewing the special offer view page or lunch view page.
   import {mapActions} from 'vuex'
 
   export default {
@@ -94,10 +66,6 @@
       item: {
         type: Object,
         default: () => {},
-      },
-      isEditable: {
-        type: Boolean,
-        default: false,
       },
       isSpecial: {
         type: Boolean,
@@ -114,10 +82,7 @@
     },
     data() {
       return {
-        isActive: false,
         defaultImage: './img/default-menu-v2.jpg',
-        activeLoading: false,
-        deleteLoading: false,
       }
     },
     computed: {
@@ -133,76 +98,10 @@
         }
       }
     },
-    watch: {
-      'item.isActive': {
-        handler: function (value) {
-          this.isActive = value
-        },
-        immediate: true
-      }
-    },
     methods: {
-      ...mapActions({
-        setSnackbar: 'snackbar/setState',
-        setModalData: 'modals/setModalData',
-        setMenuModalVisibility: 'modals/setMenuModalVisibility',
-      }),
       readMore() {
         this.$router.push({ path: `/${this.type}-offer/${this.item.id}`})
       },
-      onEditClick() {
-        this.setMenuModalVisibility({
-          key: this.type,
-          value: true,
-          action: 'edit'
-        })
-
-        this.$store.dispatch(`${this.type}/setItem`, {
-          payload: JSON.parse(JSON.stringify(this.item)),
-          action: 'edit'
-        })
-      },
-      toggleIsActive(e) {
-        e.stopImmediatePropagation()
-        if (this.activeLoading) return
-        this.activeLoading = true
-
-        this.$store.dispatch(`${this.type}/toggleActive`, {
-          payload: this.item.id,
-          action: 'list'
-        }).then((data) => {
-          this.activeLoading = false
-          if (!data.success) {
-            return this.setSnackbar({snackbar: true, message: data.message, color: 'red'});
-          }
-          this.setSnackbar({snackbar: true, message: 'Toggled successfully', color: 'success'});
-        })
-      },
-      onConfirm() {
-        if (this.deleteLoading) return
-        this.deleteLoading = true
-
-        this.$store.dispatch(`${this.type}/deleteItem`, {
-          payload: this.item.id,
-          action: 'list'
-        }).then((data) => {
-          this.deleteLoading = false
-          if (!data.success) {
-            return this.setSnackbar({snackbar: true, message: data.message, color: 'red'});
-          }
-          this.setSnackbar({snackbar: true, message: 'Deleted successfully', color: 'success'});
-        })
-      },
-      onDeleteClick() {
-        this.setModalData({
-          key: 'confirm',
-          value: {
-            visibility: true,
-            action: 'delete this item',
-            callback: this.onConfirm.bind(this)
-          }
-        })
-      }
     }
   }
 </script>

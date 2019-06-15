@@ -33,7 +33,6 @@
           tabs: this.tabs,
           color: this.color,
           compact: this.compact,
-          activeTab: this.activeTab,
           categories: this.items,
         }
       }

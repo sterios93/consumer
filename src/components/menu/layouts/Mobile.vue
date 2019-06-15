@@ -69,12 +69,20 @@
 				}
 			},
 		},
+		selectedMenu: {
+			handler: function(menu) {
+				if (menu === 'special') {
+					this.fetchSpecialOffersHandler();
+				}
+			}
+		}
 	},
     data() {
       return {
         selectedMenu: 'main',
 		localMenuItems: [],
 		localCategories: [],
+		localSpecialOffers: [],
 		category: null,
       }
     },
@@ -101,10 +109,9 @@
 		}
 		
 		if (this.selectedMenu === 'special') {
-		  console.error('return special items {}')
 		  return {
-              color: this.color,
-              items: this.isMainMenu ? this.$store.state.restaurants.currentRestaurant.menuItems : this.$store.state[this.selectedMenu].list.items
+				items: this.localSpecialOffers,
+				scrollable: true
             }
 		}
 		
@@ -112,10 +119,6 @@
 		  console.error('return lunch items {}')
 		  return {}
         }
-            // return {
-            //   color: this.color,
-            //   items: this.isMainMenu ? this.$store.state.restaurants.currentRestaurant.menuItems : this.$store.state[this.selectedMenu].list.items
-            // }
       },
       categoryProps() {
         return {
@@ -129,6 +132,7 @@
 		...mapActions({
 			'fetchMenu' : 'restaurants/fetchCurrRestMenu',
 			'fetchCategories': 'restaurants/fetchCurrRestCategories',
+			'fetchSpecialOffers': 'restaurants/fetchRestSpecialOffers',
 		}),
       ...mapGetters('restaurants', ['getMenuByCategory']),
       ...mapActions({
@@ -155,13 +159,23 @@
 						this.localMenuItems = this.getMenuByCategory()(this.category);
 					}
 				})
-
 		},
-		errorHandler(data) { this.setState({snackbar: true, message: data.error.message, color: 'red'}) },
+		fetchSpecialOffersHandler() {
+			this.fetchSpecialOffers()
+				.then(data => {
+					if (!data.success) return this.errorHandler(data) 
+					else {
+						this.localSpecialOffers = data.result
+					}
+				})
+		},
+		errorHandler(data) { 
+			this.setState({snackbar: true, message: data.error.message, color: 'red'})
+			},
       	onTabChange(id) { 
-				this.category = id;
-				this.localMenuItems = this.getMenuByCategory()(this.category);
-			  },
+			this.category = id;
+			this.localMenuItems = this.getMenuByCategory()(this.category);
+		},
     }
   }
 </script>

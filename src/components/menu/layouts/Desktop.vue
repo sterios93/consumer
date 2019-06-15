@@ -17,7 +17,6 @@
   export default {
     props: {
       color: String,
-      activeTab: String,
       categories: Array,
       compact: Boolean,
     },
@@ -35,7 +34,6 @@
       sharedProps () {
         return {
 			color: this.color,
-			activeTab: this.activeTab,
 			compact: this.compact,
 			categories: this.categories
         }
