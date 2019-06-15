@@ -259,6 +259,7 @@
 		this.setGeolocation(this.marker);
       },
       pinClickHandler(id){
+        console.error(id)
 		this.fetchRestaurantInfo(id)
 		  		.then(data => {
 					  if (!data.success) return this.errorHandler(data) 

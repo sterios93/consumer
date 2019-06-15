@@ -4,7 +4,7 @@
       <v-flex sm12 lg8>
         <v-card>
           <v-card-title>
-            <div class="headline">{{subscriptions.length}} Subscriptions</div>
+            <div class="headline">{{items.length}} Subscriptions</div>
             <v-spacer></v-spacer>
             <v-text-field
               v-model="text"
@@ -22,9 +22,9 @@
           <v-layout row wrap justify-center align-center>
             <v-list subheader>
               <v-subheader>Recent subscriptions</v-subheader>
-              <v-list-tile v-for="item in subscriptions" :key="item.id" avatar @click>
+              <v-list-tile v-for="item in items" :key="item._id" avatar>
                 <v-list-tile-avatar>
-                  <img :src="item.restaurant.image">
+                  <img :src="image">
                 </v-list-tile-avatar>
 
                 <v-list-tile-content>
@@ -34,7 +34,8 @@
                 <v-list-tile-action>
                   <div>
                     <v-btn class="px-2" @click="toggleActive(item)">
-                      <v-icon class="mr-2" :color="item.active ? 'teal' : 'grey'">check</v-icon>subscribed
+                      <v-icon class="mr-2" :color="item.active ? 'teal' : 'grey'">check</v-icon>
+                        {{item.active ? 'Unsubsribe' : 'Subsribe'}}
                     </v-btn>
                   </div>
                 </v-list-tile-action>
@@ -53,13 +54,14 @@ import { mapState, mapActions } from "vuex";
 export default {
   data() {
     return {
-      text: ""
+      text: "",
+      image: '',
     };
   },
   computed: {
     ...mapState({
       color: state => state.app.color,
-      subscriptions: state => state.subscriptions.items
+      items: state => state.subscriptions.items
     })
   },
   async created() {
@@ -74,8 +76,9 @@ export default {
       updateItem: "subscriptions/updateItem",
       fetchSubscriptions: "subscriptions/fetchSubscriptions",
       activateSubscription: "subscriptions/activateSubscription",
+      cancelSubscription: "subscriptions/cancelSubscription",
       setModalData: "modals/setModalData",
-      setModalData: "snackbar/setSnackbar"
+      setSnackbar: "snackbar/setSnackbar"
     }),
 
     toggleActive(item) {
@@ -84,9 +87,12 @@ export default {
         value: {
           visibility: true,
           action: `cancel your subscription to ${item.name}`,
-          callback: () => {
-            item.active = !item.active;
-            this.updateItem(item);
+          callback: async () => {
+            const payload = {
+              subscriptionId: item._id
+            }
+            const data = item.active ? await this.cancelSubscription(payload) : await this.activateSubscription(payload)
+            if (!data.success) this.setSnackbar({snackbar: true, message: data.error.message, color: 'red'})
           }
         }
       });

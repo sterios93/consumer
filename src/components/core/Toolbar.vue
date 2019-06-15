@@ -145,7 +145,7 @@ export default {
           this.$router.push('login');
           this.setSnackbar({snackbar: true, message: 'Logout successfully', color: 'success'})
         } else {
-          this.setSnackbar({snackbar: true, message: data.message, color: 'red'})
+          this.setSnackbar({snackbar: true, message: data.error.message, color: 'red'})
         }
       
       })

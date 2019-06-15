@@ -63,12 +63,29 @@
 							<v-list-tile-sub-title>Orlando, FL 79938</v-list-tile-sub-title>
 						</v-list-tile-content>
 					</v-list-tile>
+
+					<v-list-tile>
+						<v-btn 
+							v-if="isUserLogged"
+							class="px-2" 
+							@click="toggleSubscribe"
+						>
+							<v-icon 
+								class="mr-2" 
+								:color="isSubsribed ? 'teal' : 'grey'"
+							>
+								check
+							</v-icon>
+							{{isSubsribed ? 'Unsubsribe' : 'Subsribe'}}
+						</v-btn>
+					</v-list-tile>
 				</v-list>
 			</v-card>
 		</div>
 </template>
 
 <script>
+	import {mapState, mapActions} from 'vuex'
 	export default {
 		name: 'restaurant-info',
 		props: {
@@ -93,6 +110,54 @@
 		data() {
 			return {}
 		},
+		computed: {
+			...mapState({
+				isUserLogged: state => state.authentication.isUserLogged,
+			}),
+			isSubsribed() {
+				let { userSubscription } = this.information
+				return (userSubscription && userSubscription.active) || this.subscribedRecent
+			},
+			noActiveSubscriptions() {
+				let { userSubscription } = this.information
+				return (Array.isArray(userSubscription) && userSubscription.length === 0)
+			}
+		},
+		methods: {
+			...mapActions('subscriptions', [
+				'cancelSubscription',
+				'activateSubscription',
+				'createSubscription'
+			]),
+			...mapActions('snackbar', [
+				'setState',
+			]),
+			...mapActions('restaurants', [
+				'setUserSubsription',
+			]),
+			async toggleSubscribe() {
+				let data = {}
+
+				if (this.noActiveSubscriptions) {
+					data = await this.createSubscription({
+					restaurantId: this.information._id
+				})
+				} else {
+					const payload = {
+						subscriptionId: this.information.userSubscription.id
+					}
+					data = this.isSubsribed ? await this.cancelSubscription(payload) : await this.activateSubscription(payload)
+				}
+				if (!data.success) {
+					this.setState({snackbar: true, message: data.error.message, color: 'red'})
+				} else {
+					this.setUserSubsription({
+						id: data.result._id,
+						active: data.result.active
+					})
+				}
+			}
+		}
 	}
 </script>
 

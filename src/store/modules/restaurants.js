@@ -4,7 +4,9 @@ export default {
     namespaced: true,
     state: {
         currentRestaurant: {
-            info: {},
+            info: {
+                userSubscription: {}
+            },
             menuItems: [],
             categories: [],
             selectedCategories: [],
@@ -26,6 +28,7 @@ export default {
         SET_CURRENT_RESTAURANT_LUNCH_OFFER: (state, payload) => state.currentRestaurant.currentLunchOffer = payload,
         SELECT_CATEGORY: (state, payload) => state.currentRestaurant.selectedCategories.push(payload),
         DESELECT_CATEGORY: (state, payload) => state.currentRestaurant.selectedCategories.splice(state.currentRestaurant.selectedCategories.indexOf(payload),1),
+        SET_USER_SUBRICPTION: (state, payload) => state.currentRestaurant.info.userSubscription = payload,
     },
     getters: {
         isCategorySelected: (state) => (category) => {
@@ -41,12 +44,14 @@ export default {
     actions: {
         setRestaurants({commit}, restaurants) { commit('SET_RESTAURANTS', restaurants)},
         setCurrentRestaurantInfo({commit}, payload) {  commit('SET_CURRENT_RESTAURANT_INFO',payload) },
+        setUserSubsription({commit}, payload) { commit('SET_USER_SUBRICPTION',payload) },
         fetchRestaurantInfo({commit, rootState}, id) {
             const url = rootState.settings.apiUrl + rootState.settings.fetchRestaurantInfoPath + id;
             return getData(url)
                 .then(data => data.json())
                 .then(data => {
                     if (data.success) {
+                        console.error(data)
                         commit('SET_CURRENT_RESTAURANT_INFO', data.result)
                     }
                     return data

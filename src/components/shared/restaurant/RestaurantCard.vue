@@ -63,9 +63,17 @@ import {mapActions} from 'vuex';
 		methods: {
 			...mapActions({
 				setBottomSheetVisible: 'bottomSheet/setVisibility',
-				setCurrentRestInfo: 'restaurants/setCurrentRestaurantInfo'
-      		}),
+				setCurrentRestInfo: 'restaurants/setCurrentRestaurantInfo',
+				fetchRestaurantInfo: 'restaurants/fetchRestaurantInfo',
+				setState: 'snackbar/setState'
+      }),
 			explore() {
+        this.fetchRestaurantInfo(this._restaurantInfo._id)
+		  		.then(data => {
+					  if (!data.success) {
+              this.setState({snackbar: true, message: data.error.message, color: 'red'})
+            }
+				  })
 				this.setCurrentRestInfo(this._restaurantInfo);
 				this.setBottomSheetVisible(true);
         },
