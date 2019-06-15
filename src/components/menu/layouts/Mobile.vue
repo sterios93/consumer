@@ -51,7 +51,6 @@
   export default {
     props: {
       color: String,
-      categories: Array
     },
     components: {
         CategoryTabs,
@@ -74,13 +73,10 @@
     data() {
       return {
         selectedMenu: 'main',
-		category: this.categories[0],
 		localMenuItems: [],
 		localCategories: [],
+		category: null,
       }
-    },
-    created() {
-      this.category = this.categories[0].id
     },
 
     computed: {
@@ -110,8 +106,6 @@
               color: this.color,
               items: this.isMainMenu ? this.$store.state.restaurants.currentRestaurant.menuItems : this.$store.state[this.selectedMenu].list.items
             }
-		//   return {}
-		  
 		}
 		
 		if (this.selectedMenu === 'lunch') {
@@ -136,7 +130,7 @@
 			'fetchMenu' : 'restaurants/fetchCurrRestMenu',
 			'fetchCategories': 'restaurants/fetchCurrRestCategories',
 		}),
-      ...mapGetters('main', ['getMenuByCategory']),
+      ...mapGetters('restaurants', ['getMenuByCategory']),
       ...mapActions({
         'setModalVisibility': 'modals/setModalVisibility',
         'setMenuModalVisibility': 'modals/setMenuModalVisibility',
@@ -156,17 +150,18 @@
 				.then(data => {
 					if (!data.success) return this.errorHandler(data) 
 					else {
-						this.localCategories = data.result
+						this.localCategories = data.result;
+						this.category = this.localCategories[0];
+						this.localMenuItems = this.getMenuByCategory()(this.category);
 					}
 				})
 
 		},
-		errorHandler(data) {
-				this.setState({snackbar: true, message: data.error.message, color: 'red'})
-		},
-      onTabChange(id) {
-        this.category = id
-      },
+		errorHandler(data) { this.setState({snackbar: true, message: data.error.message, color: 'red'}) },
+      	onTabChange(id) { 
+				this.category = id;
+				this.localMenuItems = this.getMenuByCategory()(this.category);
+			  },
     }
   }
 </script>

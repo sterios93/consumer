@@ -23,9 +23,7 @@
     },
 
     props: {
-      color: String,
       items: Array,
-      searchVisibility: Boolean
     },
 
     methods: {
