@@ -10,7 +10,6 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
 
-import lunch from './modules/lunch/index'
 import main from './modules/main/index'
 import special from './modules/special/index'
 import info from './modules/info/index'
@@ -22,7 +21,6 @@ Vue.use(Vuex)
 const store = new Vuex.Store({
   modules: {
     ...modules,
-    lunch,
     special,
     main,
     info,
