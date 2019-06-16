@@ -275,13 +275,14 @@
 		onFindClick(e) {
 			e && e.preventDefault(); // in case there is no click on the map , and we fetch it automatically with the geolocate method
 			const payload = {
-			type: this.restaurantType,
-			category: this.restaurantCategory,
-			name: this.restaurantName,
-			minDistance: 1000, 
-			maxDistance: 10000,
-			location: this.marker,
+				type: this.restaurantType,
+				category: this.restaurantCategory,
+				name: this.restaurantName,
+				minDistance: 1000, 
+				maxDistance: 10000,
+				location: this.marker,
 			};
+			console.error(payload)
 			this.fetchMarkers(payload);
 			this.setGeolocation(this.marker);
 		},

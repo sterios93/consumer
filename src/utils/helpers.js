@@ -26,6 +26,9 @@ export const postData = ({payload, url, token = '', id = '', headers = {}}) => {
   })
     .then(data => data.json())
     .then(data => {
+      if (!data.userIsLogged) {
+        store.dispatch('authentication/setIsUserLogged', false)
+      }
       if (!data.success) {
         return handleErrors(data)
       }
@@ -48,6 +51,9 @@ export const getData = (url, query = '', token = '', headers = {}) => {
   })
     .then(data => data.json())
     .then(data => {
+      if (!data.userIsLogged) {
+        store.dispatch('authentication/setIsUserLogged', false)
+      }
       if (!data.success) {
         return handleErrors(data)
       }
@@ -72,7 +78,6 @@ const handleErrors = (data) => {
   switch (data.error.code) {
     case ErrorsCodes.SESSION_EXPIRED:
       router.push('login')
-      store.dispatch('authentication/setIsUserLogged', false)
   }
 
   store.dispatch('snackbar/setState', {snackbar: true, message: data.error.message, color: 'red'})
