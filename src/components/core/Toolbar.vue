@@ -131,13 +131,6 @@ export default {
   methods: {
     ...mapActions('authentication', ['logout']),
     ...mapActions('snackbar', {setSnackbar: 'setState'}),
-    ...mapActions('app', ['setDrawer', 'toggleDrawer']),
-    onClickBtn () {
-      this.setDrawer(!this.$store.state.app.drawer)
-    },
-    onClick () {
-      //
-    },
     logOutAccount() {
       this.logout()
       .then((data) => {
