@@ -188,7 +188,11 @@ export default {
     },
   },
   watch: {
-    passwordRepeat: 'passRepeatHandler'
+    passwordRepeat: {
+      handler (value) {
+
+      }
+    }
   },
   methods: {
     ...mapActions('userProfile', [
@@ -215,10 +219,10 @@ export default {
       };
 
       if (this.showPassFields) {
-        payload.password = {
+        payload.passwords = {
           oldPassword: this.oldPassword,
           newPassword: this.password,
-          repeatPassword: this.passwordRepeat,
+          repeatedPassword: this.passwordRepeat,
         };
       }
       this.updateProfile(payload);
