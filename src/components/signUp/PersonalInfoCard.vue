@@ -40,17 +40,13 @@
             </v-text-field>
             </v-flex>
 
-            <v-flex xs12 md6>
-            <v-text-field
-                class="purple-input"
-                label="Phone number (required)"
+            <v-flex
+                xs12
+                md6>
+                <CustomPhoneValidate
                 v-model="phoneNumber"
-                :error-messages="phoneNumberErrors"
-                required
-                @input="validate('phoneNumber')"
-                @blur="validate('phoneNumber')"
-                >
-            </v-text-field>
+                @validate="validatePhoneNumbebr"
+                />
             </v-flex>
 
 
@@ -114,12 +110,14 @@ import { mapActions } from 'vuex'
 import { validationMixin } from 'vuelidate'
 import { required, minLength, sameAs, email, numeric } from 'vuelidate/lib/validators';
 import VueRecaptcha from 'vue-recaptcha';
+import CustomPhoneValidate from '../shared/CustomPhoneValidate'
 
     export default {
         name: 'personal-info-card',
         mixins: [validationMixin],
         components: {
-          VueRecaptcha
+          VueRecaptcha,
+          CustomPhoneValidate
         },
         data () {
             return {
@@ -138,7 +136,7 @@ import VueRecaptcha from 'vue-recaptcha';
                 passwordRepeatErrors: [],
                 showPassword: false,
                 showRepeatPassword: false,
-                allFields: ['firstName', 'lastName', 'email', 'phoneNumber', 'password', 'passwordRepeat'],
+                allFields: ['firstName', 'lastName', 'email', 'password', 'passwordRepeat'],
             }
         },
         methods: {
@@ -177,6 +175,16 @@ import VueRecaptcha from 'vue-recaptcha';
                       this.$emit('sign-up-clicked')
                     });
                   // this.setActiveStepNumber(2);
+                }
+            },
+            validatePhoneNumbebr (e) {
+                if (!e.isValid) {
+                    this.isPhoneValid = false
+                    this.setPersonalInfoInvalid()
+                } else {
+                    this.isPhoneValid = true
+                    this.countryInfo = e.country
+                    this.setPersonalInfoValid()
                 }
             },
             validate(target) {
@@ -231,10 +239,6 @@ import VueRecaptcha from 'vue-recaptcha';
             email: {
                 required,
                 email,
-            },
-            phoneNumber: {
-                required,
-                numeric
             },
             password: {
                 required,
