@@ -83,6 +83,7 @@
 			:position="{lat: Number(m.lat), lng: Number(m.lng)}"
 			:clickable="true"
 			@click="pinClickHandler(m._id)"
+      icon='http://maps.google.com/mapfiles/ms/icons/restaurant.png'
 		/>
     </gmap-map>
   </div>
