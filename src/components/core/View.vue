@@ -8,21 +8,18 @@
     <CustomSnackBar/>
 
     <ConfirmModal />
-    <AddSpecialMenuItem v-if="specialVisibility" />
   </v-content>
 </template>
 
 <script>
   import ConfirmModal from "../custom/dialogs/ConfirmModal";
   import CustomSnackBar from '../material/CustomSnackBar'
-  import AddSpecialMenuItem from '../shared/menu/special/Add'
   import {mapActions, mapState} from 'vuex'
 
   export default {
     components: {
       ConfirmModal,
       CustomSnackBar,
-      AddSpecialMenuItem,
     },
     metaInfo() {
       return {
