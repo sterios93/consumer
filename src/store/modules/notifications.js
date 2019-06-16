@@ -43,7 +43,7 @@ export default {
 					}
 				})
 		},
-		seeNotification({commit, rootState}, payload) {
+		seeNotifications({commit, rootState}, payload) {
 			const { apiUrl, seeNotificationPath } = rootState.settings
 			const url = apiUrl + seeNotificationPath
 

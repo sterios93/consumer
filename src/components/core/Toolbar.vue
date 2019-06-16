@@ -28,7 +28,7 @@
         py-2
         v-if="isUserLogged"
       >
-        <component :is="component"></component>
+        <component @see-notifications="handleSeeNotifications" :is="component"></component>
         <v-menu
                 bottom
                 left
@@ -89,13 +89,6 @@ export default {
   },
 
   data: () => ({
-    notifications: [
-      'Mike, John responded to your email',
-      'You have 5 new tasks',
-      'You\'re now a friend with Andrew',
-      'Another Notification',
-      'Another One'
-    ],
     title: null,
     links: [
       {
@@ -131,6 +124,15 @@ export default {
   methods: {
     ...mapActions('authentication', ['logout']),
     ...mapActions('snackbar', {setSnackbar: 'setState'}),
+    ...mapActions('notifications', ['seeNotifications']),
+    async handleSeeNotifications(items) {
+      if (items.lenght > 0) {
+        const data = await this.seeNotifications({
+          notificationIds: items
+        })
+        if (!data.success) this.setSnackbar({snackbar: true, message: data.error.message, color: 'red'})
+      }
+    },
     logOutAccount() {
       this.logout()
       .then((data) => {
