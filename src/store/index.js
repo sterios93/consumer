@@ -10,7 +10,6 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
 
-import special from './modules/special/index'
 import info from './modules/info/index'
 
 import modules from './modules'
@@ -20,7 +19,6 @@ Vue.use(Vuex)
 const store = new Vuex.Store({
   modules: {
     ...modules,
-    special,
     info,
   },
 })
