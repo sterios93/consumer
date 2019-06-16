@@ -1,7 +1,7 @@
 <template>
 	<v-container grid-list-md>
-		<v-layout row wrap d-flex class="pa-0 ma-0">
-				<v-flex xs12 sm4
+		<v-layout row wrap class="pa-0 ma-0">
+				<v-flex xs12 sm6 md4 lg3 
 					v-for="(item, index) in items" 
 					:key="index">
 

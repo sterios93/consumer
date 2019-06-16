@@ -21,7 +21,7 @@
 	<v-flex xs12 class="mt-5">
 		<v-layout justify-center align-center>
 			<v-flex xs10>
-				<h3 class="merriFont">Restaurants</h3>
+				<h3 class="merriFont text-xs-center">Restaurants</h3>
 
 				<RestaurantsList 
 					:items="restaurants"
