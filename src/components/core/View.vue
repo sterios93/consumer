@@ -9,7 +9,6 @@
 
     <ConfirmModal />
     <AddMainMenuItem v-if="mainVisibility" />
-    <AddLunchMenuItem v-if="lunchVisibility" />
     <AddSpecialMenuItem v-if="specialVisibility" />
   </v-content>
 </template>
@@ -18,7 +17,6 @@
   import ConfirmModal from "../custom/dialogs/ConfirmModal";
   import CustomSnackBar from '../material/CustomSnackBar'
   import AddMainMenuItem from '../shared/menu/main/Add'
-  import AddLunchMenuItem from '../shared/menu/lunch/Add'
   import AddSpecialMenuItem from '../shared/menu/special/Add'
   import {mapActions, mapState} from 'vuex'
 
@@ -27,7 +25,6 @@
       ConfirmModal,
       CustomSnackBar,
       AddMainMenuItem,
-      AddLunchMenuItem,
       AddSpecialMenuItem,
     },
     metaInfo() {
