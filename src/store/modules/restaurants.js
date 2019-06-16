@@ -5,6 +5,14 @@ export default {
     state: {
         currentRestaurant: {
             info: {
+                lat: '',
+                lng: '',
+                name: '',
+                number: '',
+                type: '',
+                userSubscription: '',
+                website: '',
+                _id: '',
                 userSubscription: {}
             },
             menuItems: [],
