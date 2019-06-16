@@ -39,7 +39,8 @@
       isUserLogged: {
         handler: function (value) {
           if (value === true) {
-          	this.fetchUserData()
+            this.fetchUserData()
+            this.pollNotifications()
           }
         },
         immediate: true
@@ -47,11 +48,7 @@
     },
     created() {
       // Polling data every 60 000 ms
-      const doStuff = () => {
-        this.fetchNotifications()
-        !this.destroyed && setTimeout(doStuff, 60000);
-      };
-      doStuff();
+      this.isUserLogged && this.pollNotifications();
     },
     mounted() {
       this.onResponsiveInverted()
@@ -65,6 +62,10 @@
       ...mapActions('layout', ['setResponsive']),
       ...mapActions('authentication', ['fetchUserData']),
       ...mapActions('notifications', ['fetchNotifications']),
+      pollNotifications() {
+        this.fetchNotifications()
+        !this.destroyed && setTimeout(this.pollNotifications, 60000);
+      },
       onResponsiveInverted() {
         if (window.innerWidth < 991) {
           this.setResponsive(true)
