@@ -22,9 +22,6 @@
                                     <v-card-text class="text-xs-center">
                                         <h3 class="category font-weight-bold mb-3">From{{localLunchOffer.timeStart}}</h3>
                     					<h3 class="category font-weight-bold mb-3">To {{localLunchOffer.timeEnd}}</h3>
-                                        <v-btn color="success" round class="font-weight-light" >Follow </v-btn>
-                                        <v-btn dark color="red" round class="font-weight-light">MENU </v-btn>
-                                        <v-btn dark color="blue" round class="font-weight-light">LUNCH OFFERS </v-btn>
                                     </v-card-text>
                                 </v-flex>
                             </v-layout>

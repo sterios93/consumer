@@ -28,9 +28,6 @@
                     <h3 class="card-title font-weight-light">{{localSpecialOffer.name}}</h3>
                     <p class="card-description font-weight-light">{{localSpecialOffer.description}}</p>
                     <p class="card-description font-weight-light">Also see our other offers bellow :)</p>
-                    <v-btn color="success" dark round class="font-weight-light" >Follow </v-btn>
-                    <v-btn dark color="red" round class="font-weight-light" >MENU </v-btn>
-                    <v-btn dark color="blue" round class="font-weight-light" >LUNCH OFFERS </v-btn>
                   </v-card-text>
                 </v-flex>
 
