@@ -11,7 +11,7 @@
 				<v-tab
 					v-for="(tab, key) in tabs"
 					:key="key"
-					@change="changeTapHandler(key)"
+					@change="changeTab(key)"
 				>
 					{{ tab }}
 				</v-tab>
@@ -70,15 +70,21 @@
   import {mapState, mapActions} from 'vuex'
 
   export default {
+		components: {
+			CategoryList,
+			LunchList,
+			MenuList,
+			SpecialList,
+			InfoList,
+		},
     props: {
       color: String,
       compact: Boolean,
       categories: Array,
     },
-
     data () {
       return {
-        activeTab: null,
+		activeTab: null,
 		tabs: ['Main Menu', 'Special Offers', 'Lunch Menu',],
 		localMenuItems: [],
 		localCategories: [],
@@ -86,32 +92,21 @@
 		localLunchOffers: [],
       }
     },
-
-    components: {
-      CategoryList,
-      LunchList,
-      MenuList,
-      SpecialList,
-      InfoList,
-	},
 	watch: {
 		currentRestId: {
-			handler: function(id) {
-				 // tabs[0] Main Menu
-				if (this.activeTab === 0) {
-					this.fetchMenuHandler();
-					this.fetchCategoriesHandler();
-				}
-				// Special offers
-				if (this.activeTab === 1) {
-					this.fetchSpecialOffersHandler();
-				}
-				// Lunch offers
-				if (this.activeTab === 2) {
-					this.fetchLunchOffersHandler();
-				}
+			handler: function() {
+				this.switchedTabHandler();
 			},
 		},
+	},
+	mounted(){
+		// The component is initialy mounted, and if we don't have an restaurantId, we should not make any requests.
+		// This fixes the bug, when you view an offer, and press back button
+		console.error(this.currentRestId)
+		if (this.currentRestId) {
+			this.switchedTabHandler();
+		}
+		
 	},
 	methods: {
       	...mapActions('snackbar', ['setState']),
@@ -161,13 +156,22 @@
 			errorHandler(data) {
 	             this.setState({snackbar: true, message: data.error.message, color: 'red'})
 			},
-			changeTapHandler(tab) {
+			changeTab(tab) {
 				this.activeTab = tab;
-				// The default tab is 0, so it should be fetched already. 
-				if (tab === 1) {
+				this.switchedTabHandler()
+			},
+			switchedTabHandler(){
+				 // Main Menu
+				if (this.activeTab === 0) {
+					this.fetchMenuHandler();
+					this.fetchCategoriesHandler();
+				}
+				// Special offers
+				if (this.activeTab === 1) {
 					this.fetchSpecialOffersHandler();
 				}
-				if (tab === 2) {
+				// Lunch offers
+				if (this.activeTab === 2) {
 					this.fetchLunchOffersHandler();
 				}
 			}
@@ -184,14 +188,12 @@
       },
       LunchListProps () {
         return {
-          color: this.color,
           compact: this.compact,
           items: this.localLunchOffers,
         }
       },
       SpecialListProps () {
         return {
-          color: this.color,
           compact: this.compact,
           items: this.localSpecialOffers
         }
@@ -199,7 +201,6 @@
       InfoListProps () {
         return {
           compact: this.compact,
-          color: this.color,
           information: this.$store.state.info.list.information
         }
       }
