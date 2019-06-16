@@ -30,7 +30,7 @@ export const postData = ({payload, url, token = '', id = '', headers = {}}) => {
         store.dispatch('authentication/setIsUserLogged', false)
       }
       if (!data.success) {
-        return handleErrors(data)
+        handleErrors(data)
       }
       return data
     })
@@ -55,7 +55,7 @@ export const getData = (url, query = '', token = '', headers = {}) => {
         store.dispatch('authentication/setIsUserLogged', false)
       }
       if (!data.success) {
-        return handleErrors(data)
+        handleErrors(data)
       }
       return data
     })
