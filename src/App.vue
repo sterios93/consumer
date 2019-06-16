@@ -1,9 +1,6 @@
 <template>
   <v-app :class="{'responsive' : responsive}">
-    <core-filter />
-
     <core-toolbar />
-
     <core-view />
   </v-app>
 </template>
