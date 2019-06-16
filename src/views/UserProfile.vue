@@ -17,8 +17,6 @@
 import ProfileCard from '../components/userProfile/ProfileCard'
 import {mapState} from 'vuex'
 
-// TODO :: Change the active state of the payment information
-
 export default {
   name: 'user-profile',
   components: {
