@@ -7,7 +7,7 @@
 					:key=index 
 					@item-selected="onItemSelected"
 				/>
-                <v-divider :key="(index + 1 )* 2"></v-divider>
+                <v-divider :key="(index + 1 ) * Math.floor(Math.random() * 666666) + 1  "></v-divider>
             </template>
         </v-list>
     </v-card>

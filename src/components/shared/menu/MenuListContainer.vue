@@ -102,7 +102,6 @@
 	mounted(){
 		// The component is initialy mounted, and if we don't have an restaurantId, we should not make any requests.
 		// This fixes the bug, when you view an offer, and press back button
-		console.error(this.currentRestId)
 		if (this.currentRestId) {
 			this.switchedTabHandler();
 		}

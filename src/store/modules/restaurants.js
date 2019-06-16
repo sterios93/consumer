@@ -51,7 +51,6 @@ export default {
                 .then(data => data.json())
                 .then(data => {
                     if (data.success) {
-                        console.error(data)
                         commit('SET_CURRENT_RESTAURANT_INFO', data.result)
                     }
                     return data
