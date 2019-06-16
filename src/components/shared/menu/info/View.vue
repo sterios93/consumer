@@ -19,7 +19,7 @@
 						</v-list-tile-action>
 
 						<v-list-tile-content>
-							<v-list-tile-title>{{information.phone}}</v-list-tile-title>
+							<v-list-tile-title>{{information.number}}</v-list-tile-title>
 							<v-list-tile-sub-title>Mobile</v-list-tile-sub-title>
 						</v-list-tile-content>
 					</v-list-tile>
@@ -94,12 +94,11 @@
 				default: () => {
 					return {
 						id: '',
-						info: {
-							name: '',
-							phone: '',
-							type: '',
-							website: '',
-						},
+						name: '',
+						number: '',
+						type: '',
+						website: '',
+						userSubscription: [],
 						lat: '',
 						lng: ''
 					}
@@ -116,7 +115,7 @@
 			}),
 			isSubsribed() {
 				let { userSubscription } = this.information
-				return (userSubscription && userSubscription.active) || this.subscribedRecent
+				return (userSubscription && userSubscription.active)
 			},
 			noActiveSubscriptions() {
 				let { userSubscription } = this.information
@@ -140,8 +139,8 @@
 
 				if (this.noActiveSubscriptions) {
 					data = await this.createSubscription({
-					restaurantId: this.information._id
-				})
+						restaurantId: this.information._id
+					})
 				} else {
 					const payload = {
 						subscriptionId: this.information.userSubscription.id

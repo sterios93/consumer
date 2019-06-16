@@ -84,7 +84,7 @@
       InfoListProps () {
         return {
           isDesktop: true,
-          information: this.localRestInfo,
+          information: this.$store.state.restaurants.currentRestaurant.info,
         }
       },
     },
@@ -95,7 +95,8 @@
      ...mapActions('snackbar', ['setState']),
 	...mapActions({
 		'fetchLunchOffer': 'restaurants/fetchLunchOffer',
-		'fetchRestInfo': 'restaurants/fetchRestaurantInfo'
+		'fetchRestInfo': 'restaurants/fetchRestaurantInfo',
+		'setCurrentRestaurantInfo': 'restaurants/setCurrentRestaurantInfo'
 		}),
 	fetchLunchOfferHandler(offerId) {
 		this.fetchLunchOffer(offerId)
@@ -107,17 +108,9 @@
 							.then(data => {
 								if (!data.success) return this.errorHandler(data);
 								else {
-									//TODO: pass the lat and lng, in order to display the adress
-									this.localRestInfo = {
-										info: {
-											name: data.result.restaurantName,
-											phone:data.result.number,
-											type: data.result.type,
-											website: data.result.website,
-											lat: data.result.lat || '',
-											lng: data.result.lng || '',
-										}
-									}
+                  //TODO: pass the lat and lng, in order to display the adress
+                  
+                  this.setCurrentRestaurantInfo(data.result)
 								}
 							})
 					}
