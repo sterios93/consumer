@@ -56,7 +56,6 @@ export default {
         fetchRestaurantInfo({commit, rootState}, id) {
             const url = rootState.settings.apiUrl + rootState.settings.fetchRestaurantInfoPath + id;
             return getData(url)
-                .then(data => data.json())
                 .then(data => {
                     if (data.success) {
                         commit('SET_CURRENT_RESTAURANT_INFO', data.result)
@@ -67,7 +66,6 @@ export default {
         fetchCurrRestMenu({ commit, rootState , state}) {
             const url = rootState.settings.apiUrl + rootState.settings.fetchRestaurantMenuPath + state.currentRestaurant.info._id;
             return getData(url)
-            .then(data => data.json())
             .then(data => {
                 if (data.success) {
                     commit('SET_CURRENT_RESTAURANT_MENU_ITEMS', data.result)
@@ -78,7 +76,6 @@ export default {
         fetchCurrRestCategories({commit, rootState, state}) {
             const url = rootState.settings.apiUrl + rootState.settings.fetchRestaurantCategoriesPath + state.currentRestaurant.info._id;
             return getData(url)
-                .then(data => data.json())
                 .then(data => {
                     if (data.success) {
                         commit('SET_CURRENT_RESTAURANT_MENU_CATEGORIES', data.result)
@@ -94,7 +91,6 @@ export default {
         fetchRestSpecialOffers({commit, rootState, state}) {
             const url = rootState.settings.apiUrl + rootState.settings.fetchRestaurantSpecialOffersPath + state.currentRestaurant.info._id;
             return getData(url)
-                .then(data => data.json())
                 .then(data => {
                     if (data.success) {
                         commit('SET_CURRENT_RESTAURANT_SPECIAL_OFFERS', data.result);
@@ -106,7 +102,6 @@ export default {
         fetchSpecialOffer({commit, rootState}, offerId) {
             const url = rootState.settings.apiUrl + rootState.settings.fetchSpecialOfferPath + offerId;
             return getData(url)
-                .then(data => data.json())
                 .then(data => {
                     if (data.success) {
                         commit('SET_CURRENT_RESTAURANT_SPECIAL_OFFER', data.result);
@@ -117,7 +112,6 @@ export default {
         fetchRestLunchOffers({ commit, rootState, state }) {
             const url = rootState.settings.apiUrl + rootState.settings.fetchRestaurantLunchOffersPath + state.currentRestaurant.info._id;
             return getData(url)
-                .then(data => data.json())
                 .then(data => {
                     if (data.success) {
                         commit('SET_CURRENT_RESTAURANT_LUNCH_OFFERS', data.result);
@@ -128,7 +122,6 @@ export default {
         fetchLunchOffer({ commit, rootState }, offerId) {
             const url = rootState.settings.apiUrl + rootState.settings.fetchRestaurantLunchOfferPath + offerId;
             return getData(url)
-                .then(data => data.json())
                 .then(data => {
                     if (data.success) {
                         commit('SET_CURRENT_RESTAURANT_LUNCH_OFFER', data.result);

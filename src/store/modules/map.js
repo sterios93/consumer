@@ -44,7 +44,6 @@ export default {
       };
 
       return postData({ payload, url})
-				.then(data => data.json())
 				.then(data => {
 					if (data.success) {
 						const {restaurants} = data.result;

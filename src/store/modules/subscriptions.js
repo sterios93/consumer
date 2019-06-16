@@ -27,7 +27,6 @@ export default {
       const url = apiUrl + fetchSubscriptionsPath
 
       return getData(url)
-        .then((data) => data.json())
         .then((data) => {
           if (data.success) {
             commit('SET_SUBSCRIPTIONS', data.result)
@@ -40,7 +39,6 @@ export default {
       const url = apiUrl + cancelSubscriptionPath
 
       return postData({ url, payload })
-        .then((data) => data.json())
         .then((data) => {
           if (data.success) {
             commit('UPDATE_ITEM', data.result)
@@ -53,7 +51,6 @@ export default {
       const url = apiUrl + activateSubscriptionPath
 
       return postData({ url, payload })
-        .then((data) => data.json())
         .then((data) => {
           if (data.success) {
             commit('UPDATE_ITEM', data.result)   
@@ -66,7 +63,6 @@ export default {
       const url = apiUrl + subscribePath
 
       return postData({ url, payload })
-        .then((data) => data.json())
         .then((data) => {
           if (data.success) {
             commit('ADD_SUBSCRIPTION', data.result)   

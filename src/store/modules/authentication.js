@@ -17,7 +17,6 @@ export default {
 	actions: {
 		fetchUserData({dispatch, rootState, state, commit}) {
 			return getData(rootState.settings.apiUrl + rootState.settings.fetchProfilePath)
-				.then(response => response.json())
 				.then(data => {
 
 					let {user} = data.result
@@ -34,7 +33,6 @@ export default {
 		},
 		logout({ rootState, commit }) {
 			return postData({url: rootState.settings.apiUrl + rootState.settings.logoutPath})
-					.then(data => data.json())
 					.then(data => {
 						if (data.success) {
 							commit('SET_IS_USER_LOGGED', false)
@@ -50,7 +48,6 @@ export default {
 			}
 
 			return postData(data)
-				.then(response => response.json())
 				.then(data => {
 					if (data.success) {
 						commit('SET_IS_USER_LOGGED', true)
@@ -72,7 +69,6 @@ export default {
 			}
 
 			return postData(data)
-				.then(response => response.json())
 				.then(data => {
 					if (data.success) {
 						commit('SET_IS_USER_LOGGED', true)
