@@ -72,7 +72,8 @@ const handleErrors = (data) => {
   switch (data.error.code) {
     case ErrorsCodes.SESSION_EXPIRED:
       router.push('login')
+      store.dispatch('authentication/setIsUserLogged', false)
   }
 
-  store.dispatch('snackabr/setState', {snackbar: true, message: data.error.message, color: 'red'})
+  store.dispatch('snackbar/setState', {snackbar: true, message: data.error.message, color: 'red'})
 }
