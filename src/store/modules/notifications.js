@@ -1,28 +1,10 @@
 import {set, toggle} from '@/utils/vuex'
+import { postData, getData } from '@/utils/helpers'
 
 export default {
 	namespaced: true,
 	state: {
-		items: [
-			{
-				id: '1',
-				title: 'Lorem1',
-				message: 'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry\'s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in t',
-				image: './img/category.png',
-				seen: true,
-				type: '',
-				createdAt: '2019-09-10 12:00'
-			},
-			{
-				id: '2',
-				title: 'Lorem2',
-				message: 'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry\'s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in t',
-				image: './img/category.png',
-				seen: false,
-				type: '',
-				createdAt: '2019-09-10 12:00'
-			},
-		],
+		items: [],
 		sheet: false
 	},
 	mutations: {
@@ -37,7 +19,40 @@ export default {
 	},
 	actions: {
 		setItems({commit}, payload) {
-			commit('SET_ITEMS', payload.items)
+			commit('SET_ITEMS', payload)
 		},
+		fetchNotifications({commit, rootState}, payload) {
+			const { apiUrl, fetchNotificationsPath } = rootState.settings
+			const url = apiUrl + fetchNotificationsPath
+
+			return getData(url)
+				.then((data) => {
+					if (data.success) {
+						commit('SET_ITEMS', data.result)
+					}
+				})
+		},
+		removeNotification({commit, rootState}, payload) {
+			const { apiUrl, removeNotificationPath } = rootState.settings
+			const url = apiUrl + removeNotificationPath
+
+			return postData({ url, payload })
+				.then((data) => {
+					if (data.success) {
+						commit('', data.result)
+					}
+				})
+		},
+		seeNotification({commit, rootState}, payload) {
+			const { apiUrl, seeNotificationPath } = rootState.settings
+			const url = apiUrl + seeNotificationPath
+
+			return postData({ url, payload })
+				.then((data) => {
+					if (data.success) {
+						commit('', data.result)
+					}
+				})
+		} 
 	}
 }

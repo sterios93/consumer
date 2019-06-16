@@ -20,6 +20,10 @@ let config = {
   cancelSubscriptionPath: 'consumer/subscription/cancel',
   activateSubscriptionPath: 'consumer/subscription/activate',
   subscribePath: 'consumer/subscribe',
+  //Notifications
+  fetchNotificationsPath: 'consumer/notifications/fetch',
+  removeNotificationPath: 'consumer/notification/remove',
+  seeNotificationPath: 'consumer/notifications/see',
 }
 
 export default {
@@ -45,6 +49,10 @@ export default {
     cancelSubscriptionPath: config.cancelSubscriptionPath,
     activateSubscriptionPath: config.activateSubscriptionPath,
     subscribePath: config.subscribePath,
+    //Notifications
+    fetchNotificationsPath: config.fetchNotificationsPath,
+    removeNotificationPath: config.removeNotificationPath,
+    seeNotificationPath: config.seeNotificationPath,
   },
   mutations: {},
   getters: {},

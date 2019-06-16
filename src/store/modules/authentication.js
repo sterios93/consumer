@@ -33,7 +33,7 @@ export default {
 			commit('SET_IS_USER_LOGGED', value)
 		},
 		logout({ rootState, commit }) {
-			return getData(rootState.settings.apiUrl + rootState.settings.logoutPath)
+			return postData({url: rootState.settings.apiUrl + rootState.settings.logoutPath})
 					.then(data => data.json())
 					.then(data => {
 						if (data.success) {

@@ -6,6 +6,7 @@ export const postData = ({payload, url, token = '', id = ''}) => {
     credentials: "same-origin",
     headers: {
       "Content-Type": "application/json",
+      "Origin": "http://lunchdeal24.de"
     },
     redirect: "follow",
     referrer: "no-referrer",
@@ -21,6 +22,7 @@ export const getData = (url, query = '', token = '') => {
     credentials: "same-origin",
     headers: {
       "Content-Type": "application/json",
+      "Origin": "http://lunchdeal24.de"
     },
     redirect: "follow",
     referrer: "no-referrer",

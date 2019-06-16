@@ -15,11 +15,11 @@
 
                 <div
                         v-for="notification in items"
-                        :key="notification.id"
+                        :key="notification._id"
                 >
                     <v-list-tile
                             :class="{'grey lighten-2': !notification.seen}"
-                            @click="onClick"
+                            @click="onClick(notification.itemId)"
                     >
                         <v-list-tile-avatar>
                             <v-img :src="notification.image"></v-img>
@@ -30,7 +30,7 @@
                             </v-list-tile-title>
                             <v-list-tile-title class="body-2 text-truncate">{{ notification.message }}
                             </v-list-tile-title>
-                            <v-list-tile-title class="caption mt-2 text-truncate">{{ notification.createdAt }}
+                            <v-list-tile-title class="caption mt-2 text-truncate">{{ notification.timeCreated }}
                             </v-list-tile-title>
                         </v-list-tile-content>
 
@@ -59,8 +59,8 @@
 			}
 		},
 		methods: {
-			onClick() {
-				//
+			onClick(id) {
+				this.$router.push({ path: `/special-offer/${id}`})
 			}
 		}
 	}

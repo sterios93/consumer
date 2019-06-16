@@ -45,16 +45,26 @@
         immediate: true
        }
     },
+    created() {
+      // Polling data every 60 000 ms
+      const doStuff = () => {
+        this.fetchNotifications()
+        !this.destroyed && setTimeout(doStuff, 60000);
+      };
+      doStuff();
+    },
     mounted() {
       this.onResponsiveInverted()
       window.addEventListener('resize', this.onResponsiveInverted)
     },
     beforeDestroy() {
+      this.destroyed = true
       window.removeEventListener('resize', this.onResponsiveInverted)
     },
     methods: {
       ...mapActions('layout', ['setResponsive']),
       ...mapActions('authentication', ['fetchUserData']),
+      ...mapActions('notifications', ['fetchNotifications']),
       onResponsiveInverted() {
         if (window.innerWidth < 991) {
           this.setResponsive(true)

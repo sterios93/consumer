@@ -4,13 +4,19 @@
             left
             content-class="dropdown-menu"
             offset-y
+            @click="onClick"
             transition="slide-y-transition">
-        <router-link
-                v-ripple
-                slot="activator"
-                class="toolbar-items"
-                to="/notifications"
-        >
+            <template v-slot:activator="{ on }">
+                    <v-btn
+                        color="primary"
+                        dark
+                        icon
+                        v-on="on"
+                    >
+                        <v-icon color="green">mdi-bell</v-icon>
+                    </v-btn>
+                </template>
+
             <v-badge
                     color="error"
                     overlap
@@ -18,9 +24,8 @@
                 <template slot="badge">
                     {{ nonSeenItems}}
                 </template>
-                <v-icon color="green">mdi-bell</v-icon>
+                 
             </v-badge>
-        </router-link>
         <NotificationsCard :items="items"/>
     </v-menu>
 </template>
@@ -36,6 +41,11 @@
 			...mapState('notifications', ['items']),
             ...mapGetters('notifications', ['nonSeenItems']),
         },
+        methods: {
+            onClick(event) {
+                console.error(event)
+            }
+        }
 	}
 </script>
 
