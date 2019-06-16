@@ -286,6 +286,7 @@
 			this.setGeolocation(this.marker);
 		},
 		pinClickHandler(id){
+        	this.$router.push({ path: 'home', query: { restaurantId: id }})
 			this.fetchRestaurantInfo(id)
 					.then(data => {
 						if (!data.success) return this.errorHandler(data) 

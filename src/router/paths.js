@@ -7,7 +7,8 @@ export default [
   {
     path: '/home',
     // Relative to /src/views
-    view: 'Home'
+    view: 'Home',
+    props: (route) => ({ restaurantId: route.query.restaurantId }) 
   },
   {
     path: '/user-profile',

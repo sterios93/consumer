@@ -68,7 +68,9 @@ import {mapActions} from 'vuex';
 				setState: 'snackbar/setState'
       }),
 			explore() {
-        this.fetchRestaurantInfo(this._restaurantInfo._id)
+        const id = this._restaurantInfo._id
+        this.$router.push({ path: 'home', query: { restaurantId: id }})
+        this.fetchRestaurantInfo(id)
 		  		.then(data => {
 					  if (!data.success) {
               this.setState({snackbar: true, message: data.error.message, color: 'red'})

@@ -43,7 +43,7 @@ import Parallax from '../../src/components/custom/Paralax'
 import Map from '../../src/components/shared/map/Map'
 import ViewBottomSheet from '../../src/components/shared/ViewBottomSheet'
 import RestaurantsList from '../components/shared/restaurant/List'
-import { mapState } from 'vuex'
+import { mapState, mapActions } from 'vuex'
 
 export default {
   name: 'Home',
@@ -51,7 +51,13 @@ export default {
     Parallax,
     Map,
     ViewBottomSheet,
-	RestaurantsList,
+	  RestaurantsList,
+  },
+  props: {
+    restaurantId: {
+      type: String,
+      default: ''
+    }
   },
   data () {
     return {}
@@ -60,6 +66,27 @@ export default {
     ...mapState({
 	    restaurants: (state) => state.restaurants.allRestaurants,
     })
+  },
+  created() {
+    if (this.restaurantId !== '') this.fetchRestaurant(this.restaurantId)
+  },
+  methods: {
+    ...mapActions({
+      setBottomSheetVisible: 'bottomSheet/setVisibility',
+      setCurrentRestInfo: 'restaurants/setCurrentRestaurantInfo',
+      fetchRestaurantInfo: 'restaurants/fetchRestaurantInfo',
+      setState: 'snackbar/setState'
+    }),
+    fetchRestaurant(id) {
+      this.fetchRestaurantInfo(id)
+        .then(data => {
+          if (!data.success) {
+            this.setState({snackbar: true, message: data.error.message, color: 'red'})
+          }
+        })
+      this.setCurrentRestInfo(this._restaurantInfo);
+      this.setBottomSheetVisible(true);
+    }
   },
 }
 </script>

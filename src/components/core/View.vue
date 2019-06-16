@@ -48,8 +48,8 @@
     created() {
       // Polling data every 60 000 ms
       const doStuff = () => {
-        this.fetchNotifications()
-        !this.destroyed && setTimeout(doStuff, 60000);
+        // this.fetchNotifications()
+        // !this.destroyed && setTimeout(doStuff, 60000);
       };
       doStuff();
     },
