@@ -62,22 +62,29 @@
 	watch: {
 		currentRestId: {
 			handler: function(id) {
-				// tabs[0] Main Menu
-				if (this.selectedMenu === 'main') {
+				if (id && this.selectedMenu === 'main') {
 					this.fetchMenuHandler(); 
 					this.fetchCategoriesHandler();
 				}
 			},
+			immediate: true
 		},
 		selectedMenu: {
 			handler: function(menu) {
-				if (menu === 'special') {
-					this.fetchSpecialOffersHandler();
-        		}
-        		if (menu === 'lunch') {
-					this.fetchLunchOffersHandler();
+				if (this.currentRestId !== undefined && this.currentRestId !== null && this.currentRestId !== '') {
+					if (menu === 'main') {
+						this.fetchMenuHandler(); 
+						this.fetchCategoriesHandler();
+					}
+					if (menu === 'special') {
+						this.fetchSpecialOffersHandler();
+					}
+					if (menu === 'lunch') {
+						this.fetchLunchOffersHandler();
+					}
 				}
-			}
+			},
+			immediate: true
 		}
 	},
     data() {
@@ -93,7 +100,7 @@
 
     computed: {
       ...mapState({
-		  currentRestId: (state) => state.restaurants.currentRestaurant.info.id,
+		  currentRestId: (state) => state.restaurants.currentRestaurant.info && state.restaurants.currentRestaurant.info._id,
 	  }),
       isMainMenu() { return this.selectedMenu === 'main' },
       menuComponent() { return `${this.selectedMenu}-menu` },
