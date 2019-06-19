@@ -14,6 +14,10 @@
         </v-flex>
     </v-flex>
 
+    <v-flex v-else-if="items.length === 0">
+      <v-subheader>No Products</v-subheader>
+    </v-flex>
+
     <v-flex v-else  class="pa-1">
         <v-subheader>All products</v-subheader>
         <MenuList 
