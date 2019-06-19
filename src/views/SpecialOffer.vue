@@ -70,13 +70,11 @@ export default {
 	  defaultImage: 'https://cdn.vuetifyjs.com/images/lists/ali.png',
 	  localSpecialOffer: {},
 	  localRestInfo: {
-		  info: {
-				name: '',
-				phone: '',
-				type: '',
-				website: '',
-				}
-	  },
+      name: '',
+      phone: '',
+      type: '',
+      website: '',
+	    },
     }
   },
   components: {
@@ -115,14 +113,12 @@ export default {
 								else {
 									//TODO: pass the lat and lng, in order to display the adress
 									this.localRestInfo = {
-										info: {
-											name: data.result.restaurantName,
-											phone:data.result.number,
-											type: data.result.type,
-											website: data.result.website,
-											lat: data.result.lat || '',
-											lng: data.result.lng || '',
-										}
+                    name: data.result.restaurantName,
+                    number: data.result.number,
+                    type: data.result.type,
+                    website: data.result.website,
+                    lat: data.result.lat || '',
+                    lng: data.result.lng || '',
 									}
 								}
 							})

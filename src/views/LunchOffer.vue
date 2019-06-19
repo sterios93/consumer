@@ -62,16 +62,14 @@
     },
     data () {
       return {
-		defaultImage: 'https://cdn.vuetifyjs.com/images/lists/ali.png',
-		localLunchOffer: {},
-		localRestInfo: {
-		  info: {
-				name: '',
-				phone: '',
-				type: '',
-				website: '',
+        defaultImage: 'https://cdn.vuetifyjs.com/images/lists/ali.png',
+        localLunchOffer: {},
+        localRestInfo: {
+          name: '',
+          number: '',
+          type: '',
+          website: '',
 				}
-	  	},
       }
     },
     computed: {
