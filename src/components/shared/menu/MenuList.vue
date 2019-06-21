@@ -61,5 +61,5 @@
         width: 100%
     .overflow-y-scroll
         overflow-y scroll
-        height 700px
+        height auto
 </style>

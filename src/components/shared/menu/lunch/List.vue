@@ -62,5 +62,6 @@
 <style scoped lang="stylus">
     .overflow-y-scroll
         overflow-y scroll
-        height 700px
+        height auto
+        max-height 500px
 </style>
