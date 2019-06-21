@@ -91,11 +91,9 @@
 
 <script>
   import {mapActions, mapState} from 'vuex'
+  import { addressParser, keyParser } from '../../../utils/helpers'
 
   export default {
-	props: {
-	  storeModule: String
-	},
 	data() {
 	  return {
 		isActive: null,
@@ -209,7 +207,6 @@
 		  }
 		],
 		marker: null,
-		apiKey: 'AIzaSyAfYAgsxbh9FIJw1lAUc3B_t3ujOTrDRT4',
 		restaurantType: '',
 		restaurantCategory: '',
 		restaurantName: '',
@@ -240,7 +237,7 @@
 			setBottomSheetVisible: 'bottomSheet/setVisibility',
 		}),
 		...mapActions('snackbar', ['setState']),
-		...mapActions('map', ['fetchMarkers', 'setGeolocation']),
+		...mapActions('map', ['fetchMarkers', 'setGeolocation', 'getAdress']),
 		...mapActions('restaurants', ['fetchRestaurantInfo']),
 		geolocate: function () {
 			const onSuccess = (position) => {
@@ -306,9 +303,9 @@
 			lng: place.geometry.location.lng(),
 			};
 
-			const city = this.keyParser(place.address_components, 'locality');
-			const country = this.keyParser(place.address_components, 'country');
-			const postalCode = this.keyParser(place.address_components, 'postal_code');
+			const city = keyParser(place.address_components, 'locality');
+			const country = keyParser(place.address_components, 'country');
+			const postalCode = keyParser(place.address_components, 'postal_code');
 
 			const data = {
 				city,
@@ -331,38 +328,15 @@
 		  lat: lat,
 		  lng: lng,
 		}
-		this.getAddress(lat, lng);
-	  },
-	  addressParser(data) {
-		const address = (data.results && data.results[0]) ? data.results[0] : null;
+		this.getAdress(this.marker)
+			.then(rawAdress => {
+				const parsedAddress = addressParser(rawAdress);
+				if (parsedAddress) this.populateData(parsedAddress);
 
-		if (address) {
-		  const {address_components, formatted_address} = address;
-		  const city = this.keyParser(address_components, 'locality');
-		  const country = this.keyParser(address_components, 'country');
-		  const postalCode = this.keyParser(address_components, 'postal_code');
-		  const location = address.geometry.location;
-
-		  return {
-			city,
-			country,
-			postalCode,
-			formatted_address,
-			location
-		  }
-		} else {
-		  return false
-		}
+			})
 	  },
 	  shrinkPanel() {
 		this.isActive = null
-	  },
-	  keyParser(data, searchedKey) {
-		for (let key in data) {
-		  if (data[key].types.includes(searchedKey)) {
-			return data[key].long_name;
-		  }
-		}
 	  },
 	  /**
 	   *
@@ -371,16 +345,6 @@
 	  populateData(data) {
 		this.$store.dispatch(`map/setAddress`, data.formatted_address);
 	  },
-	  getAddress(lat, lng) {
-		fetch(`https://maps.googleapis.com/maps/api/geocode/json?latlng=${lat + ',' + lng}&key=${this.apiKey}&language=en`)
-		  .then(res => {
-			if (res.status === 200) return res.json();
-		  })
-		  .then(res => {
-			const address = this.addressParser(res);
-			if (address) this.populateData(address);
-		  })
-	  }
 	}
   };
 </script>
