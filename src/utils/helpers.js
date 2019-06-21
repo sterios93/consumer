@@ -83,3 +83,34 @@ const handleErrors = (data) => {
 
   store.dispatch('snackbar/setState', {snackbar: true, message: data.error.message, color: 'red'})
 }
+
+export const addressParser = (data) => {
+  const address = (data.results && data.results[0]) ? data.results[0] : null;
+
+  if (address) {
+    const {address_components, formatted_address} = address;
+    const city = keyParser(address_components, 'locality');
+    const country = keyParser(address_components, 'country');
+    const postalCode = keyParser(address_components, 'postal_code');
+    const location = address.geometry.location;
+
+    return {
+      city,
+      country,
+      postalCode,
+      formatted_address,
+      location
+    }
+
+  } else {
+    return false
+  }
+}
+
+export const keyParser = (data, searchedKey) => {
+  for (let key in data) {
+    if (data[key].types.includes(searchedKey)) {
+    return data[key].long_name;
+    }
+  }
+}
