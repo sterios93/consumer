@@ -59,8 +59,7 @@
 
 						<v-list-tile-content>
 						   <!-- TODO: Parse the coordinates to real adress -->
-							<v-list-tile-title>1400 Main Street</v-list-tile-title>
-							<v-list-tile-sub-title>Orlando, FL 79938</v-list-tile-sub-title>
+							<v-list-tile-title>{{parsedAddress.formatted_address}}</v-list-tile-title>
 						</v-list-tile-content>
 					</v-list-tile>
 
@@ -86,6 +85,8 @@
 
 <script>
 	import {mapState, mapActions} from 'vuex'
+	import { addressParser } from '../../../../utils/helpers'
+
 	export default {
 		name: 'restaurant-info',
 		props: {
@@ -106,8 +107,20 @@
 			},
 			isDesktop: Boolean,
 		},
+		watch: {
+			information: {
+				handler: function (info) {
+					this.getAdress(info)
+						.then(res => {
+							this.parsedAddress = addressParser(res);
+						})
+				},
+			}
+		},
 		data() {
-			return {}
+			return {
+				parsedAddress: 'Default adress',
+			}
 		},
 		computed: {
 			...mapState({
@@ -134,6 +147,9 @@
 			...mapActions('restaurants', [
 				'setUserSubsription',
 			]),
+			...mapActions('map', [
+				'getAdress',
+			]),
 			async toggleSubscribe() {
 				let data = {}
 
@@ -155,12 +171,16 @@
 						active: data.result.active
 					})
 				}
-			}
+			},
 		}
 	}
 </script>
 
 <style scoped lang="stylus">
+	>>> .v-list__tile__title
+			white-space: initial !important
+			overflow: initial !important
+			text-overflow: initial !important
 	.overflow-y-scroll
 		overflow-y scroll
 		height 700px
