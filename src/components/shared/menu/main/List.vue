@@ -1,7 +1,7 @@
 <template>
     <v-flex 
       v-if="selectedCategories[0]"
-	  class="pa-0 d-flex transition-custom">
+	  class="pa-0 transition-custom">
 	  
         <v-flex class="py-0" xs12 
 			v-for="(category, index) in selectedCategories"
@@ -61,7 +61,8 @@
         width: 100%
         flex-direction: row
         flex-wrap: wrap
-        height 700px
+        height auto
+        max-height 500px
         overflow-y scroll
         overflow-x hidden
 </style>
