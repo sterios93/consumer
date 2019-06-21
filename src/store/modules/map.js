@@ -9,6 +9,7 @@ export default {
     geolocation: '',
     markers: [],
     searchedAdress: '',
+		apiKey: 'AIzaSyAfYAgsxbh9FIJw1lAUc3B_t3ujOTrDRT4',
   },
   mutations: {
     SET_TOKEN: set('token'),
@@ -33,6 +34,12 @@ export default {
     },
     setAddress({commit}, payload) {
       commit('SET_SEARCHED_ADRESS', payload);
+    },
+    getAdress({commit, state}, payload) {
+      const { lat, lng } = payload;
+
+      return fetch(`https://maps.googleapis.com/maps/api/geocode/json?latlng=${lat + ',' + lng}&key=${state.apiKey}&language=en`)
+        .then(res => res.json())  
     },
     fetchMarkers({rootState, commit, dispatch}, data) {
       const { apiUrl, findRestaurantsPath } = rootState.settings;
