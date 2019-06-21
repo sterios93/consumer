@@ -7,13 +7,15 @@ export default {
     token: '',
     style: '',
     geolocation: '',
-    markers: []
+    markers: [],
+    searchedAdress: '',
   },
   mutations: {
     SET_TOKEN: set('token'),
     SET_STYLE: set('style'),
     SET_GEOLOCATION: (state, payload) => state.geolocation = payload,
     SET_MARKERS: (state, payload) => state.markers = payload,
+    SET_SEARCHED_ADRESS: (state, payload) => state.searchedAdress = payload,
   },
   getters: {},
   actions: {
@@ -28,6 +30,9 @@ export default {
     },
     setMarkers({commit}, payload) {
       commit('SET_MARKERS', payload)
+    },
+    setAddress({commit}, payload) {
+      commit('SET_SEARCHED_ADRESS', payload);
     },
     fetchMarkers({rootState, commit, dispatch}, data) {
       const { apiUrl, findRestaurantsPath } = rootState.settings;

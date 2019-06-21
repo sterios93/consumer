@@ -230,7 +230,7 @@
 	},
 	computed: {
 	  ...mapState({
-		rAddress(state) { return state[this.storeModule].address },
+		rAddress(state) { return state.map.searchedAdress },
 		isBottomSheetVisible: (state) => state.bottomSheet.visibility,
 		markers: (state) => state.map.markers,
 	  }),
@@ -282,7 +282,7 @@
 				maxDistance: 10000,
 				location: this.marker,
 			};
-			console.error(payload)
+
 			this.fetchMarkers(payload);
 			this.setGeolocation(this.marker);
 		},
@@ -369,11 +369,7 @@
 	   * @param {object} data
 	   */
 	  populateData(data) {
-		this.$store.dispatch(`${this.storeModule}/setAddress`, data.formatted_address);
-		this.$store.dispatch(`${this.storeModule}/setCity`, data.city);
-		this.$store.dispatch(`${this.storeModule}/setCountry`, data.country);
-		this.$store.dispatch(`${this.storeModule}/setPostalCode`, data.postalCode);
-		this.$store.dispatch(`${this.storeModule}/setLocation`, data.location);
+		this.$store.dispatch(`map/setAddress`, data.formatted_address);
 	  },
 	  getAddress(lat, lng) {
 		fetch(`https://maps.googleapis.com/maps/api/geocode/json?latlng=${lat + ',' + lng}&key=${this.apiKey}&language=en`)
