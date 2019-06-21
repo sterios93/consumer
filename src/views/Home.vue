@@ -12,8 +12,7 @@
       </v-flex>
 
       <v-flex xs12>
-        <!-- // TODO: check if we still need to pass dynamic store module. -->
-        <Map class="map-container" storeModule="userProfile"/> 
+        <Map class="map-container" /> 
       </v-flex>
 
       <ViewBottomSheet/>
