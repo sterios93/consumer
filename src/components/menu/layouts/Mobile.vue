@@ -62,26 +62,14 @@
 	watch: {
 		currentRestId: {
 			handler: function(id) {
-				if (id && this.selectedMenu === 'main') {
-					this.fetchMenuHandler(); 
-					this.fetchCategoriesHandler();
-				}
+				if (id)this.tabFetcher(this.selectedMenu)
 			},
 			immediate: true
 		},
 		selectedMenu: {
 			handler: function(menu) {
 				if (this.currentRestId !== undefined && this.currentRestId !== null && this.currentRestId !== '') {
-					if (menu === 'main') {
-						this.fetchMenuHandler(); 
-						this.fetchCategoriesHandler();
-					}
-					if (menu === 'special') {
-						this.fetchSpecialOffersHandler();
-					}
-					if (menu === 'lunch') {
-						this.fetchLunchOffersHandler();
-					}
+					this.tabFetcher(menu);
 				}
 			},
 			immediate: true
@@ -157,6 +145,18 @@
         'setMenuModalVisibility': 'modals/setMenuModalVisibility',
         'setBottomSheetVisibility': 'bottomSheet/setVisibility',
 	  }),
+	  	tabFetcher(activeTab) {
+			if (activeTab === 'main') {
+				this.fetchMenuHandler(); 
+				this.fetchCategoriesHandler();
+			}
+			if (activeTab === 'special') {
+				this.fetchSpecialOffersHandler();
+			}
+			if (activeTab === 'lunch') {
+				this.fetchLunchOffersHandler();
+			}
+		},
 		fetchMenuHandler() {
 			this.fetchMenu()
 				.then(data => { 
