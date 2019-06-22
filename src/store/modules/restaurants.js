@@ -37,6 +37,7 @@ export default {
         SELECT_CATEGORY: (state, payload) => state.currentRestaurant.selectedCategories.push(payload),
         DESELECT_CATEGORY: (state, payload) => state.currentRestaurant.selectedCategories.splice(state.currentRestaurant.selectedCategories.indexOf(payload),1),
         SET_USER_SUBRICPTION: (state, payload) => state.currentRestaurant.info.userSubscription = payload,
+        RESET_SELECTED_CATEGORIES: (state) => state.currentRestaurant.selectedCategories = [],
     },
     getters: {
         isCategorySelected: (state) => (category) => {
@@ -50,6 +51,7 @@ export default {
         getSelectedCategories: (state) => state.currentRestaurant.selectedCategories,
     },
     actions: {
+        resetSelectedCategories({commit}) { commit('RESET_SELECTED_CATEGORIES')},
         setRestaurants({commit}, restaurants) { commit('SET_RESTAURANTS', restaurants)},
         setCurrentRestaurantInfo({commit}, payload) {  commit('SET_CURRENT_RESTAURANT_INFO',payload) },
         setUserSubsription({commit}, payload) { commit('SET_USER_SUBRICPTION',payload) },
