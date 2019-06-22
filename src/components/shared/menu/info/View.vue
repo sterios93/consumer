@@ -100,12 +100,21 @@
 						type: '',
 						website: '',
 						userSubscription: [],
-						lat: '',
-						lng: ''
+						lat: null,
+						lng: null,
 					}
 				}	
 			},
 			isDesktop: Boolean,
+		},
+		mounted() {
+			const { lat, lng } = this.information;
+			if (lat && lng) {
+				this.getAdress(this.information)
+						.then(res => {
+							this.parsedAddress = addressParser(res);
+						})
+			}
 		},
 		watch: {
 			information: {
