@@ -28,6 +28,7 @@
                             <v-flex xs9>
                                 <MenuList 
 									v-bind:items="localMenuItems"
+          							isDesktop="true"
 								/>
                             </v-flex>
                             <v-flex xs3 class="pa-4 mt-5">
@@ -95,6 +96,7 @@
 	watch: {
 		currentRestId: {
 			handler: function() {
+				this.resetSelectedCateg();
 				this.switchedTabHandler();
 			},
 		},
@@ -114,6 +116,7 @@
 			'fetchCategories': 'restaurants/fetchCurrRestCategories',
 			'fetchSpecialOffers': 'restaurants/fetchRestSpecialOffers',
 			'fetchLunchOffers': 'restaurants/fetchRestLunchOffers',
+			'resetSelectedCateg': 'restaurants/resetSelectedCategories'
 			}),
 			fetchMenuHandler() {
 				this.fetchMenu()

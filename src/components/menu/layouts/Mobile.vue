@@ -115,6 +115,7 @@
         if (this.selectedMenu === 'main') {
 		  	return { 
 				items: this.localMenuItems,
+				isDesktop: false,
 				scrollable: true
 				}	  
 		}

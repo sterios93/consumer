@@ -1,5 +1,5 @@
 <template>
-    <div :class="{'overflow-x-hidden overflow-y-scroll': scrollable}">
+    <div :class="{'overflow-x-hidden overflow-y-scroll': scrollable, mobile : !isDesktop}">
         <v-container grid-list-md fluid>
             <v-layout v-if="items.length > 0">
                   <v-slide-x-transition 
@@ -9,7 +9,7 @@
                     </v-flex>
                 </v-slide-x-transition>
             </v-layout>
-            <v-layout v-else align-center justify-center>
+            <v-layout align-center justify-center v-if="!items[0]">
                   <v-slide-x-transition mode="out-in" tag="ul" class="pa-0 full-width" color="transparent">
                     <v-flex xs12 class="py-2 px-0">
                       <v-subheader>No Products</v-subheader>
@@ -29,6 +29,10 @@
 
     props: {
       items: Array,
+      isDesktop: {
+        type: Boolean,
+        default: true
+      },
       scrollable: {
           type: Boolean,
           default: true
@@ -62,4 +66,8 @@
     .overflow-y-scroll
         overflow-y scroll
         height auto
+        padding-bottom 50px
+    .mobile
+        min-height 500px
+        max-height 500px
 </style>

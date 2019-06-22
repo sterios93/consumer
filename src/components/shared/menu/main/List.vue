@@ -49,7 +49,8 @@
       menuListProps(category) {
         return {
           items: this.getMenuByCategory(category),
-          color: this.color
+          color: this.color,
+          
         }
       },
     }
