@@ -1,5 +1,8 @@
 <template>
-  <v-checkbox v-model="selected" :label="item" :value="item"/>
+  <div class="category-item">
+    <input class="checkBox" type="checkbox" :value="item" v-model="selected">
+    <label class="checkLabel">{{ item }}</label>
+  </div>
 </template>
 
 <script>
@@ -9,12 +12,10 @@ export default {
   props: {
 	item: String,
   },
-
   computed: {
 	...mapGetters('restaurants', ['isCategorySelected']),
     selected: {
       get() {
-		  // TODO: somehow the tick is not placed when the category is selected
         return this.isCategorySelected(this.item);
       },
       set() {
@@ -25,4 +26,11 @@ export default {
 };
 </script>
 
-<style scoped lang="stylus"></style>
+<style scoped lang="stylus">
+    .checkBox
+      height 20px
+      width 20px
+    .checkLabel
+      vertical-align text-bottom
+      margin-left 10px  
+</style>
