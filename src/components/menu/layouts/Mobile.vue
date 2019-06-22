@@ -123,7 +123,8 @@
 		if (this.selectedMenu === 'special') {
 		  return {
 				items: this.localSpecialOffers,
-				scrollable: true
+				scrollable: true,
+				isDesktop: false,
             }
 		}
 		

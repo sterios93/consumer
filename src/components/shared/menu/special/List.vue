@@ -1,5 +1,5 @@
 <template>
-    <div :class="{'overflow-y-scroll overflow-x-hidden': scrollable}">
+    <div :class="{'overflow-y-scroll overflow-x-hidden': scrollable, mobile: !isDesktop}">
         <v-container grid-list-md fluid>
             <v-layout v-if="items.length > 0">
                 <v-slide-x-transition xs12 group mode="out-in" tag="ul" class="pa-0 ma-0 layout row wrap d-flex" color="transparent">
@@ -28,6 +28,10 @@
     },
     props: {
       items: Array,
+      isDesktop: {
+        type: Boolean,
+        default: true,
+      },
       scrollable: {
           type: Boolean,
           default: true
@@ -59,5 +63,9 @@
     .overflow-y-scroll
         overflow-y scroll
         height auto
+        max-height 500px
+        padding-bottom 50px
+    .mobile
+        min-height 500px
         max-height 500px
 </style>
