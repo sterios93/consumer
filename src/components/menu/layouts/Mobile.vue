@@ -131,7 +131,8 @@
 		if (this.selectedMenu === 'lunch') {
 		  return {
 				items: this.localLunchOffers,
-				scrollable: true
+				scrollable: true,
+				isDesktop: false,
             }
         }
       },
