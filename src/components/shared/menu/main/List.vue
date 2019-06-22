@@ -63,7 +63,7 @@
         flex-direction: row
         flex-wrap: wrap
         height auto
-        max-height 500px
+        max-height 450px
         overflow-y scroll
         overflow-x hidden
 </style>

@@ -183,7 +183,7 @@
 			text-overflow: initial !important
 	.overflow-y-scroll
 		overflow-y scroll
-		height 700px
+		height 500px
 	.view-card,.view-card-container
 		height: 100%
 </style>
