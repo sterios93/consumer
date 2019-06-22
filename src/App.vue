@@ -2,6 +2,7 @@
   <v-app :class="{'responsive' : responsive}">
     <core-toolbar />
     <core-view />
+    <core-footer />
   </v-app>
 </template>
 
