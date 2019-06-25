@@ -27,8 +27,8 @@
                   <img :src="image">
                 </v-list-tile-avatar>
 
-                <v-list-tile-content>
-                  <v-list-tile-title v-html="item.name"></v-list-tile-title>
+                <v-list-tile-content class="pa-2 suscription-list-item-content">
+                  <v-list-tile-title class="text-truncate" v-html="item.name"></v-list-tile-title>
                 </v-list-tile-content>
 
                 <v-list-tile-action>
@@ -118,4 +118,6 @@ export default {
                 bottom: 0 !important
     >>> .v-list
         width 95%
+        .suscription-list-item-content
+          width: 50px
 </style>
