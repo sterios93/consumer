@@ -171,7 +171,7 @@
 				.then(data => {
 					if (!data.success) return this.errorHandler(data) 
 					else {
-						this.localCategories = data.result;
+						this.localCategories = ['All items', ...data.result];
 						this.category = this.localCategories[0];
 						this.localMenuItems = this.getMenuByCategory()(this.category);
 					}

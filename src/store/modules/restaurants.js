@@ -46,6 +46,7 @@ export default {
         },
         getMenuByCategory: (state) => (searchedCategory) => {
             const items = state.currentRestaurant.menuItems;
+            if (searchedCategory === 'All items') return items
             if (items) return items.filter(item => item.category === searchedCategory);
         },
         getSelectedCategories: (state) => state.currentRestaurant.selectedCategories,
