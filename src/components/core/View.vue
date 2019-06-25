@@ -6,7 +6,6 @@
       </v-fade-transition>
     </div>
     <CustomSnackBar/>
-
     <ConfirmModal />
   </v-content>
 </template>
@@ -64,7 +63,7 @@
       ...mapActions('notifications', ['fetchNotifications']),
       pollNotifications() {
         this.fetchNotifications()
-        !this.destroyed && setTimeout(this.pollNotifications, 60000);
+        this.isUserLogged && !this.destroyed && setTimeout(this.pollNotifications, 60000);
       },
       onResponsiveInverted() {
         if (window.innerWidth < 991) {
