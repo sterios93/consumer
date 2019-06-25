@@ -28,7 +28,7 @@
             </v-flex>
 
             <v-flex xs12 sm7>
-                <v-card-title primary-title>
+                <v-card-title primary-title class="justify-center">
                     <div>
                         <div class="headline">{{item.name}}</div>
                         <div>{{item.description}}</div>
