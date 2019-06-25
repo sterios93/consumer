@@ -1,9 +1,9 @@
 <template>
   <v-bottom-sheet v-model="sheet">
-    <template v-slot:activator="{ on }">
+    <template v-slot:activator>
       <v-badge v-model="showBadge" color="error" overlap>
         <template slot="badge">{{ nonSeenItems }}</template>
-        <v-btn @click="onClick" dark icon v-on="on">
+        <v-btn @click="onClick" dark icon>
           <v-icon color="green">mdi-bell</v-icon>
         </v-btn>
       </v-badge>
