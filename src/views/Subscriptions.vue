@@ -86,7 +86,7 @@ export default {
         key: "confirm",
         value: {
           visibility: true,
-          action: `cancel your subscription to ${item.name}`,
+          action: `${item.active ? 'cancel' : 'active'} your subscription to ${item.name}`,
           callback: async () => {
             const payload = {
               subscriptionId: item._id
