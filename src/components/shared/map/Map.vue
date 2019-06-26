@@ -71,19 +71,15 @@
 			ref="map"
 			@click="addCustomMarker"
 	>
-	  <gmap-marker
-			  :position="marker"
-			  @click="toggleBottomSheet"
-	  ></gmap-marker>
+	  <gmap-marker :position="marker"/>
 
-<!-- TODO: those are the restaurant markers, we should make them look different -->
 	  <GmapMarker
 			:key="index"
 			v-for="(m, index) in markers"
 			:position="{lat: Number(m.lat), lng: Number(m.lng)}"
 			:clickable="true"
 			@click="pinClickHandler(m._id)"
-	  		icon='http://212.227.193.201/consumer/img/restaurant-pin.png'
+			icon='http://212.227.193.201/consumer/img/restaurant-pin.png'
 		/>
 	</gmap-map>
   </div>
@@ -207,9 +203,6 @@
 		  }
 		],
 		marker: null,
-		restaurantType: '',
-		restaurantCategory: '',
-		restaurantName: '',
 	  };
 	},
 	mounted() {
@@ -228,16 +221,40 @@
 	computed: {
 	  ...mapState({
 		rAddress(state) { return state.map.searchedAdress },
+		rType(state) { return state.map.searchedRestType },
+		rCategory(state) { return state.map.searchedRestCategory },
+		rName(state) { return state.map.searchedRestName },
 		isBottomSheetVisible: (state) => state.bottomSheet.visibility,
 		markers: (state) => state.map.markers,
 	  }),
+		restaurantType: {
+			get() {return this.rType},
+			set(v) {  this.setRType(v)},
+		},
+		restaurantCategory: {
+			get() {return this.rCategory},
+			set(v) {  this.setRCategory(v)},
+		},
+		restaurantName: {
+			get() {return this.rName},
+			set(v) {  this.setRName(v)},
+		},
+
 	},
 	methods: {
 		...mapActions({
 			setBottomSheetVisible: 'bottomSheet/setVisibility',
 		}),
 		...mapActions('snackbar', ['setState']),
-		...mapActions('map', ['fetchMarkers', 'setGeolocation', 'getAdress']),
+		...mapActions('map', [
+			'fetchMarkers', 
+			'setGeolocation', 
+			'getAdress', 
+			'setRType',
+			'setRCategory',
+			'setRName',
+			'resetLastIndex',
+			'setLastInList',]),
 		...mapActions('restaurants', ['fetchRestaurantInfo']),
 		geolocate: function () {
 			const onSuccess = (position) => {
@@ -261,27 +278,20 @@
 			this.$set(this.center, 'lng', coordinates.longitude)
 
 			this.$refs.map.$mapPromise.then((map) => {
-			map.panTo(this.center)
+				map.panTo(this.center)
 			})
 
 			this.marker = {
-			lat: this.center.lat,
-			lng: this.center.lng,
+				lat: this.center.lat,
+				lng: this.center.lng,
 			};
 		},
 		onFindClick(e) {
-			e && e.preventDefault(); // in case there is no click on the map , and we fetch it automatically with the geolocate method
-			const payload = {
-				type: this.restaurantType,
-				category: this.restaurantCategory,
-				name: this.restaurantName,
-				minDistance: 1000, 
-				maxDistance: 10000,
-				location: this.marker,
-			};
-
-			this.fetchMarkers(payload);
+			e && e.preventDefault();
+			this.resetLastIndex(); // This resets the last index in case of more fetches during the last search
+			this.setLastInList(false); // Reset the lastInlist option.
 			this.setGeolocation(this.marker);
+			this.fetchMarkers();
 		},
 		pinClickHandler(id){
         	this.$router.push({ path: 'home', query: { restaurantId: id }})
@@ -338,10 +348,6 @@
 	  shrinkPanel() {
 		this.isActive = null
 	  },
-	  /**
-	   *
-	   * @param {object} data
-	   */
 	  populateData(data) {
 		this.$store.dispatch(`map/setAddress`, data.formatted_address);
 	  },

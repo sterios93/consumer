@@ -27,7 +27,13 @@
 				/>
 
 				<v-layout align-center justify-center>
-					<v-btn flat small color="orange" class="more-btn">More</v-btn>
+					<v-btn
+            v-if="!noMoreItems" 
+            flat small 
+            color="orange" 
+            class="more-btn"
+            @click="requestMoreMarkers"
+            >More</v-btn>
 				</v-layout>
 			</v-flex>
 		</v-layout>
@@ -64,6 +70,7 @@ export default {
   computed: {
     ...mapState({
 	    restaurants: (state) => state.restaurants.allRestaurants,
+	    noMoreItems: (state) => state.map.lastInList,
     })
   },
   created() {
@@ -74,8 +81,12 @@ export default {
       setBottomSheetVisible: 'bottomSheet/setVisibility',
       setCurrentRestInfo: 'restaurants/setCurrentRestaurantInfo',
       fetchRestaurantInfo: 'restaurants/fetchRestaurantInfo',
-      setState: 'snackbar/setState'
+      setState: 'snackbar/setState',
+      fetchMoreMarkers: 'map/fetchMarkers'
     }),
+    requestMoreMarkers() {
+      this.fetchMoreMarkers({fetchMore: true});
+    },
     fetchRestaurant(id) {
       this.fetchRestaurantInfo(id)
         .then(data => {
