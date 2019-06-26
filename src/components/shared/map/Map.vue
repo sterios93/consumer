@@ -79,7 +79,7 @@
 			:position="{lat: Number(m.lat), lng: Number(m.lng)}"
 			:clickable="true"
 			@click="pinClickHandler(m._id)"
-			icon='http://212.227.193.201/consumer/img/restaurant-pin.png'
+			icon='../../../../public/img/restaurant-pin.png'
 		/>
 	</gmap-map>
   </div>
