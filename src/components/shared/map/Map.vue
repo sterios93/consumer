@@ -13,7 +13,7 @@
 						  <v-flex xs12 md8 class="d-flex pa-1">
 							  <gmap-autocomplete
 									  class="gmap-autocomplete"
-									  v-model="rAddress"
+									  v-model="restaurantAdress"
 									  placeholder="Address"
 									  @place_changed="setPlace"
 									  :select-first-on-enter="true">
@@ -79,7 +79,7 @@
 			:position="{lat: Number(m.lat), lng: Number(m.lng)}"
 			:clickable="true"
 			@click="pinClickHandler(m._id)"
-			icon='../../../../public/img/restaurant-pin.png'
+			icon='http://212.227.193.201/consumer/img/restaurant-pin.png'
 		/>
 	</gmap-map>
   </div>
@@ -227,6 +227,10 @@
 		isBottomSheetVisible: (state) => state.bottomSheet.visibility,
 		markers: (state) => state.map.markers,
 	  }),
+	  	restaurantAdress: {
+			  get() { return this.rAddress},
+			  set() {}
+		  },
 		restaurantType: {
 			get() {return this.rType},
 			set(v) {  this.setRType(v)},
