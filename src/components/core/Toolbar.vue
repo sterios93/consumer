@@ -126,11 +126,11 @@ export default {
     ...mapActions('snackbar', {setSnackbar: 'setState'}),
     ...mapActions('notifications', ['seeNotifications']),
     async handleSeeNotifications(items) {
-      if (items.lenght > 0) {
+      if (items.length > 0) {
         const data = await this.seeNotifications({
-          notificationIds: items
+          notificationIds: items.map(i => i._id)
         })
-        if (!data.success) this.setSnackbar({snackbar: true, message: data.error.message, color: 'red'})
+        if (!data.success) return this.setSnackbar({snackbar: true, message: data.error.message, color: 'red'})
       }
     },
     logOutAccount() {

@@ -11,6 +11,15 @@ export default {
 		SET_ITEMS: (state, payload) => {
 			state.items = payload
 		},
+		SET_SEEN: (state, ids) => {
+			let item
+			ids.forEach(id => {
+				item = state.items.find(i => i._id === id)
+				if (item) {
+					item.seen = true
+				}
+			});
+		}
 	},
 	getters: {
 		nonSeenItems: (state) => {
@@ -46,11 +55,11 @@ export default {
 		seeNotifications({commit, rootState}, payload) {
 			const { apiUrl, seeNotificationPath } = rootState.settings
 			const url = apiUrl + seeNotificationPath
-
+			
 			return postData({ url, payload })
 				.then((data) => {
 					if (data.success) {
-						commit('', data.result)
+						commit('SET_SEEN', data.result.seenNotifications)
 					}
 				})
 		} 
