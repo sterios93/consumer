@@ -78,8 +78,10 @@ import { required, email } from 'vuelidate/lib/validators';
         } else {
           this.resetPassword(this.email)
             .then(data => {
-              this.setState({snackbar: true, message: 'Check your email for the new password', color: 'red'})
-              if (data.success)this.$router.push({ path: 'maps' })
+              if (data.success) {
+                this.setState({snackbar: true, message: 'Check your email for the new password', color: 'green'})
+                this.$router.push({ path: '/login' })
+              }
               else {
                 this.setState({snackbar: true, message: data.msg, color: 'red'})
                 this.clear();
