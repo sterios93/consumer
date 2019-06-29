@@ -32,7 +32,6 @@ export default {
     setPassword: ({ commit }, phoneNumber) => { commit('SET_PASSWORD', phoneNumber) },
     setProfileValid: ({ commit }, value) => { commit('SET_PROFILE_VALID', value) },
     updateProfile: ({ commit, rootState, dispatch }, payload) => {
-      console.error(payload);
       let data = {
         payload,
         url: rootState.settings.apiUrl + rootState.settings.updateProfiePath,

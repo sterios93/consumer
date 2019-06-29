@@ -9,7 +9,7 @@ let config = {
   fetchProfilePath: 'consumer/profile/fetch',
   updateProfie: 'consumer/profile/update',
   findRestaurantsPath: 'restaurants/find',
-  resetPassPath: 'consumer/resetPassword',
+  resetPassPath: 'consumer/password/reset',
   fetchRestaurantMenuPath: 'menu/items/list?restaurantId=',
   fetchRestaurantCategoriesPath: 'restaurant/categories/list?restaurantId=',
   fetchRestaurantSpecialOffersPath: 'offers/special/list?restaurantId=',

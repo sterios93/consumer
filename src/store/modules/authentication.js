@@ -17,7 +17,9 @@ export default {
 	actions: {
 		resetPassword({dispatch, rootState,}, email){
 			const data = {
-				payload: email,
+				payload: {
+					email: email,	
+				},
 				url: rootState.settings.apiUrl + rootState.settings.resetPassPath,
 			}
 
