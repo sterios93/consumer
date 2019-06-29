@@ -23,8 +23,8 @@
 
                 <v-flex xs12 lg6>
                   <v-card-text class="text-xs-center">
-                    <h3 class="category font-weight-bold mb-3">From {{localSpecialOffer.timeStart}}</h3>
-                    <h3 class="category font-weight-bold mb-3">To {{localSpecialOffer.timeEnd}}</h3>
+                    <h3 class="category font-weight-bold mb-3">From: {{localSpecialOffer.timeStart}}</h3>
+                    <h3 class="category font-weight-bold mb-3">To: {{localSpecialOffer.timeEnd}}</h3>
                     <h3 class="card-title font-weight-light">{{localSpecialOffer.name}}</h3>
                     <p class="card-description font-weight-light">{{localSpecialOffer.description}}</p>
                     <p class="card-description font-weight-light">Also see our other offers bellow :)</p>
@@ -59,6 +59,8 @@
 import MenuItem from '../components/shared/menu/MenuItem'
 import InfoList from '../components/shared/menu/info/View'
 
+import {changeDateFormat} from '../utils/helpers'
+
 import {mapActions, mapState} from 'vuex'
 export default {
   name: 'SpecialOffer',
@@ -73,6 +75,7 @@ export default {
       name: '',
       phone: '',
       type: '',
+      userSubscription: [],
       website: '',
 	    },
     }
@@ -106,7 +109,11 @@ export default {
 			.then(data => {
 					if (!data.success) return this.errorHandler(data) 
 					else {
-						this.localSpecialOffer = data.result;
+             let item = data.result
+            item.timeStart = changeDateFormat(item.timeStart, false)
+            item.timeEnd = changeDateFormat(item.timeEnd, false)
+
+						this.localSpecialOffer = item;
 						this.fetchRestInfo(this.localSpecialOffer.restaurantId)
 							.then(data => {
 								if (!data.success) return this.errorHandler(data);
@@ -117,6 +124,7 @@ export default {
                     number: data.result.number,
                     type: data.result.type,
                     website: data.result.website,
+                    userSubscription: data.result.userSubscription,
                     lat: data.result.lat || '',
                     lng: data.result.lng || '',
 									}

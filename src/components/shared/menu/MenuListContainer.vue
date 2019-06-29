@@ -67,6 +67,7 @@
   import InfoList from '../../shared/menu/info/View'
   import CategoryList from '../../shared/category/CategoryList'
 
+  import {changeDateFormat} from '../../../utils/helpers'
 
   import {mapState, mapActions} from 'vuex'
 
@@ -118,6 +119,11 @@
 			'fetchLunchOffers': 'restaurants/fetchRestLunchOffers',
 			'resetSelectedCateg': 'restaurants/resetSelectedCategories'
 			}),
+			parseDates(item) {
+				item.timeStart = changeDateFormat(item.timeStart, false)
+				item.timeEnd = changeDateFormat(item.timeEnd, false)
+				return item
+			},
 			fetchMenuHandler() {
 				this.fetchMenu()
 					.then(data => { 
@@ -142,6 +148,9 @@
 					.then(data => {
 						if (!data.success) return this.errorHandler(data) 
 						else {
+							data.result.forEach(item => {
+								item = this.parseDates(item)
+							});
 							this.localSpecialOffers = data.result
 						}
 					})
@@ -151,6 +160,9 @@
 					.then(data => { 
 						if (!data.success) return this.errorHandler(data) 
 						else {
+							data.result.forEach(item => {
+								item = this.parseDates(item)
+							});
 							this.localLunchOffers = data.result
 						}
 					})

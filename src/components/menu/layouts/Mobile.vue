@@ -48,6 +48,8 @@
   import InfoPage from '../../shared/menu/info/View'
   import {mapState, mapGetters, mapActions} from 'vuex'
 
+  import {changeDateFormat} from '../../../utils/helpers'
+
   export default {
     props: {
       color: String,
@@ -182,6 +184,9 @@
 				.then(data => {
 					if (!data.success) return this.errorHandler(data) 
 					else {
+						data.result.forEach(item => {
+							item = this.parseDates(item)
+						});
 						this.localSpecialOffers = data.result
 					}
 				})
@@ -191,9 +196,17 @@
 			.then(data => {
 					if (!data.success) return this.errorHandler(data) 
 					else {
+						data.result.forEach(item => {
+							item = this.parseDates(item)
+						});
 						this.localLunchOffers = data.result
 					}
 				})
+		},
+		parseDates(item) {
+			item.timeStart = changeDateFormat(item.timeStart, false)
+            item.timeEnd = changeDateFormat(item.timeEnd, false)
+			return item
 		},
 		errorHandler(data) { 
 			this.setState({snackbar: true, message: data.error.message, color: 'red'})

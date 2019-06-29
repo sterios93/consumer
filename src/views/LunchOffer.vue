@@ -20,8 +20,8 @@
 
                                 <v-flex xs12 lg6>
                                     <v-card-text class="text-xs-center">
-                                        <h3 class="category font-weight-bold mb-3">From{{localLunchOffer.timeStart}}</h3>
-                    					<h3 class="category font-weight-bold mb-3">To {{localLunchOffer.timeEnd}}</h3>
+                                        <h3 class="category font-weight-bold mb-3">From: {{localLunchOffer.timeStart}}</h3>
+                    					<h3 class="category font-weight-bold mb-3">To: {{localLunchOffer.timeEnd}}</h3>
                                     </v-card-text>
                                 </v-flex>
                             </v-layout>
@@ -49,6 +49,8 @@
   import MenuItem from '../components/shared/menu/MenuItem'
   import InfoList from '../components/shared/menu/info/View'
 
+  import {changeDateFormat} from '../utils/helpers'
+
   import { mapActions, mapState } from 'vuex'
 
   export default {
@@ -64,12 +66,6 @@
       return {
         defaultImage: 'https://cdn.vuetifyjs.com/images/lists/ali.png',
         localLunchOffer: {},
-        localRestInfo: {
-          name: '',
-          number: '',
-          type: '',
-          website: '',
-				}
       }
     },
     computed: {
@@ -98,7 +94,11 @@
 			.then(data => {
 					if (!data.success) return this.errorHandler(data) 
 					else {
-						this.localLunchOffer = data.result;
+            let item = data.result
+            item.timeStart = changeDateFormat(item.timeStart, false)
+            item.timeEnd = changeDateFormat(item.timeEnd, false)
+			      
+						this.localLunchOffer = item;
 						this.fetchRestInfo(this.localLunchOffer.restaurantId)
 							.then(data => {
 								if (!data.success) return this.errorHandler(data);
