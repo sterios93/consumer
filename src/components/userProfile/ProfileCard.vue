@@ -227,6 +227,9 @@ export default {
       }
       this.updateProfile(payload);
       this.setEditMode(false);
+      this.password = '';
+      this.passwordRepeat = null,
+      this.oldPassword = null,
       this.togglePasswordView();
     }
   }
