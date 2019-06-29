@@ -21,7 +21,7 @@
             <v-flex xs12 sm3>
 				<!-- TODO: remove the hardcoded string when the BE is configured properly -->
                 <v-img
-                    v-bind:src=" 'https://cdn.vuetifyjs.com/images/lists/ali.png' || item.img" 
+                    v-bind:src="item.img || 'https://cdn.vuetifyjs.com/images/lists/ali.png' " 
                     height="125px"
                     contain
                 ></v-img>
