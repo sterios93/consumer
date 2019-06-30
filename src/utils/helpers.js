@@ -105,7 +105,7 @@ export const changeDateFormat = (date, utc = true) => {
     minute: currentMinute,
   })
 
-  return `${year}-${month}-${day} ${hour}:${minute}` 
+  return utc ? `${year}-${month}-${day} ${hour}:${minute}` : `${day}-${month}-${year} ${hour}:${minute}`
 }
 
 export const utcParser = ({utc, year, month, day, hour, minute}) => {
