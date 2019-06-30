@@ -86,14 +86,14 @@ const handleErrors = (data) => {
   store.dispatch('snackbar/setState', {snackbar: true, message: data.error.message, color: 'red'})
 }
 
-export const changeDateFormat = (date, utc = true) => {
+export const changeDateFormat = (date, utc = true, reverse = false) => {  
   if (!date) return null
-  
+    
   let arr = date.split(' ')
-  let ISODate = arr[0]
+  let ISODate = !utc ? arr[0].split('-').reverse() : arr[0].split('-')
   let time = arr[1]
 
-  let [currentYear, currentMonth, currentDay] = !utc ? ISODate.split('-').reverse() : ISODate.split('-')
+  let [currentYear, currentMonth, currentDay] = ISODate
   let [currentHour, currentMinute] = time.split(':')
 
   const {year, month, day, hour, minute} = utcParser({
@@ -105,25 +105,19 @@ export const changeDateFormat = (date, utc = true) => {
     minute: currentMinute,
   })
 
-  return utc ? `${year}-${month}-${day} ${hour}:${minute}` : `${day}-${month}-${year} ${hour}:${minute}`
+  return reverse ? `${day}-${month}-${year} ${hour}:${minute}` : `${year}-${month}-${day} ${hour}:${minute}` 
 }
 
 export const utcParser = ({utc, year, month, day, hour, minute}) => {
-  let newDate
+  let newDate = moment.utc().year(year).month(month).date(day).hours(hour).minute(minute)
 
-  if (utc) {
-    let date = new Date(year, month, day, hour, minute)
-    newDate = moment.utc(date)
-  } else {
-    let dateAsString = `${year}-${month}-${day} ${hour}:${minute}`
-    newDate = moment.utc(dateAsString).local()
+  if (!utc) {
+    newDate = newDate.local()
   }
 
-  console.error(newDate)
-
-  year = newDate.date().toString().padStart(2, '0').slice(-2)
+  year = newDate.year()
+  day = newDate.date().toString().padStart(2, '0').slice(-2)
   month = newDate.month().toString().padStart(2, '0').slice(-2)
-  day = newDate.year()
   hour = newDate.hour().toString().padStart(2, '0').slice(-2)
   minute = newDate.minute().toString().padStart(2, '0').slice(-2)
 
