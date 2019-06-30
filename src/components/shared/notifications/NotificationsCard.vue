@@ -4,10 +4,6 @@
                     <span class="toolbar-left">
                         <span class="font-weight-bold">Notifications</span>
                     </span>
-            <span class="toolbar-right">
-                        <a class="mr-3 body-1" href="#">Mark All as Read</a>
-                        <a class="body-1" href="#">Settings</a>
-                    </span>
         </div>
         <v-card>
             <v-list three-line subheader>
@@ -35,8 +31,13 @@
                         </v-list-tile-content>
 
                         <v-list-tile-action>
-                            <v-btn icon ripple>
-                                <v-icon color="grey lighten-1">info</v-icon>
+                            <v-btn 
+                                :loading="deleteLoading"
+                                :disabled="deleteLoading"
+                                @click.stop="handleDelete(notification._id)"
+                                icon 
+                                ripple>
+                                <v-icon color="grey lighten-2">delete</v-icon>
                             </v-btn>
                         </v-list-tile-action>
                     </v-list-tile>
@@ -47,18 +48,38 @@
 </template>
 
 <script>
+    import { mapActions } from 'vuex'
+
 	export default {
 		props: {
 			items: {type: Array, default: () => []},
 			maxWidth: {type: Number, default: 500},
 			fullWidth: {type: Boolean, default: false},
-		},
+        },
+        data() {
+            return {
+                deleteLoading: false,
+            }
+        },
 		computed: {
 			width() {
 				return this.fullWidth ? '100%' : this.maxWidth
 			}
 		},
 		methods: {
+            ...mapActions({
+                setSnackbar: 'snackbar/setState',
+                removeNotification: 'notifications/removeNotification',
+            }),
+            handleDelete(notificationId) {
+                if (this.deleteLoading) return
+                this.deleteLoading = true
+
+                this.removeNotification({ notificationId })
+                    .then((data) => {
+                        this.deleteLoading = false
+                    })
+            },
 			onClick(id) {
 				this.$router.push({ path: `/special-offer/${id}`})
 			}

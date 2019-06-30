@@ -11,6 +11,12 @@ export default {
 		SET_ITEMS: (state, payload) => {
 			state.items = payload
 		},
+		REMOVE_NOTIFICATION: (state, payload) => {
+			let index = state.items.find(item => item._id === payload)
+			if (index !== -1) {
+				state.items.splice(index, 1)
+			}
+		},
 		SET_SEEN: (state, ids) => {
 			let item
 			ids.forEach(id => {
@@ -48,8 +54,9 @@ export default {
 			return postData({ url, payload })
 				.then((data) => {
 					if (data.success) {
-						commit('', data.result)
+						commit('REMOVE_NOTIFICATION', data.result.removedId)
 					}
+					return data
 				})
 		},
 		seeNotifications({commit, rootState}, payload) {
