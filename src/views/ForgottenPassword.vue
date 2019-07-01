@@ -83,7 +83,7 @@ import { required, email } from 'vuelidate/lib/validators';
                 this.$router.push({ path: '/login' })
               }
               else {
-                this.setState({snackbar: true, message: data.msg, color: 'red'})
+                this.setState({snackbar: true, message: data.error.message, color: 'red'})
                 this.clear();
               }
             })
