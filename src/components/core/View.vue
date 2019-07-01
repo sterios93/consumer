@@ -62,7 +62,7 @@
       ...mapActions('authentication', ['fetchUserData']),
       ...mapActions('notifications', ['fetchNotifications']),
       pollNotifications() {
-        this.fetchNotifications()
+        this.isUserLogged && this.fetchNotifications()
         this.isUserLogged && !this.destroyed && setTimeout(this.pollNotifications, 60000);
       },
       onResponsiveInverted() {
