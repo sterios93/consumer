@@ -22,7 +22,7 @@
     },
     metaInfo() {
       return {
-        title: 'Vuetify Material Dashboard by CreativeTim'
+        title: 'Lunch Deal 24'
       }
     },
     computed: {
