@@ -14,7 +14,7 @@ export default {
     apiKey: 'AIzaSyAfYAgsxbh9FIJw1lAUc3B_t3ujOTrDRT4',
     lastIndex: 0,
     amount: 4,
-    minDistance: 1000,
+    minDistance: 0,
     maxDistance: 10000,
     searchedAdress: '',
     searchedRestType: '',
