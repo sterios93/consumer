@@ -39,15 +39,12 @@
         handler: function (value) {
           if (value === true) {
             this.fetchUserData()
+            // Polling data every 60 000 ms
             this.pollNotifications()
           }
         },
         immediate: true
        }
-    },
-    created() {
-      // Polling data every 60 000 ms
-      this.isUserLogged && this.pollNotifications();
     },
     mounted() {
       this.onResponsiveInverted()
