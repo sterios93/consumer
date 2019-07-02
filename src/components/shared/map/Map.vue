@@ -208,7 +208,7 @@
 	mounted() {
 	  this.$refs.map.$mapPromise.then((map) => {
 		setTimeout(() => {
-		  this.clickableMap = this.$refs.map.$el.querySelector('.gm-style-pbc').nextElementSibling
+		  this.clickableMap = this.$refs && this.$refs.map.$el.querySelector('.gm-style-pbc').nextElementSibling
 		  this.clickableMap && this.clickableMap.addEventListener('click', this.shrinkPanel)
 		}, 500)
 	  })
