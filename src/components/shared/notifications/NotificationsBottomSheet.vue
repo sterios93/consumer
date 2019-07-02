@@ -10,7 +10,7 @@
     </template>
 
     <v-list>
-      <NotificationsCard :full-width="true" :items="items"/>
+      <NotificationsCard @close-sheet="closeSheet" :full-width="true" :items="items"/>
     </v-list>
   </v-bottom-sheet>
 </template>
@@ -22,14 +22,22 @@ export default {
   components: {
     NotificationsCard
   },
+  data() {
+    return {
+      sheet: false
+    }
+  },
   computed: {
-    ...mapState("notifications", ["items", "sheet"]),
+    ...mapState("notifications", ["items"]),
     ...mapGetters("notifications", ["nonSeenItems"]),
     showBadge() {
       return this.nonSeenItems !== 0;
     }
   },
   methods: {
+    closeSheet() {
+      this.sheet = false
+    },
     onClick(event) {
       this.$emit(
         "see-notifications",

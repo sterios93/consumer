@@ -5,7 +5,6 @@ export default {
 	namespaced: true,
 	state: {
 		items: [],
-		sheet: false
 	},
 	mutations: {
 		SET_ITEMS: (state, payload) => {

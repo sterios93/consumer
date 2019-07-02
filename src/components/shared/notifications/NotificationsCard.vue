@@ -81,6 +81,7 @@
                     })
             },
 			onClick(id) {
+                this.$emit('close-sheet')
 				this.$router.push({ path: `/special-offer/${id}`})
 			}
 		}

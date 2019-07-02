@@ -98,6 +98,11 @@ export default {
   created() {
     this.fetchOfferHandler(this.id);
   },
+  watch: {
+    '$route.params.id'(value) {
+      this.fetchOfferHandler(value);
+    }
+  },
   methods: {
 	...mapActions('snackbar', ['setState']),
 	...mapActions({
