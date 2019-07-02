@@ -84,7 +84,8 @@
 
             <v-flex>
                 <v-btn
-                color="primary"
+                class="white-text"
+                color="orange accent-3"
                 @click="onSignUpClick"
                 >
                 Sign Up
@@ -254,5 +255,6 @@ import CustomPhoneValidate from '../shared/CustomPhoneValidate'
 </script>
 
 <style scoped lang="stylus">
-
+    .white-text
+        color: white
 </style>

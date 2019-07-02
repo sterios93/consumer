@@ -9,7 +9,7 @@
       tile
     >
       <v-card-title class="green darken-3">
-        <strong class="subheading">Get connected with us on social networks!</strong>
+        <strong class="subheading orange--text text--lighten-1" >Get connected with us on social networks!</strong>
 
         <v-spacer></v-spacer>
 
@@ -17,8 +17,8 @@
           v-for="icon in icons"
           :key="icon"
           class="mx-3"
-          dark
           icon
+          flat
         >
           <v-icon size="24px">{{ icon }}</v-icon>
         </v-btn>

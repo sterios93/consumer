@@ -3,7 +3,8 @@
     <v-layout justify-center align-center wrap>
       <v-flex xs12 md10>
         <material-card
-          color="purple darken-2"
+          class="white-text"
+          color="orange accent-3"
           title="Sign Up"
           text="Create your profile"
         >
@@ -87,4 +88,7 @@ export default {
 }
 </script>
 
-<style scoped lang="stylus"></style>
+<style scoped lang="stylus">
+  .white-text
+    color: white
+</style>
