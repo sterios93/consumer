@@ -86,7 +86,7 @@ export default {
   },
   computed: {
     imagePath() {
-      return this.image || this.defaultImage
+      return this.localSpecialOffer.img || this.defaultImage
     },
     InfoListProps () {
       return {
