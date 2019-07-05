@@ -25,6 +25,7 @@
                   <v-card-text class="text-xs-center">
                     <h3 class="category font-weight-bold mb-3">From: {{localSpecialOffer.timeStart}}</h3>
                     <h3 class="category font-weight-bold mb-3">To: {{localSpecialOffer.timeEnd}}</h3>
+                    <h3 class="card-title font-weight-bold mb-0 orange--text">{{localSpecialOffer.price | formatCurrency}}</h3>
                     <h3 class="card-title font-weight-light">{{localSpecialOffer.name}}</h3>
                     <p class="card-description font-weight-light">{{localSpecialOffer.description}}</p>
                     <p class="card-description font-weight-light">Also see our other offers bellow :)</p>
