@@ -4,7 +4,7 @@
       <v-flex sm12 lg8>
         <v-card>
           <v-card-title>
-            <div class="headline">{{items.length}} Subscriptions</div>
+            <div class="headline">{{getSubscrByName(text).length}} Subscriptions</div>
             <v-spacer></v-spacer>
             <v-text-field
               v-model="text"
@@ -22,9 +22,9 @@
           <v-layout row wrap justify-center align-center>
             <v-list subheader>
               <v-subheader>Recent subscriptions</v-subheader>
-              <v-list-tile v-for="item in items" :key="item._id" avatar>
+              <v-list-tile v-for="item in getSubscrByName(text)" :key="item._id" avatar>
                 <v-list-tile-avatar>
-                  <img :src="image">
+                  <v-icon size="24px">{{ icon }}</v-icon>
                 </v-list-tile-avatar>
 
                 <v-list-tile-content class="pa-2 suscription-list-item-content">
@@ -48,16 +48,18 @@
 </template>
 
 <script>
-import { mapState, mapActions } from "vuex";
+import { mapState, mapActions, mapGetters } from "vuex";
 
 export default {
   data() {
     return {
       text: "",
       image: '',
+      icon: 'fas fa-bell',
     };
   },
   computed: {
+    ...mapGetters('subscriptions',['getSubscrByName']),
     ...mapState({
       color: state => state.app.color,
       items: state => state.subscriptions.items

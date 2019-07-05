@@ -20,6 +20,7 @@ export default {
     }
   },
   getters: {
+    getSubscrByName: (state) => (name) => state.items.filter((item) => item.name.toLowerCase().indexOf(name) !== -1), 
   },
   actions: {
     fetchSubscriptions({commit, rootState}, payload) {
