@@ -27,7 +27,7 @@
                 ></v-img>
             </v-flex>
 
-            <v-flex xs12 sm7>
+            <v-flex xs12 sm5>
                 <v-card-title primary-title class="justify-center">
                     <div>
                         <div class="headline">{{item.name}}</div>
@@ -36,7 +36,7 @@
                 </v-card-title>
             </v-flex>
 
-            <v-flex xs12 sm2>
+            <v-flex xs12 sm4>
                 <div class="headline">{{item.price | formatCurrency}}</div>
             </v-flex>
         </v-layout>
