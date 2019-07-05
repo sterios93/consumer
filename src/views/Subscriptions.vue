@@ -35,7 +35,6 @@
                   <div>
                     <v-btn class="px-2" @click="toggleActive(item)">
                       <v-icon class="mr-2" :color="item.active ? 'teal' : 'grey'">check</v-icon>
-                        {{item.active ? 'Unsubsribe' : 'Subsribe'}}
                     </v-btn>
                   </div>
                 </v-list-tile-action>
