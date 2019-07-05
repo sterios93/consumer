@@ -17,7 +17,7 @@ export const postData = ({payload, url, token = '', id = '', headers = {}}) => {
     method: "POST",
     mode: "cors",
     cache: "no-cache",
-    credentials: "same-origin",
+    credentials: "include",
     headers: {
       ...defaultHeaders,
 	    ...headers
@@ -43,7 +43,7 @@ export const getData = (url, query = '', token = '', headers = {}) => {
     method: "GET",
     mode: "cors",
     cache: "no-cache",
-    credentials: "same-origin",
+    credentials: "include",
     headers: {
       ...defaultHeaders,
 	    ...headers

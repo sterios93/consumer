@@ -1,7 +1,7 @@
 import { set, toggle } from '@/utils/vuex'
 let config = {
-  prodUrl: 'http://212.227.193.201/api/v1/',
-  devUrl: 'http://212.227.193.201/api/v1/',
+  prodUrl: 'http://lunchdeal24.de/api/v1/',
+  devUrl: 'http://lunchdeal24.de/api/v1/',
   basePath: './',
   signUpPath: 'consumer/create',
   loginPath: 'consumer/login',
